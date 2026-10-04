@@ -2,7 +2,7 @@
 
 Some cosmetic changes in the latest beta version of SpeedSys for (relatively) modern processors.
 
-If the processor supports SSE4 (in which case we consider it modern), the cache test is performed for 16 MB (instead of 8), which gives more adequate results (it does not fit entirely into L3). Also, the main screen now shows the maximum supported SSE version. 
+If the processor supports SSE4 (which we consider an indicator of a modern CPU), the cache test is performed for 16 MB (instead of 8), which gives more adequate results (it does not fit entirely into L3). The main screen also now displays the maximum SSE version supported by the processor.
 
 Build - tasm5 + upx under dosbox or vmware. Just run SPEEDSYS.BAT.
 
