@@ -3,16 +3,16 @@
                    JUMPS
                    P386
 
-AllocatedMemory    EQU   384*1024/16; ‚λ¤¥«¨βμ 384 KB ― ¬οβ¨
-;AllocatedMemory    EQU   264*1024/16; ‚λ¤¥«¨βμ 262 KB ’‹ „‹ ’‹€„!!!
+AllocatedMemory    EQU   384*1024/16; β€Γ«Β¤Β¥Β«Β¨ΓΆΓ¬ 384 KB Β―Β Β¬Γ―ΓΆΒ¨
+;AllocatedMemory    EQU   264*1024/16; β€Γ«Β¤Β¥Β«Β¨ΓΆΓ¬ 262 KB β€™Ε½β€ΉΕ“Ε Ε½ β€β€ΉΕΈ Ε½β€™β€Ήβ‚¬β€Ε Λ†!!!
 ForSkaleProc       EQU  1 ; 1 !!!
-Win32ModuleSize    EQU   7680 ;  §¬¥ΰ Win32 ¬®¤γ«ο
+Win32ModuleSize    EQU   7680 ; ΒΒ Β§Β¬Β¥Γ  Win32 Β¬Β®Β¤Γ£Β«Γ―
 SSTRESTMPSize      EQU   1122+4 ; Win32 data
 CacheMissCor       EQU   64/4
-SpeedsysVer        EQU   '4.79b04'
+SpeedsysVer        EQU   '4.79b05'
 r                  EQU   252,253
 tm                 EQU   254,255
-ForCpuTest         EQU   1 ; ­¥ ¬¥­οβμ
+ForCpuTest         EQU   1 ; Β­Β¥ Β¬Β¥Β­Γ―ΓΆΓ¬
 PCIDevLength       EQU   offset EndOfPCISruct-offset NumberPCIBus
 ClearedPCIDevLength EQU offset EndOfPCISruct-offset NumPCIVideoDev
 
@@ -194,9 +194,9 @@ ExtCPUIDCacheL1InfoEDX DD 0
 ExtCPUIDCacheL2InfoECX DD 0
 
 CPUstepping        DB 0
-CPUmodel           DB 0;* ­¥
-CPUfamily          DB 0;* ¬¥­οβμ
-CPUtype            DB 0;* ―®ΰο¤®ª
+CPUmodel           DB 0;* Β­Β¥
+CPUfamily          DB 0;* Β¬Β¥Β­Γ―ΓΆΓ¬
+CPUtype            DB 0;* Β―Β®Γ Γ―Β¤Β®Βª
 ExtCPUstepping     DB 0;*
 ExtCPUmodel        DB 0;*
 ExtCPUfamily       DB 0;*
@@ -211,6 +211,7 @@ FeatureFlagTSC     DB 0
 FeatureFlagMSR     DB 0
 FeatureFlagSSE     DB 0
 FeatureFlagSSE2    DB 0
+FeatureFlagSSE4    DB 0
 FeatureFlagSN      DB 0
 FeatureFlagAMD3D   DB 0
 FeatureFlagAMD3DExt DB 0
@@ -346,6 +347,8 @@ MesSSEyes          DB 23,39,'IA ',31,'SSE:Yes',0
 MesSSEno           DB 23,39,'IA ',31,'SSE:No',0
 MesSSE2yes         DB 23,39,'IA ',31,'SSE2:Yes',0
 MesSSE2no          DB 23,39,'IA ',31,'SSE2:No',0
+MesSSE4yes         DB 23,39,'IA ',31,'SSE4:Yes',0
+MesSSE4no          DB 23,39,'IA ',31,'SSE4:No',0
 MesAMD3Dyes        DB 23,39,'3DNow!',tm,23,46,':Yes',0
 MesAMD3Dno         DB 23,39,'3DNow!',tm,23,46,':No',0
 MesAMD3DExtyes     DB 23,39,'3DNow! Extensions:Yes',0
@@ -461,7 +464,7 @@ MesDosLabel        DB '('
 NumDosLabel        DB 2 DUP(0),'h) ',0
 
 MesBios            DB 13,23,3,'BIOS: '
-NumBios            DB 42 DUP (0),0 ;42 ­¥ ¬¥­οβμ
+NumBios            DB 42 DUP (0),0 ;42 Β­Β¥ Β¬Β¥Β­Γ―ΓΆΓ¬
 NumBiosDate1       DB 17,2+8,' ('
 NumBiosDate        DB 8 DUP (0),')',17,7+8,0
 MesPerexod         DB 32,25,16,32,0
@@ -963,7 +966,7 @@ ResCacheSpeedMovsq DD 13 DUP(0)
 ResCacheSpeedLodsq DD 13 DUP(0)
 ResCacheSpeedStosq DD 13 DUP(0)
 
-ResultsNew         DB 13 DUP(0) ;¥§γ«μβ βλ ® ­ ©¤¥­­λε ªνθ
+ResultsNew         DB 13 DUP(0) ;ΒΒ¥Β§Γ£Β«Γ¬ΓΆΒ ΓΆΓ« Β® Β­Β Β©Β¤Β¥Β­Β­Γ«Γ¥ ΒªΓ­Γ¨
 L1FastRes          DD ?
 MemSpeedSkala      DW 0
 LastCache          DW 0
@@ -1134,7 +1137,7 @@ NumberLastPCIBus   DB ?
 
 NumPCIStr          DB 0
 
-NumberPCIBus       DB 0 ;1 ¥ΰΆλ© ΅ ©β αβΰγªβγΰλ
+NumberPCIBus       DB 0 ;1 ΒΒ¥Γ ΒΆΓ«Β© Β΅Β Β©ΓΆ Γ΅ΓΆΓ Γ£ΒªΓΆΓ£Γ Γ«
 NumRepPCIDev       DB 0 ;1
 NumRepPCIFun       DB 0 ;1
 PIClass            DB 0 ;1
@@ -1149,7 +1152,7 @@ PCISUBSYSDEV       DW ? ;2
 NumPCISeg          DW 0 ;2
 NumPCIDevVendor    DW 0 ;2
 NumPCIDevName      DW 0 ;2
-NumPCIVideoDev     DB 0 ;1 „ ­­λ¥ ª®β®ΰλ¥ ®΅­γ«οξβαο ―¥ΰ¥¤ ­®Άλ¬ γαβΰ®©αβΆ®¬
+NumPCIVideoDev     DB 0 ;1 β€Β Β­Β­Γ«Β¥ ΒªΒ®ΓΆΒ®Γ Γ«Β¥ Β®Β΅Β­Γ£Β«Γ―Γ®ΓΆΓ΅Γ― Β―Β¥Γ Β¥Β¤ Β­Β®ΒΆΓ«Β¬ Γ£Γ΅ΓΆΓ Β®Β©Γ΅ΓΆΒΆΒ®Β¬
 VerAGP             DB 0 ;1
 SupAGPRate         DB 0 ;1
 AGPDataRate        DB 0 ;1
@@ -1169,7 +1172,7 @@ MemBaseRange2      DD 0 ;4
 MemBaseRange3      DD 0 ;4
 MemBaseRange4      DD 0 ;4
 MemBaseRange5      DD 0 ;4
-EndOfPCISruct      DB 0 ;1 ®α«¥¤­¨© ΅ ©β αβΰγªβγΰλ
+EndOfPCISruct      DB 0 ;1 ΒΒ®Γ΅Β«Β¥Β¤Β­Β¨Β© Β΅Β Β©ΓΆ Γ΅ΓΆΓ Γ£ΒªΓΆΓ£Γ Γ«
 
 FoundAGPController DB 0
 
@@ -1269,7 +1272,7 @@ NumISAPnPCard      DB 48,23,11,0
 PosAdrNamePnPCard  DW AdrNameISAPnP+2
 AdrNameISAPnP      DW NameISAPnP,9 DUP (0)
 PosNameISAPnPBuf   DW NameISAPnP
-SerialIDbuff       DB 72 DUP (0);Vendor_ID+Ser.Num ―® 9 ΅ ©β ­  ―« βγ, 8 ―« β
+SerialIDbuff       DB 72 DUP (0);Vendor_ID+Ser.Num Β―Β® 9 Β΅Β Β©ΓΆ Β­Β  Β―Β«Β ΓΆΓ£, 8 Β―Β«Β ΓΆ
 VendorIDISAPnP     DB 7 DUP (0),'   '
 SerialNoIDISAPnP   DB 8 DUP (0),'  ',0
 NameISAPnP         DB 256 DUP (0)
@@ -1693,7 +1696,7 @@ MemSizePriznak      DB 0
 
 Start:
           mov     [word cs:SegMyProg],es
-          mov     ax,Dseg        ;“αβ ­®Άª   ¤ΰ¥α  α¥£¬¥­β  ¤ ­­λε
+          mov     ax,Dseg        ;β€Γ΅ΓΆΒ Β­Β®ΒΆΒªΒ  Β Β¤Γ Β¥Γ΅Β  Γ΅Β¥Β£Β¬Β¥Β­ΓΆΒ  Β¤Β Β­Β­Γ«Γ¥
           mov     es,ax
           push    ax
           mov     cx,40
@@ -1703,7 +1706,7 @@ Start:
           rep     movsw
           pop     ds
 
-          mov     ah,30h         ; ®«γη¨βμ Ά¥ΰα¨ξ DOS
+          mov     ah,30h         ; ΒΒ®Β«Γ£Γ§Β¨ΓΆΓ¬ ΒΆΒ¥Γ Γ΅Β¨Γ® DOS
           int     21h
           cmp     al,5
           jb      short VerExit
@@ -1737,13 +1740,13 @@ VGAPresent:
           jc      short PrintAndExit
 
           mov     ax,EndPrgSeg
-          mov     [SPDDataSeg],ax  ;‘¥£¬¥­β ¤«ο SPD ¤ ­­λε
-          add     ax,128           ;128*16=2048 - ¤«ο SPD ¤ ­­λε
+          mov     [SPDDataSeg],ax  ;β€Β¥Β£Β¬Β¥Β­ΓΆ Β¤Β«Γ― SPD Β¤Β Β­Β­Γ«Γ¥
+          add     ax,128           ;128*16=2048 - Β¤Β«Γ― SPD Β¤Β Β­Β­Γ«Γ¥
           mov     [PCIDevRepSeg],ax
-          add     ax,128           ;2KB ¤«ο α PCI γαβΰ®©αβΆ
-          mov     [ReportDataSeg],ax  ;‘¥£¬¥­β ¤«ο ¤«ο δ ©«  ®βη¥β 
-          add     ax,2048          ;2048*16=32KB - ¤«ο δ ©«  ®βη¥β 
-          mov     [EndProgram],ax  ;‘¥£¬¥­β ¤«ο ΰ ΅®βλ
+          add     ax,128           ;2KB Β¤Β«Γ― Γ΅ PCI Γ£Γ΅ΓΆΓ Β®Β©Γ΅ΓΆΒΆ
+          mov     [ReportDataSeg],ax  ;β€Β¥Β£Β¬Β¥Β­ΓΆ Β¤Β«Γ― Β¤Β«Γ― Γ¤Β Β©Β«Β  Β®ΓΆΓ§Β¥ΓΆΒ 
+          add     ax,2048          ;2048*16=32KB - Β¤Β«Γ― Γ¤Β Β©Β«Β  Β®ΓΆΓ§Β¥ΓΆΒ 
+          mov     [EndProgram],ax  ;β€Β¥Β£Β¬Β¥Β­ΓΆ Β¤Β«Γ― Γ Β Β΅Β®ΓΆΓ«
           mov     [TransferBufferH],ax
 
           call    DetectCPUclass
@@ -1821,6 +1824,10 @@ RealModeDetected:
           mov     dx,offset NoXMS
           jb      short CannotFoundFreeXMSMem
 GoToInitXMSAccess:
+          cmp     [FeatureFlagSSE4],1
+		      jnz     short NotModernProcessor
+		      inc     bl
+NotModernProcessor:
           mov     [byte cs:MemSizePriznak],bl
 
           call    InitXMSAccess
@@ -1847,7 +1854,7 @@ MSCDEXnotFound:
           mov     ax,4A10h
           xor     bx,bx
           mov     cx,0EBABh
-          int     2Fh      ; ΰ®Ά¥ΰ¨βμ ­ «¨η¨¥ SMARTDRV
+          int     2Fh      ; ΒΓ Β®ΒΆΒ¥Γ Β¨ΓΆΓ¬ Β­Β Β«Β¨Γ§Β¨Β¥ SMARTDRV
           cmp     ax,0BABEh
           jnz     short SMARTDRVNotFound
           mov     [DetSMARTdrv],1
@@ -1892,7 +1899,7 @@ SkipCorrect:
           pop     cx
           mov     [BufNoErr],1
 
-;********* ΅ΰ ΅®βª  ª®¬ ­¤­®© αβΰ®ª¨
+;********* Ε½Β΅Γ Β Β΅Β®ΓΆΒªΒ  ΒªΒ®Β¬Β Β­Β¤Β­Β®Β© Γ΅ΓΆΓ Β®ΒªΒ¨
 NextDOSSimvol:
           lodsb
           cmp     al,13
@@ -2194,7 +2201,7 @@ NotClearCMOS:
           cmp     [CreateBIOS],1
           jnz     short NotCreateSysBIOSdump
           mov     dx,offset SysBiosFileName
-          mov     ax,3C00h    ; ®―ΰ®΅®Ά βμ α®§¤ βμ sysbios.rom
+          mov     ax,3C00h    ; ΒΒ®Β―Γ Β®Β΅Β®ΒΆΒ ΓΆΓ¬ Γ΅Β®Β§Β¤Β ΓΆΓ¬ sysbios.rom
           xor     cx,cx
           int     21h
           jnc     short CreateFileForBIOSdumpOK
@@ -2312,7 +2319,7 @@ WriteDiskCConfirm:
 WriteNotDiskC:
 WriteNotEnableFromComLine:
 
-          cmp     [CreatePCX],1          ;  ¤® α®§¤ Ά βμ PCX δ ©« ?
+          cmp     [CreatePCX],1          ; ΒΒ Β¤Β® Γ΅Β®Β§Β¤Β ΒΆΒ ΓΆΓ¬ PCX Γ¤Β Β©Β« ?
           jnz     short DetectCreateRepFile
           mov     si,[FileName]
 NextSimvol:
@@ -2332,7 +2339,7 @@ EndNextSimvolFile:
           xor     al,al
           stosb
           mov     dx,[FileName]
-          mov     ax,3C00h          ; ®―ΰ®΅®Ά βμ α®§¤ βμ PCX δ ©«
+          mov     ax,3C00h          ; ΒΒ®Β―Γ Β®Β΅Β®ΒΆΒ ΓΆΓ¬ Γ΅Β®Β§Β¤Β ΓΆΓ¬ PCX Γ¤Β Β©Β«
           xor     cx,cx
           int     21h
           mov     [FileHandle],ax
@@ -2361,7 +2368,7 @@ EndNextSimvolFileForRep:
           xor     al,al
           stosb
           mov     dx,[FileNameREP]
-          mov     ax,3C00h          ; ®―ΰ®΅®Ά βμ α®§¤ βμ report δ ©«
+          mov     ax,3C00h          ; ΒΒ®Β―Γ Β®Β΅Β®ΒΆΒ ΓΆΓ¬ Γ΅Β®Β§Β¤Β ΓΆΓ¬ report Γ¤Β Β©Β«
           xor     cx,cx
           int     21h
           mov     [FileHandleREP],ax
@@ -2424,7 +2431,7 @@ WinNTnotDetectForMemSize:
 
           mov     ah,0Fh
           int     10h
-          mov     [video],al ;‡ ―®¬­¨βμ β¥ªγι¨© Ά¨¤¥® ΰ¥¦¨¬
+          mov     [video],al ;β€΅Β Β―Β®Β¬Β­Β¨ΓΆΓ¬ ΓΆΒ¥ΒªΓ£Γ©Β¨Β© ΒΆΒ¨Β¤Β¥Β® Γ Β¥Β¦Β¨Β¬
 
           call    VideoSpeedTest
 
@@ -2434,7 +2441,7 @@ WinNTnotDetectForMemSize:
           mov     ax,0012h   ;640*480*16
           int     10h
 
-          xor     ax,ax      ; ¬ª  ­  ―®«­λ© νªΰ ­
+          xor     ax,ax      ;ΒΒ Β¬ΒªΒ  Β­Β  Β―Β®Β«Β­Γ«Β© Γ­ΒªΓ Β Β­
           mov     bx,ax
           mov     cx,639
           mov     dx,479
@@ -2856,7 +2863,7 @@ NotSPDDIMMmodulesPresentForCacheBench:
 CanNotDetMemTypeWinNT:
           cmp     [MultiTask],1
           jz      short CanNotDetectInMultitask
-          call    DetectIDEDriveName  ;―ΰ¥¤¥«¥­¨¥ ¨¬¥­ ATA/ATAPI
+          call    DetectIDEDriveName  ;Ε½Β―Γ Β¥Β¤Β¥Β«Β¥Β­Β¨Β¥ Β¨Β¬Β¥Β­ ATA/ATAPI
 CanNotDetectInMultitask:
 
           mov     si,offset MesDetBIOSVendor
@@ -2893,7 +2900,7 @@ NotAwardModularBIOS:
           loop    short NextByteTestForAwardModularBIOS
           pop     ds
 
-          push    es      ;―ΰ¥¤¥«¥­¨¥ ―ΰ®¨§Ά®¤¨β¥«ο BIOS
+          push    es      ;Ε½Β―Γ Β¥Β¤Β¥Β«Β¥Β­Β¨Β¥ Β―Γ Β®Β¨Β§ΒΆΒ®Β¤Β¨ΓΆΒ¥Β«Γ― BIOS
           mov     ax,0F000h
           mov     es,ax
           mov     ebp,20202020h
@@ -2959,7 +2966,7 @@ Bug2000testOK:
           call    DetectISAPnP
 CanNotGetISAPnPinWinNT:
 
-          mov     ax,8   ;“¤ «¥­¨¥ ­ ¤―¨α¨ "―ΰ¥¤¥«¥­¨¥ ― ΰ ¬¥βΰ®Ά α¨αβ¥¬λ"
+          mov     ax,8   ;β€Β¤Β Β«Β¥Β­Β¨Β¥ Β­Β Β¤Β―Β¨Γ΅Β¨ "Ε½Β―Γ Β¥Β¤Β¥Β«Β¥Β­Β¨Β¥ Β―Β Γ Β Β¬Β¥ΓΆΓ Β®ΒΆ Γ΅Β¨Γ΅ΓΆΒ¥Β¬Γ«"
           mov     bx,ax
           mov     cx,399
           mov     dx,16
@@ -3415,7 +3422,7 @@ SkipVideoMemSpeedPrn:
           mov     si,offset PerevodStroki
           call    colorstr6x8
 
-;****** ―ΰ¥¤¥«¥­¨¥ ª®«¨η¥αβΆ  ¨ ΰ §¬¥ΰ®Ά HDD
+;****** Ε½Β―Γ Β¥Β¤Β¥Β«Β¥Β­Β¨Β¥ ΒªΒ®Β«Β¨Γ§Β¥Γ΅ΓΆΒΆΒ  Β¨ Γ Β Β§Β¬Β¥Γ Β®ΒΆ HDD
           mov     [TotalAllDrive],0
           mov     ah,8
           mov     dl,80h
@@ -3501,7 +3508,7 @@ HDDFoundGoToPerevodStroki:
           call    colorstr6x8
           inc     [ForBaseFrame]
 HDDNotFoundSkipPerevodStroki:
-;********** ΰ®Ά¥ΰª  ­ «¨η¨ο CDROM **************
+;********** ΒΓ Β®ΒΆΒ¥Γ ΒªΒ  Β­Β Β«Β¨Γ§Β¨Γ― CDROM **************
           mov     si,offset NumDriveName0
           mov     [word ds:IDEATAPIdevices],'MP'
           call    PrintCDROM
@@ -3533,7 +3540,7 @@ HDDNotFoundSkipPerevodStroki:
           inc     [ForBaseFrame]
 CDROMNotFound:
 
-; ―ΰ¥¤¥«¥­¨¥ η¨―α¥β 
+; Ε½Β―Γ Β¥Β¤Β¥Β«Β¥Β­Β¨Β¥ Γ§Β¨Β―Γ΅Β¥ΓΆΒ 
 
           cmp     [PCIBusIsPresent],0
           jz      short ChipsetNotDetect
@@ -3568,7 +3575,7 @@ FaindChipset:
 
 ChipsetNotDetect:
 
-; ―ΰ¥¤¥«¥­¨ο ¬®¤¥«¨ ¬ β¥ΰ¨­ª¨
+; Ε½Β―Γ Β¥Β¤Β¥Β«Β¥Β­Β¨Γ― Β¬Β®Β¤Β¥Β«Β¨ Β¬Β ΓΆΒ¥Γ Β¨Β­ΒªΒ¨
           cmp     [PnPBiosSupport],1
           jnz     NotPnPBiosForMotherboardDetect
 
@@ -3709,7 +3716,7 @@ NotPnPBiosForMotherboardModel:
           inc     [ForBaseFrame]
 NotPnPBiosForMotherboardDetect:
 
-;******* ―ΰ¥¤¥«¥­¨¥ ―ΰ®¨§Ά®¤¨β¥«ο ¨ ¤ βλ BIOS
+;******* Ε½Β―Γ Β¥Β¤Β¥Β«Β¥Β­Β¨Β¥ Β―Γ Β®Β¨Β§ΒΆΒ®Β¤Β¨ΓΆΒ¥Β«Γ― Β¨ Β¤Β ΓΆΓ« BIOS
           cmp     [BIOSVendorDetectOK],1
           jnz     short BIOSVendorUnknown
           mov     si,offset MesBios
@@ -3819,7 +3826,7 @@ DetectDosVersion:
 Bug2000Test1NotFound:
 Bug2000TestNotFound:
 
-;********* ―ΰ¥¤¥«¥­¨¥ Ά¥ΰα¨¨ DOS ******************
+;********* Ε½Β―Γ Β¥Β¤Β¥Β«Β¥Β­Β¨Β¥ ΒΆΒ¥Γ Γ΅Β¨Β¨ DOS ******************
           mov     si,offset vermesn
           call    colorstr6x8
           cmp     [WinNTpres],1
@@ -3919,11 +3926,11 @@ PrintTM:
           mov     [NumRepOSver3],si
           call    colorstr6x8
 OkPrnDOS:
-;********  ¬ª  ª®­δ¨£γΰ ζ¨¨ α¨αβ¥¬λ *****
+;******** ΒΒ Β¬ΒªΒ  ΒªΒ®Β­Γ¤Β¨Β£Γ£Γ Β Γ¦Β¨Β¨ Γ΅Β¨Γ΅ΓΆΒ¥Β¬Γ« *****
           mov     dl,[ForBaseFrame]
           sub     dh,dh
           shl     dx,3
-          add     dx,82-8   ; „«¨­  ΰ ¬ª¨
+          add     dx,82-8   ; β€Β«Β¨Β­Β  Γ Β Β¬ΒªΒ¨
 
           mov     ax,8
           mov     bx,10
@@ -3935,7 +3942,7 @@ OkPrnDOS:
           add     bx,35
           call    ColorHorLine
 
-;********  ¬ª  α¨αβ¥¬­λε α®®΅ι¥­¨© *****
+;******** ΒΒ Β¬ΒªΒ  Γ΅Β¨Γ΅ΓΆΒ¥Β¬Β­Γ«Γ¥ Γ΅Β®Β®Β΅Γ©Β¥Β­Β¨Β© *****
           call    MesagesFrame
           call    ClearWindowMesages
           mov     si,offset MesESC
@@ -3946,7 +3953,7 @@ OkPrnDOS:
           cmp     [HDDTest],1
           jz      GoToTestHDD
 ;*************************************************************
-;**********               ’¥αβ ―ΰ®ζ¥αα®ΰ                  ****
+;**********               β€™Β¥Γ΅ΓΆ Β―Γ Β®Γ¦Β¥Γ΅Γ΅Β®Γ Β                  ****
 ;*************************************************************
 ;jmp mm1
           mov     ax,12
@@ -3973,7 +3980,7 @@ OkPrnDOS:
           mov     bp,sp
           mov     ax,[EndProgram]
           mov     [word cs:EndProgramCS],ax
-          mov     cx,33      ;¥ ¬¥­οβμ
+          mov     cx,33      ;ΒΒ¥ Β¬Β¥Β­Γ―ΓΆΓ¬
 
           ALIGN 2
 
@@ -4040,7 +4047,7 @@ NewCallCPUSpeedInTest:
           mov     cx,5
           call    BinToAscDec2
           xor     edx,edx
-          mov     ebx,100     ;„Ά  §­ ª  ―®α«¥ § ―οβ®©
+          mov     ebx,100     ;β€ΒΆΒ  Β§Β­Β ΒªΒ  Β―Β®Γ΅Β«Β¥ Β§Β Β―Γ―ΓΆΒ®Β©
           div     ebx
           shr     eax,1
           or      eax,eax
@@ -4094,7 +4101,7 @@ VideoTestStart:
           cmp     [CreateQuickREP],1
           jz      MakeQuickREP
 ;******************************************************
-;*******************      ’¥αβ ― ¬οβ¨       ***********
+;*******************      β€™Β¥Γ΅ΓΆ Β―Β Β¬Γ―ΓΆΒ¨       ***********
 ;******************************************************
 ;mm1:
           cmp     [ErrConfig],1
@@ -4348,7 +4355,7 @@ CDnotTested:
 
 SkipMenuInit:
 ;*******************************************
-;****** ‚λ΅®ΰ β¥αβ¨ΰγ¥¬®£® ¤ΰ ©Ά  **********
+;****** β€Γ«Β΅Β®Γ  ΓΆΒ¥Γ΅ΓΆΒ¨Γ Γ£Β¥Β¬Β®Β£Β® Β¤Γ Β Β©ΒΆΒ  **********
 ;*******************************************
           cmp     [WinNTpres],1
           jz      HDDTestStart01
@@ -4365,7 +4372,7 @@ HDDIsFound:
           add     al,cl
           jz      HDDTestStart01
           mov     [AllDrives],al
-          mov     [YposForPrn],6  ;―®§¨ζ¨ο ―® £®ΰ¨§®­β «¨
+          mov     [YposForPrn],6  ;Β―Β®Β§Β¨Γ¦Β¨Γ― Β―Β® Β£Β®Γ Β¨Β§Β®Β­ΓΆΒ Β«Β¨
 
           call    ClearWindowMesages
           mov     si,offset MesPressDriveSl
@@ -4409,7 +4416,7 @@ NextPrnCDforWin:
           jmp     short NextPrnCDforWin
 EndPrnCDforWin:
 
-          mov     [YposForPrn],6   ;―®§¨ζ¨ο ―® £®ΰ¨§®­β «¨
+          mov     [YposForPrn],6   ;Β―Β®Β§Β¨Γ¦Β¨Γ― Β―Β® Β£Β®Γ Β¨Β§Β®Β­ΓΆΒ Β«Β¨
           mov     [DefaultDrive],0
           cmp     [Method],0
           jz      short FullTestMethodSelect
@@ -4434,7 +4441,7 @@ GetNewKeyForDriveSelection:
           jz      DetectedSpaceKey
           jmp     short GetNewKeyForDriveSelection
 DetectedUpKey:
-          cmp     [YposForPrn],6    ;―®§¨ζ¨ο ―® £®ΰ¨§®­β «¨
+          cmp     [YposForPrn],6    ;Β―Β®Β§Β¨Γ¦Β¨Γ― Β―Β® Β£Β®Γ Β¨Β§Β®Β­ΓΆΒ Β«Β¨
           jz      short GetNewKeyForDriveSelection
 
           mov     [LitingPriznak],3
@@ -4473,7 +4480,7 @@ GoToHDDdrive:
 
 DetectedDownKey:
           mov     al,[AllDrives]
-          add     al,6-1   ;―®§¨ζ¨ο ―® £®ΰ¨§®­β «¨ -1
+          add     al,6-1   ;Β―Β®Β§Β¨Γ¦Β¨Γ― Β―Β® Β£Β®Γ Β¨Β§Β®Β­ΓΆΒ Β«Β¨ -1
           cmp     [YposForPrn],al
           jz      GetNewKeyForDriveSelection
           mov     [LitingPriznak],3
@@ -4482,7 +4489,7 @@ DetectedDownKey:
           cmp     [CDROMtest],1
           jz      short RealCDtest
           mov     al,[DefaultDrive]
-          add     al,6     ;―®§¨ζ¨ο ―® £®ΰ¨§®­β «¨
+          add     al,6     ;Β―Β®Β§Β¨Γ¦Β¨Γ― Β―Β® Β£Β®Γ Β¨Β§Β®Β­ΓΆΒ Β«Β¨
           mov     [YposForPrn],al
 
           mov     al,[DefaultDrive]
@@ -4529,7 +4536,7 @@ DetectedSpaceKey:
           mov     si,offset NumFastFullTest
           mov     al,[AllDrives]
           mov     [byte ds:si+2],al
-          add     [byte ds:si+2],6+1     ;―®§¨ζ¨ο ―® £®ΰ¨§®­β «¨ +1
+          add     [byte ds:si+2],6+1     ;Β―Β®Β§Β¨Γ¦Β¨Γ― Β―Β® Β£Β®Γ Β¨Β§Β®Β­ΓΆΒ Β«Β¨ +1
           call    ColorStr6x8
           cmp     [Method],0
           jnz     short NotFullMethod
@@ -4548,7 +4555,7 @@ DetectedEnterKey:
           jz      GoToTestCDROM
 
 ;****************************************************
-;*************      ’¥αβ Ά¨­η¥αβ¥ΰ        ***********
+;*************      β€™Β¥Γ΅ΓΆ ΒΆΒ¨Β­Γ§Β¥Γ΅ΓΆΒ¥Γ Β        ***********
 ;****************************************************
 HDDTestStart01:
 
@@ -4574,11 +4581,11 @@ NoPcxCreated:
           mov     [TotalUnstab],ax
           mov     [TotalError],ax
 
-          mov     al,[TotalHDD]  ; € Ά®΅ι¥ β® ¥αβμ Ά¨­η¥αβ¥ΰ ?
+          mov     al,[TotalHDD]  ; β‚¬ ΒΆΒ®Β΅Γ©Β¥ ΓΆΒ® Β¥Γ΅ΓΆΓ¬ ΒΆΒ¨Β­Γ§Β¥Γ΅ΓΆΒ¥Γ  ?
           or      al,al
           jnz     short HardDrivePresent
           call    ClearWindowMesages
-          jmp     NormalExit          ; …α«¨ Ά¨­β  ­¥β - αª¨― ¥£® β¥αβ
+          jmp     NormalExit          ; β€¦Γ΅Β«Β¨ ΒΆΒ¨Β­ΓΆΒ  Β­Β¥ΓΆ - Γ΅ΒªΒ¨Β― Β¥Β£Β® ΓΆΒ¥Γ΅ΓΆ
 HardDrivePresent:
           cmp     [DefaultDrive],al
           jb      short HardDrivePresentGoToTest
@@ -4609,7 +4616,7 @@ CompliteFullTestHDD:
 
           jmp     CDNormalExit
 ;************************************************
-;*********     ’¥αβ CD-ROM               ********
+;*********     β€™Β¥Γ΅ΓΆ CD-ROM               ********
 ;************************************************
 GoToTestCDROM:
           mov     [SkipDriveSelect],0
@@ -4680,7 +4687,7 @@ CDTestedInFastMode:
           cmp     bx,2048
           jnz     VTOCError
 
-          mov     eax,234249436 ;„«ο ª «¨΅ΰ®Άª¨ CDROM Speed
+          mov     eax,234249436 ;β€Β«Γ― ΒªΒ Β«Β¨Β΅Γ Β®ΒΆΒªΒ¨ CDROM Speed
           movzx   ebx,[SectorsRead]
           mul     ebx
           mov     [BasicDivadeL],eax
@@ -4701,7 +4708,7 @@ CDTestedInFastMode:
           mov     si,offset MesSmartMethod
 FullMethod:
           call    ColorStr6x8
-;******************   ‚λη¨α«¥­¨¥ ¬ αθβ ΅    ****************
+;******************   β€Γ«Γ§Β¨Γ΅Β«Β¥Β­Β¨Β¥ Β¬Β Γ΅Γ¨ΓΆΒ Β΅Β    ****************
 
           mov     si,offset MesCheckReadSpeed
           call    ColorStr6x8
@@ -4747,7 +4754,7 @@ NormalMaxSpinUpSecond:
           mul     ebx
           sub     edx,edx
           div     [MaxResultSpeedSecond]
-          cmp     al,98 ; …α«¨ ΰ §­¨ζ  ΅®«¥¥ 2% - ―ΰ®¤®«¦ ¥¬ ΰ αªΰγβªγ.
+          cmp     al,98 ; β€¦Γ΅Β«Β¨ Γ Β Β§Β­Β¨Γ¦Β  Β΅Β®Β«Β¥Β¥ 2% - Β―Γ Β®Β¤Β®Β«Β¦Β Β¥Β¬ Γ Β Γ΅ΒªΓ Γ£ΓΆΒªΓ£.
           jb      short RepeatSpinUp
 
           mov     eax,[MaxResultSpeedSecond]
@@ -4756,7 +4763,7 @@ NormalMaxSpinUpSecond:
           call    MastabSpeedCDROM
           mov     [DivMastabCDROM],ebx
 
-;***********  ­¨ζ¨ «¨§ ζ¨ο ―¥ΰ¥¬¥­­λε CDROM Test  ************
+;***********  Λ†Β­Β¨Γ¦Β¨Β Β«Β¨Β§Β Γ¦Β¨Γ― Β―Β¥Γ Β¥Β¬Β¥Β­Β­Γ«Γ¥ CDROM Test  ************
 
           xor     eax,eax
           mov     [TekuhPointVert],ax
@@ -4843,7 +4850,7 @@ NoFastTest:
           mov     [word ds:si+1],3503h
           call    ColorStr6x8
 NoFullCDTest:
-;***********   η «® β¥αβ¨ΰ®Ά ­¨ο ―®Ά¥ΰε­®αβ¨ *********
+;***********  ΒΒ Γ§Β Β«Β® ΓΆΒ¥Γ΅ΓΆΒ¨Γ Β®ΒΆΒ Β­Β¨Γ― Β―Β®ΒΆΒ¥Γ Γ¥Β­Β®Γ΅ΓΆΒ¨ *********
           cmp     [DetSMARTdrv],1
           jnz     short SMartDRVNot1
           mov     ax,4A10h
@@ -4989,7 +4996,7 @@ CDTestWasSkipped:
           call    PrnTekSector
           call    MastabSpeedCDROM
 
-;************* ’¥αβ CDROM RandomAccessTime **************
+;************* β€™Β¥Γ΅ΓΆ CDROM RandomAccessTime **************
 
           cmp     [Method],0
           jz      DetectFastTestForRandomAccessTime
@@ -5005,7 +5012,7 @@ CDTestWasSkipped:
           call    SetRnd
 
           mov     [SectorsRead],1
-          mov     [BasicDivadeL],12    ;„«ο ª «¨΅ΰ®Άª¨ CDROM Seek
+          mov     [BasicDivadeL],12    ;β€Β«Γ― ΒªΒ Β«Β¨Β΅Γ Β®ΒΆΒªΒ¨ CDROM Seek
           xor     eax,eax
           mov     [KolihProhodov],eax
           mov     [TotalResultSpeedL],eax
@@ -5082,7 +5089,7 @@ NotStopTestCDROMForRandomAccessTime:
           mov     [dword ds:si+25],eax
 CDTestRandomAccessWasSkipped:
 
-;********** ’¥αβ CDROM 1/3 Seek Time *****************
+;********** β€™Β¥Γ΅ΓΆ CDROM 1/3 Seek Time *****************
 
 SkipTestCDROMForRandomAccessTime:
 
@@ -5156,7 +5163,7 @@ NotStopTestCDROMFor13SeekTime:
           mov     [dword ds:si+29],eax
 CDTest13SeekWasSkipped:
 
-;********* ’¥αβ CDROM Full Seek Time ****************
+;********* β€™Β¥Γ΅ΓΆ CDROM Full Seek Time ****************
 
 SkipTestCDROMFor13SeekTime:
 
@@ -5235,7 +5242,7 @@ CDTestFullSeekWasSkipped:
 SkipTestCDROMForFullSeekTime:
 DetectFastTestForRandomAccessTime:
 
-;*********** ’¥αβ ―®§¨ζ¨®­¨ΰ®Ά ­¨ο CDROM **********
+;*********** β€™Β¥Γ΅ΓΆ Β―Β®Β§Β¨Γ¦Β¨Β®Β­Β¨Γ Β®ΒΆΒ Β­Β¨Γ― CDROM **********
 SeekTestCDROM:
 
           call    SeekToSector0
@@ -5278,7 +5285,7 @@ NoErrorCDROM:
           xor     eax,eax
           mov     [KolihProhodov],eax
           mov     [HorKoord],ax
-          mov     [BasicDivadeL],12    ;„«ο ª «¨΅ΰ®Άª¨ CDROM Seek
+          mov     [BasicDivadeL],12    ;β€Β«Γ― ΒªΒ Β«Β¨Β΅Γ Β®ΒΆΒªΒ¨ CDROM Seek
           mov     ax,318
           mov     bx,287
           mov     cx,238
@@ -5287,7 +5294,7 @@ NoErrorCDROM:
           call    Rectangle
           mov     si,offset MesCheckAccessTime
           call    ColorStr6x8
-;******* ‚λη¨α«¥­¨¥ ¬ αθβ ΅  CDROM Seek ***********
+;******* β€Γ«Γ§Β¨Γ΅Β«Β¥Β­Β¨Β¥ Β¬Β Γ΅Γ¨ΓΆΒ Β΅Β  CDROM Seek ***********
           xor     eax,eax
           mov     [TekSectorCDROML],eax
           mov     [TotalResultSpeedL],eax
@@ -5332,7 +5339,7 @@ GoToSeekTestCDROM:
           mov     [DivMastabCDROM],ebx
           call    GetSeekMashtab
 
-;**********   η «® β¥αβ¨ΰ®Ά ­¨ο CDROM Seek ***********
+;**********  ΒΒ Γ§Β Β«Β® ΓΆΒ¥Γ΅ΓΆΒ¨Γ Β®ΒΆΒ Β­Β¨Γ― CDROM Seek ***********
           cmp     [DetSMARTdrv],1
           jnz     short SMartDRVNot6
           mov     ax,4A10h
@@ -5422,7 +5429,7 @@ NotStopTestCDROMSeek:
 
 SkipTestCDROMSeek:
 
-;******** ΅ΰ ΅®βª  ΰ¥§γ«μβ β®Ά β¥αβ¨ΰ®Ά ­¨ο CDROM *********
+;******** Ε½Β΅Γ Β Β΅Β®ΓΆΒªΒ  Γ Β¥Β§Γ£Β«Γ¬ΓΆΒ ΓΆΒ®ΒΆ ΓΆΒ¥Γ΅ΓΆΒ¨Γ Β®ΒΆΒ Β­Β¨Γ― CDROM *********
 
           call    MastabSpeedCDROM
           mov     si,[ResultSeekMashtab]
@@ -5451,7 +5458,7 @@ SkipGetCDIndex:
           mov     cx,4
           call    BinToAscDec2
           xor     edx,edx
-          mov     ebx,100     ;„Ά  §­ ª  ―®α«¥ § ―οβ®©
+          mov     ebx,100     ;β€ΒΆΒ  Β§Β­Β ΒªΒ  Β―Β®Γ΅Β«Β¥ Β§Β Β―Γ―ΓΆΒ®Β©
           div     ebx
           or      eax,eax
           jnz     short NotZeroInCDspeed
@@ -5469,7 +5476,7 @@ SkipCDcompareRes:
 
           jmp     CDNormalExit
 ;*********************************************************
-;******       ‡ Ά¥ΰθ¥­¨¥ ΰ ΅®βλ ―ΰ®£ΰ ¬¬λ        *********
+;******       β€΅Β ΒΆΒ¥Γ Γ¨Β¥Β­Β¨Β¥ Γ Β Β΅Β®ΓΆΓ« Β―Γ Β®Β£Γ Β Β¬Β¬Γ«        *********
 ;*********************************************************
 CDNormalExit:
           call    ClearWindowMesages
@@ -5707,8 +5714,8 @@ FaundReportFile:
           jmp     short NextOpenReportFileTest
 AllReportFileNotFound:
           mov     dx,offset AutoReportFileName
-          mov     ax,3C00h; ®―ΰ®΅®Ά βμ α®§¤ βμ δ ©« ®βη¥β 
-          xor     cx,cx   ; α γª § ­­λ¬ ¨¬¥­¥¬ ( ―ΰ®Ά®¤ª ¬¨)
+          mov     ax,3C00h; ΒΒ®Β―Γ Β®Β΅Β®ΒΆΒ ΓΆΓ¬ Γ΅Β®Β§Β¤Β ΓΆΓ¬ Γ¤Β Β©Β« Β®ΓΆΓ§Β¥ΓΆΒ 
+          xor     cx,cx   ; Γ΅ Γ£ΒªΒ Β§Β Β­Β­Γ«Β¬ Β¨Β¬Β¥Β­Β¥Β¬ ( Β―Γ Β®ΒΆΒ®Β¤ΒªΒ Β¬Β¨)
           int     21h
           mov     [FileHandleREP],ax
           jc      short TXTReportFileErr
@@ -5722,7 +5729,7 @@ AllReportFileNotFound:
           jz      CreateREPDone
 
           mov     dx,offset AutoPCXFileName
-          mov     ax,3C00h          ; ®―ΰ®΅®Ά βμ α®§¤ βμ PCX δ ©«
+          mov     ax,3C00h          ; ΒΒ®Β―Γ Β®Β΅Β®ΒΆΒ ΓΆΓ¬ Γ΅Β®Β§Β¤Β ΓΆΓ¬ PCX Γ¤Β Β©Β«
           xor     cx,cx
           int     21h
           mov     [FileHandle],ax
@@ -5783,7 +5790,7 @@ Exit:
           int     21h
 
 ;*******************************************
-;**       …– ƒ€›       ************
+;**       Ε Ε½Ββ€¦β€“ ΒΒΕ½Ζ’Ββ‚¬Ε’Ε’β€Ί       ************
 ;*******************************************
 PROC ErrorDiv
           call    MesagesFrame
@@ -6222,6 +6229,14 @@ FeatureFlagSSEForRepNotSupport:
           jnz     short FeatureFlagSSE2ForRepNotSupport
           mov     si,offset MesSSE2yes
 FeatureFlagSSE2ForRepNotSupport:
+          call     PutToReportBuf
+          mov     ax,' ,'
+          call    PutWordToReportBuf
+          mov     si,offset MesSSE4no
+          cmp     [FeatureFlagSSE4],1
+          jnz     short FeatureFlagSSE4ForRepNotSupport
+          mov     si,offset MesSSE4yes
+FeatureFlagSSE4ForRepNotSupport:
           call     PutToReportBuf
 
           cmp     [IntelProcessor],1
@@ -8278,7 +8293,7 @@ ResLabelDDRTrpTrcdOK:
 ENDP DetectLabelDDRTrpTrcd
 
 PROC PrnMesCLuptoForRep
-          push    ax             ; Ά al- β¥ªγι¨© CL
+          push    ax             ; ΒΆ al- ΓΆΒ¥ΒªΓ£Γ©Β¨Β© CL
           push    bx
 
           call    GetMHzFromCycleTime
@@ -8483,11 +8498,11 @@ ATAVersionNotPresentForRep:
           mov     si,offset NumRepSectors
           call    NonZeroPrn
           call    PutToReportBuf
-          movzx   eax,[word ds:bp+34+8] ;―ΰ¥¤¥«ο¥¬
-          movzx   ebx,[word ds:bp+36+8] ;ΰ §¬¥ΰ
-          mul     ebx                   ;¦¥αβª®£®
-          movzx   ebx,[word ds:bp+38+8] ;¤¨αª 
-          mul     ebx                   ;Ά .
+          movzx   eax,[word ds:bp+34+8] ;Ε½Β―Γ Β¥Β¤Β¥Β«Γ―Β¥Β¬
+          movzx   ebx,[word ds:bp+36+8] ;Γ Β Β§Β¬Β¥Γ 
+          mul     ebx                   ;Β¦Β¥Γ΅ΓΆΒªΒ®Β£Β®
+          movzx   ebx,[word ds:bp+38+8] ;Β¤Β¨Γ΅ΒªΒ 
+          mul     ebx                   ;ΒΆ Ε’Β.
           shr     eax,11
           cmp     eax,1024
           jb      short PrnRepHDDSizeInMB
@@ -9437,7 +9452,7 @@ EndStrForPCIrep:
           mov      si,offset NumPCIVendor
           call     UnpackPCIString
           push     es
-          push     [ReportDataSeg] ;‘¥£¬¥­β ¤«ο ¤«ο δ ©«  ®βη¥β 
+          push     [ReportDataSeg] ;β€Β¥Β£Β¬Β¥Β­ΓΆ Β¤Β«Γ― Β¤Β«Γ― Γ¤Β Β©Β«Β  Β®ΓΆΓ§Β¥ΓΆΒ 
           pop      es
           mov      di,[CounterRepBuf]
           mov      si,offset NumPCIVendor
@@ -9855,6 +9870,10 @@ NotSupportSSEinstr:
           jz      short NotSupportSSE2instr
           mov     [FeatureFlagSSE2],1
 NotSupportSSE2instr:
+          test    ecx,80000h
+          jz      short NotSupportSSE4instr
+          mov     [FeatureFlagSSE4],1
+NotSupportSSE4instr:
           cmp     [IntelProcessor],1
           jnz     short NotSupportSNinstr
           test    edx,40000h
@@ -9994,7 +10013,7 @@ NotAMDCPUForGetCacheInfo:
 
 NotSupportCPUID:
 
-;     mov   [IntelProcessor],0  ;„«ο ®β« ¤ª¨!!!
+;     mov   [IntelProcessor],0  ;β€Β«Γ― Β®ΓΆΒ«Β Β¤ΒªΒ¨!!!
 ;     mov   [AMDProcessor],1
 ;     mov   [CPUstepping],3
 ;     mov   [word ds:CPUmodel],0Fh*256+3h
@@ -10653,6 +10672,14 @@ MMXNotSupportForYes:
           mov     si,offset MesAMD3Dyes
           jmp     short PrintMesAMD3Dno
 IntelProcessorPresents:
+          cmp     [FeatureFlagSSE4],1
+		      mov     si,offset MesSSE4yes
+          jz      short SSENotSupportForYes
+
+          cmp     [FeatureFlagSSE2],1
+		      mov     si,offset MesSSE2yes
+		      jz      short SSENotSupportForYes
+
           cmp     [FeatureFlagSSE],1
           mov     si,offset MesSSEyes
           jz      short SSENotSupportForYes
@@ -11143,7 +11170,7 @@ NextByteStr:
           pop     ebx
           sub     edx,edx
           div     ebx
-          cmp     eax,127; νθ ­ ©¤¥­ ¥α«¨ ¬¥¤«¥­­¥¥ ―ΰ¥¤λ¤γι¥£® ­  27%
+          cmp     eax,127; Ε Γ­Γ¨ Β­Β Β©Β¤Β¥Β­ Β¥Γ΅Β«Β¨ Β¬Β¥Β¤Β«Β¥Β­Β­Β¥Β¥ Β―Γ Β¥Β¤Γ«Β¤Γ£Γ©Β¥Β£Β® Β­Β  27%
           jb      short NextByte
           add     di,cx
           mov     al,1
@@ -12112,7 +12139,7 @@ WinNTNotPresentsForDetectHdd:
           mov      edx,[dword ds:si+10h+4] ;Total Number of Sect High Dword
           or       eax,eax
           jz       short Int13extError
-          or       edx,edx               ; ―®¤¤¥ΰ¦ª  β®«μª® 2000 GB
+          or       edx,edx               ; Β―Β®Β¤Β¤Β¥Γ Β¦ΒªΒ  ΓΆΒ®Β«Γ¬ΒªΒ® 2000 GB
           jnz      short Int13extError
 ;          mov      ecx,[dword ds:si+18h];byte per sect
           push     es
@@ -12350,7 +12377,7 @@ PROC HardDriveTest
           mov     dl,[DefaultDrive]
           mov     [TestingHDDnumber],dl
 
-          call    DetectHdd              ;―ΰ¥¤¥«¥­¨¥ ― ΰ ¬¥βΰ®Ά Ά¨­β 
+          call    DetectHdd              ;Ε½Β―Γ Β¥Β¤Β¥Β«Β¥Β­Β¨Β¥ Β―Β Γ Β Β¬Β¥ΓΆΓ Β®ΒΆ ΒΆΒ¨Β­ΓΆΒ 
           mov     cl,[TotalHDD]
           sub     cl,[TestingHDDnumber]
 
@@ -12376,8 +12403,8 @@ Int13ExtNotSupportForThisDrive:
           inc     al
           mov     [byte ds:si+28],al
 
-          mov     eax,1                   ;‡ ¬¥ΰ αª®ΰ®αβ¨ ―®§¨ζ¨®­¨ΰ®Ά ­¨ο
-          call    SeekTrack               ;¤«ο ®―ΰ¥¤¥«¥­¨ο ¬ αθβ ΅ 
+          mov     eax,1                   ;β€΅Β Β¬Β¥Γ  Γ΅ΒªΒ®Γ Β®Γ΅ΓΆΒ¨ Β―Β®Β§Β¨Γ¦Β¨Β®Β­Β¨Γ Β®ΒΆΒ Β­Β¨Γ―
+          call    SeekTrack               ;Β¤Β«Γ― Β®Β―Γ Β¥Β¤Β¥Β«Β¥Β­Β¨Γ― Β¬Β Γ΅Γ¨ΓΆΒ Β΅Β 
           call    StartNewTimer
           mov     eax,[Tracks]
           dec     eax
@@ -12427,9 +12454,9 @@ NoHardSeekProblem:
           call    colorstr6x8
 
           xor     eax,eax                    ;  ***************************
-          mov     [TotallSeekSpeed],eax      ;  * ‚›—‘…… €‘€‹ƒ *
-          mov     [SumSeekSpeed],eax         ;  *    ‘…„…ƒ ‚……    *
-          mov     [OldTotallSeekSpeed],eax   ;  *  ‡–‚€ HDD   *
+          mov     [TotallSeekSpeed],eax      ;  * β€β€Ίβ€”Λ†β€β€¦ΒΛ†β€¦ Ε’β‚¬Ε β€Λ†Ε’β‚¬β€ΉΕ“ΒΕ½Ζ’Ε½ *
+          mov     [SumSeekSpeed],eax         ;  *   Λ† β€Ββ€¦β€Ββ€¦Ζ’Ε½ β€Ββ€¦Ε’β€¦ΒΛ†    *
+          mov     [OldTotallSeekSpeed],eax   ;  *  ΒΕ½β€΅Λ†β€“Λ†Ε½ΒΛ†ΒΕ½β€β‚¬ΒΛ†ΕΈ HDD   *
           mov     [ForUscoren],al            ;  ***************************
           mov     [RealTrack],eax
           mov     [HDDKolichProxodov],eax
@@ -12463,8 +12490,8 @@ NextTestingTrackInHDDSeekTest:
 
           mov     [NewTekushSpeed],eax
           xor     edx,edx
-          mov     ebx,24  ;ΰ¨ ¨§¬¥­¥­¨¨ ­¥®΅ε®¤¨¬  ª «¨΅ΰ®Άª 
-          div     ebx     ;ª®­αβ. MashtabHddSeek
+          mov     ebx,24  ;ΒΓ Β¨ Β¨Β§Β¬Β¥Β­Β¥Β­Β¨Β¨ Β­Β¥Β®Β΅Γ¥Β®Β¤Β¨Β¬Β  ΒªΒ Β«Β¨Β΅Γ Β®ΒΆΒªΒ 
+          div     ebx     ;ΒªΒ®Β­Γ΅ΓΆ. MashtabHddSeek
 
           push    eax
           add     [SumSeekSpeed],eax
@@ -12537,9 +12564,9 @@ HDDAverageMaxSeekTestNotSkipped:
           mov     [dword ds:si+49],eax
 
 SkipSaveResultsMaxSeek:                       ;****************************
-          mov     si,offset MesRandomSeekTime ;* …„…‹…… ‘‹“—€‰ƒ   *
-          call    colorstr6x8                 ;* ‚…… ‡–‚€ *
-          sub     eax,eax                     ;* †…‘’ƒ „‘€           *
+          mov     si,offset MesRandomSeekTime ;* Ε½ΒΒβ€¦β€β€¦β€Ήβ€¦ΒΛ†β€¦ β€β€Ήβ€β€”β‚¬β€°ΒΕ½Ζ’Ε½   *
+          call    colorstr6x8                 ;* β€Ββ€¦Ε’β€¦ΒΛ† ΒΕ½β€΅Λ†β€“Λ†Ε½ΒΛ†ΒΕ½β€β‚¬ΒΛ†ΕΈ *
+          sub     eax,eax                     ;* β€ β€¦β€β€™Ε Ε½Ζ’Ε½ β€Λ†β€Ε β‚¬           *
           mov     [TotallSeekSpeed],eax       ;****************************
           mov     [RealTrack],eax
           mov     [ForUscoren],32
@@ -12655,8 +12682,8 @@ NextSeekForTrackToTrackSeek:
 
           mov     [NewTekushSpeed],eax
           xor     edx,edx
-          mov     ebx,38          ;ΰ¨ ¨§¬¥­¥­¨¨ ­¥®΅ε®¤¨¬  ª «¨΅ΰ®Άª 
-          div     ebx             ;ª®­αβ. MashtabHddSeekTT
+          mov     ebx,38          ;ΒΓ Β¨ Β¨Β§Β¬Β¥Β­Β¥Β­Β¨Β¨ Β­Β¥Β®Β΅Γ¥Β®Β¤Β¨Β¬Β  ΒªΒ Β«Β¨Β΅Γ Β®ΒΆΒªΒ 
+          div     ebx             ;ΒªΒ®Β­Γ΅ΓΆ. MashtabHddSeekTT
 
           add     [TotallTTSpeed],eax
 
@@ -12730,7 +12757,7 @@ SkipSeekTest:
 
           call    MashtabSeek
 
-;‡ ¬¥ΰ αª®ΰ®αβ¨ ηβ¥­¨ο ¤«ο ®―ΰ¥¤¥«¥­¨ο ¬ αθβ ΅ 
+;β€΅Β Β¬Β¥Γ  Γ΅ΒªΒ®Γ Β®Γ΅ΓΆΒ¨ Γ§ΓΆΒ¥Β­Β¨Γ― Β¤Β«Γ― Β®Β―Γ Β¥Β¤Β¥Β«Β¥Β­Β¨Γ― Β¬Β Γ΅Γ¨ΓΆΒ Β΅Β 
           mov     [ForUscoren],32
           mov     eax,[Tracks]
           shr     eax,4
@@ -12790,8 +12817,8 @@ ReadHDDResultFast:
           mov     cx,100
 LoopTestingRandomAccessHDD:
           push    cx
-          call    StartNewTimer     ;…„…‹…… ‘‹“—€‰ƒ
-          call    RandomAccessTrack ;‚…… „‘’“€
+          call    StartNewTimer     ;Ε½ΒΒβ€¦β€β€¦β€Ήβ€¦ΒΛ†β€¦ β€β€Ήβ€β€”β‚¬β€°ΒΕ½Ζ’Ε½
+          call    RandomAccessTrack ;β€Ββ€¦Ε’β€¦ΒΛ† β€Ε½β€β€™β€Ββ‚¬
           call    RandomAccessTrack
           call    RandomAccessTrack
           call    RandomAccessTrack
@@ -12850,7 +12877,7 @@ TestingReadSpeedHDD:
           mov     si,offset ResultBufferedHDD
           call    ColorStr6x8
 
-;‡ ¬¥ΰ αª®ΰ®αβ¨ ―ΰ®Ά¥ΰª¨ ¤«ο ®―ΰ¥¤¥«¥­¨ο ¬ αθβ ΅ 
+;β€΅Β Β¬Β¥Γ  Γ΅ΒªΒ®Γ Β®Γ΅ΓΆΒ¨ Β―Γ Β®ΒΆΒ¥Γ ΒªΒ¨ Β¤Β«Γ― Β®Β―Γ Β¥Β¤Β¥Β«Β¥Β­Β¨Γ― Β¬Β Γ΅Γ¨ΓΆΒ Β΅Β 
 
           mov     eax,[Tracks]
           shr     eax,4
@@ -12969,8 +12996,8 @@ HDDCacheSpeedIsSmall:
           mov     [dword ds:si+29],eax
 
           call    MashtabSpeed          ; ***************************
-          xor     eax,eax               ; *   ‚›—‘‹…… ‘‘’   *
-                                        ; *   ‚… „†      *
+          xor     eax,eax               ; *   β€β€Ίβ€”Λ†β€β€Ήβ€¦ΒΛ†β€¦ β€Ε Ε½ΒΕ½β€β€™Λ†   *
+                                        ; *   ΒΒΕ½β€β€¦ΒΕ Λ† β€Ε½ΒΕ½β€ Ε Λ†      *
           mov     [TotallReadSpeed],eax ; ***************************
           mov     [MaxHDDtransfer],eax
           mov     [MinHDDtransfer],eax
@@ -13020,7 +13047,7 @@ NextTrackFrom4InVerify:
           shr     eax,2
 EndFullMethodInVerifyTrack:
 
-          push    eax     ;‚λη¨α«¥­¨¥ αª®ΰ®αβ¨ ηβ¥­¨ο ®¤­®£® ª« αβ¥ΰ 
+          push    eax     ;β€Γ«Γ§Β¨Γ΅Β«Β¥Β­Β¨Β¥ Γ΅ΒªΒ®Γ Β®Γ΅ΓΆΒ¨ Γ§ΓΆΒ¥Β­Β¨Γ― Β®Β¤Β­Β®Β£Β® ΒªΒ«Β Γ΅ΓΆΒ¥Γ Β 
           mov     eax,[Heads]
           mul     [Sectors]
           mov     ebx,586161
@@ -13104,8 +13131,8 @@ SkipVerifySpeed:
 
           call    MashtabSeek
           call    MashtabSpeed               ; ***************************
-          xor     eax,eax                    ; *   ‚›—‘‹…… ‘‘’   *
-                                             ; *     —’…  „†     *
+          xor     eax,eax                    ; *   β€β€Ίβ€”Λ†β€β€Ήβ€¦ΒΛ†β€¦ β€Ε Ε½ΒΕ½β€β€™Λ†   *
+                                             ; *     β€”β€™β€¦ΒΛ†ΕΈ  β€Ε½ΒΕ½β€ Ε Λ†     *
           mov     [TotallReadSpeed],eax      ; ***************************
           mov     [MaxHDDtransfer],eax
           mov     [MinHDDtransfer],eax
@@ -13155,7 +13182,7 @@ NextTrackFrom4InRead:
           shr     eax,2
 EndFullMethodInReadTrack:
 
-          push    eax     ;‚λη¨α«¥­¨¥ αª®ΰ®αβ¨ ηβ¥­¨ο ®¤­®£® ª« αβ¥ΰ 
+          push    eax     ;β€Γ«Γ§Β¨Γ΅Β«Β¥Β­Β¨Β¥ Γ΅ΒªΒ®Γ Β®Γ΅ΓΆΒ¨ Γ§ΓΆΒ¥Β­Β¨Γ― Β®Β¤Β­Β®Β£Β® ΒªΒ«Β Γ΅ΓΆΒ¥Γ Β 
           mov     eax,[Heads]
           mul     [Sectors]
           mov     ebx,586161
@@ -13237,8 +13264,8 @@ SkipLinearReadHDDSpeedTest:
 
           call    MashtabSeek
           call    MashtabSpeed               ; ***************************
-          xor     eax,eax                    ; *   ‚›—‘‹…… ‘‘’   *
-                                             ; *     ‡€‘  „†     *
+          xor     eax,eax                    ; *   β€β€Ίβ€”Λ†β€β€Ήβ€¦ΒΛ†β€¦ β€Ε Ε½ΒΕ½β€β€™Λ†   *
+                                             ; *     β€΅β‚¬ΒΛ†β€Λ†  β€Ε½ΒΕ½β€ Ε Λ†     *
           mov     [TotallReadSpeed],eax      ; ***************************
           mov     [MaxHDDtransfer],eax
           mov     [MinHDDtransfer],eax
@@ -13299,7 +13326,7 @@ NextTrackFrom4InWrite:
           shr     eax,2
 EndFullMethodInWriteTrack:
 
-          push    eax     ;‚λη¨α«¥­¨¥ αª®ΰ®αβ¨ ηβ¥­¨ο ®¤­®£® ª« αβ¥ΰ 
+          push    eax     ;β€Γ«Γ§Β¨Γ΅Β«Β¥Β­Β¨Β¥ Γ΅ΒªΒ®Γ Β®Γ΅ΓΆΒ¨ Γ§ΓΆΒ¥Β­Β¨Γ― Β®Β¤Β­Β®Β£Β® ΒªΒ«Β Γ΅ΓΆΒ¥Γ Β 
           mov     eax,[Heads]
           mul     [Sectors]
           mov     ebx,586161
@@ -14047,7 +14074,7 @@ NotFoundIDE3BaseIO:
           ret
 ENDP DetectIDEDriveName
 
-PROC DetectAtaDevice      ;―®«γη ¥¬ ATA ― ΰ ¬¥βΰλ
+PROC DetectAtaDevice      ;Β―Β®Β«Γ£Γ§Β Β¥Β¬ ATA Β―Β Γ Β Β¬Β¥ΓΆΓ Γ«
 
           push    ax
           push    dx
@@ -14110,15 +14137,15 @@ ATAdriveIsReady:
           jne     ATAdriveNotFound
 
           push    dx
-          movzx   eax,[word es:di+2]        ;―ΰ¥¤¥«ο¥¬
-          movzx   ebx,[word es:di+6]        ;ΰ §¬¥ΰ
-          mul     ebx                       ;¦¥αβª®£®
-          movzx   ebx,[word es:di+12]       ;¤¨αª 
-          mul     ebx                       ;Ά MB.
+          movzx   eax,[word es:di+2]        ;Ε½Β―Γ Β¥Β¤Β¥Β«Γ―Β¥Β¬
+          movzx   ebx,[word es:di+6]        ;Γ Β Β§Β¬Β¥Γ 
+          mul     ebx                       ;Β¦Β¥Γ΅ΓΆΒªΒ®Β£Β®
+          movzx   ebx,[word es:di+12]       ;Β¤Β¨Γ΅ΒªΒ 
+          mul     ebx                       ;ΒΆ MB.
           pop     dx
           shr     eax,11
           cmp     eax,819200
-          ja      ATAdriveNotFound    ;Error ¥α«¨ ΅®«μθ¥ 800 GB
+          ja      ATAdriveNotFound    ;Error Β¥Γ΅Β«Β¨ Β΅Β®Β«Γ¬Γ¨Β¥ 800 GB
 
           call    GetATAScecInfo
 
@@ -14128,7 +14155,7 @@ ATAdriveIsReady:
           call    GetRPM
 
           inc     [AtaDrive]
-          mov     [word ds:si+32+8],8000h ; ―ΰ¨§­ ª ATA γαβΰ®©αβΆ 
+          mov     [word ds:si+32+8],8000h ; Β―Γ Β¨Β§Β­Β Βª ATA Γ£Γ΅ΓΆΓ Β®Β©Γ΅ΓΆΒΆΒ 
           clc
           jmp     ATAdriveIsFound
 
@@ -14162,7 +14189,7 @@ FaindATAPIDevices:
           sub     di,di
           mov     al,[byte es:di+1]
           and     al,11111b ; Bit 12-8=5-CDROM
-          mov     [word ds:si+40],ax; ―ΰ¨§­ ª ATAPI γαβΰ®©αβΆ 
+          mov     [word ds:si+40],ax; Β―Γ Β¨Β§Β­Β Βª ATAPI Γ£Γ΅ΓΆΓ Β®Β©Γ΅ΓΆΒΆΒ 
 
           call    GetATAPIDevParam
           jc      short ATAPIDevParamErrorInGet
@@ -14233,7 +14260,7 @@ CanNotGetATAPIPageAccess:
           call    WaitBusyAndDataRequest
           jc      short DriveNotReadyForGetATAPIPacket
 
-          mov     [ATAPIPage],2Ah ;― ΰ ¬¥βΰλ γαβΰ®©αβΆ , β¥ªγι¨¥ §­ η¥­¨ο
+          mov     [ATAPIPage],2Ah ;Β―Β Γ Β Β¬Β¥ΓΆΓ Γ« Γ£Γ΅ΓΆΓ Β®Β©Γ΅ΓΆΒΆΒ , ΓΆΒ¥ΒªΓ£Γ©Β¨Β¥ Β§Β­Β Γ§Β¥Β­Β¨Γ―
           mov     [ATAPIPageLength],16h
 
           mov     cx,6
@@ -16712,7 +16739,7 @@ PROC GetISAPnPInfoFromPnPBIOS
           add     sp,8
           or      ax,ax
           jnz     short GetISAConfigStrucNotSupport
-          mov     ax,[EndProgram]  ; ‘¥£¬¥­β ª®­ζ  ―ΰ®£ΰ ¬¬λ Ά ― ¬οβ¨
+          mov     ax,[EndProgram]  ; β€Β¥Β£Β¬Β¥Β­ΓΆ ΒªΒ®Β­Γ¦Β  Β―Γ Β®Β£Γ Β Β¬Β¬Γ« ΒΆ Β―Β Β¬Γ―ΓΆΒ¨
           mov     es,ax
           sub     di,di
           cmp     [byte es:di],1
@@ -16967,7 +16994,7 @@ NextMemSocket:
           mov     al,[byte es:di+37]
           mov     [RDRAMFmax],ax
 
-          ;―ΰ¥¤¥«¥­¨¥ ― ΰ ¬¥βΰ®Ά RIMM ¬®¤γ«ο
+          ;Ε½Β―Γ Β¥Β¤Β¥Β«Β¥Β­Β¨Β¥ Β―Β Γ Β Β¬Β¥ΓΆΓ Β®ΒΆ RIMM Β¬Β®Β¤Γ£Β«Γ―
           jmp     short GetNumManufPartNum
 GoToGetDIMMMemModulesParam:
 
@@ -17004,7 +17031,7 @@ MemTypeBitNotSetForMemInfo:
 
           cmp     [NumberRIMMModules],0
           jz      short GoToGetSDRAMCycleTime
-           ;ΰ¥¤¥«¥­¨ αª®ΰ®αβ¨ ΰ ΅®βλ RIMM ¬®¤γ«ο
+           ;Ε½Γ Β¥Β¤Β¥Β«Β¥Β­Β¨ Γ΅ΒªΒ®Γ Β®Γ΅ΓΆΒ¨ Γ Β Β΅Β®ΓΆΓ« RIMM Β¬Β®Β¤Γ£Β«Γ―
 
           jmp     short SkippDetectSDRAMCycleTime
 
@@ -17063,7 +17090,7 @@ SPDCheckSumErrSkipManufInfo:
           cmp     [NumberRIMMModules],0
           jz      short GetSDRAMCASlat
 
-;ΰ¥¤¥«¥­¨ ¤®―®«­¨β¥«μ­λε ― ΰ ¬¥βΰ®Ά RIMM ¬®¤γ«ο
+;Ε½Γ Β¥Β¤Β¥Β«Β¥Β­Β¨ Β¤Β®Β―Β®Β«Β­Β¨ΓΆΒ¥Β«Γ¬Β­Γ«Γ¥ Β―Β Γ Β Β¬Β¥ΓΆΓ Β®ΒΆ RIMM Β¬Β®Β¤Γ£Β«Γ―
           sub     ah,ah
           mov     al,[MinPrToRASTime]
           mov     cx,2
@@ -17745,7 +17772,7 @@ NextPCIDeviceFunction:
           mov     ds,ax
           mov     [byte cs:PCIDeviceListChenged],0
 
-; ­ η «® ―®¨αª  ―ΰ®¨§Ά®¤¨β¥«ο Ά ds:si
+; Β­Β Γ§Β Β«Β® Β―Β®Β¨Γ΅ΒªΒ  Β―Γ Β®Β¨Β§ΒΆΒ®Β¤Β¨ΓΆΒ¥Β«Γ― ΒΆ ds:si
           ALIGN 2
 PCIVendorNotFound:
           lodsb
@@ -17790,7 +17817,7 @@ NotSubSysRev:
           jz      PCIDeviceExists
           mov     [OldPCIDevice],cx
 
-; ­ η «® ―®¨αª  γαβΰ®©αβΆ  Ά ds:si
+; Β­Β Γ§Β Β«Β® Β―Β®Β¨Γ΅ΒªΒ  Γ£Γ΅ΓΆΓ Β®Β©Γ΅ΓΆΒΆΒ  ΒΆ ds:si
           mov     ax,[word cs:PCIData]
           mov     ds,ax
 
@@ -18749,13 +18776,13 @@ SetBug2000Test1TimeError:
 ENDP SetDateAndTimeBug2000Test1
 
 PROC DetectISAPnP
-          cmp     [ISAConfigStrucSupport],1 ;‘ª ­¨ΰγ¥¬ Άα¥ Ά®§¬®¦­λ¥ RD ―®ΰβλ
-          jnz     short BIOSNotSupportISAConfigStruc ;¥α«¨ BIOS ­¥ ―®¤¤¥ΰ¦¨Ά ¥β ISA PnP
+          cmp     [ISAConfigStrucSupport],1 ;β€ΒªΒ Β­Β¨Γ Γ£Β¥Β¬ ΒΆΓ΅Β¥ ΒΆΒ®Β§Β¬Β®Β¦Β­Γ«Β¥ RD Β―Β®Γ ΓΆΓ«
+          jnz     short BIOSNotSupportISAConfigStruc ;Β¥Γ΅Β«Β¨ BIOS Β­Β¥ Β―Β®Β¤Β¤Β¥Γ Β¦Β¨ΒΆΒ Β¥ΓΆ ISA PnP
           cmp     [CSNFromISAConfigStruc],0
-          jz      ISAPnPCardNotFound ; BIOS ­¥ ­ θ¥« ISA PnP ª ΰβλ
+          jz      ISAPnPCardNotFound ; BIOS Β­Β¥ Β­Β Γ¨Β¥Β« ISA PnP ΒªΒ Γ ΓΆΓ«
 
 BIOSNotSupportISAConfigStruc:
-          call    ISAPnPKey     ; ­¨ζ¨ «¨§ ζ¨ο ª«ξη¥¬ PnP
+          call    ISAPnPKey     ; Λ†Β­Β¨Γ¦Β¨Β Β«Β¨Β§Β Γ¦Β¨Γ― ΒªΒ«Γ®Γ§Β¥Β¬ PnP
           mov     ax,206h       ; Fallout to 'Wait_key' state
           call    OutPnPReg
 NextAdrForScan:
@@ -18770,7 +18797,7 @@ NextAdrForScan:
           mov     si,offset MesDetISAPnPPort
           call    ColorStr6x8
 
-          call    ISAPnPKey    ; ­¨ζ¨ «¨§ ζ¨ο ª«ξη¥¬ PnP
+          call    ISAPnPKey    ; Λ†Β­Β¨Γ¦Β¨Β Β«Β¨Β§Β Γ¦Β¨Γ― ΒªΒ«Γ®Γ§Β¥Β¬ PnP
           mov     ax,300h      ; Wake[0]
           call    OutPnPReg
           pop     ax
@@ -18782,11 +18809,11 @@ NextCardIsolate:
           inc     [CurrCSN]
           mov     al,[CurrCSN]
           mov     ah,6       ; Write CSN
-          call    OutPnPReg  ; ―p¨αΆ®¨¬ ¥© ­®¬¥p Card Serial Number
-; €­ «¨§ Resource Block ¨ ΆλΆ®¤ ­¥ª®β®pλε αΆ¥¤¥­¨© ® PnP ―« β¥
-          sub     bp,bp         ; ­  Άαοª¨© α«γη © Length RB<=65536
+          call    OutPnPReg  ; Β―pΒ¨Γ΅ΒΆΒ®Β¨Β¬ Β¥Β© Β­Β®Β¬Β¥p Card Serial Number
+; β‚¬Β­Β Β«Β¨Β§ Resource Block Β¨ ΒΆΓ«ΒΆΒ®Β¤ Β­Β¥ΒªΒ®ΓΆΒ®pΓ«Γ¥ Γ΅ΒΆΒ¥Β¤Β¥Β­Β¨Β© Β® PnP Β―Β«Β ΓΆΒ¥
+          sub     bp,bp         ; Β­Β  ΒΆΓ΅Γ―ΒªΒ¨Β© Γ΅Β«Γ£Γ§Β Β© Length RB<=65536
           call    ISAPnPKey
-          mov     al,[CurrCSN]  ; 'p §΅γ¤¨βμ' ―« βγ
+          mov     al,[CurrCSN]  ; 'pΒ Β§Β΅Γ£Β¤Β¨ΓΆΓ¬' Β―Β«Β ΓΆΓ£
           mov     ah,3          ; Wake [CSN]
           call    OutPnPReg
           call    GetSerIDAdr   ; For strange card f.e.: "Turtle Beach Tropez Plus"
@@ -18813,18 +18840,18 @@ rd_rdb01:
           dec     bp
           jnz     short rdres0
 rdres1:
-          call    ISAPnPKey        ; ­¨ζ¨ «¨§ ζ¨ο ª«ξη¥¬ PnP
+          call    ISAPnPKey        ; Λ†Β­Β¨Γ¦Β¨Β Β«Β¨Β§Β Γ¦Β¨Γ― ΒªΒ«Γ®Γ§Β¥Β¬ PnP
           mov     ax,300h          ; Wake [0]
           call    OutPnPReg
           mov     [ANSIIDstring],0
           jmp     short NextCardIsolate
 ErrInIsolate:
-          cmp     [CurrCSN],0 ; ª pβ  ­¥ 1 - §­ η¨β Άα¥ ª pβλ ΆλοΆ¨«¨
+          cmp     [CurrCSN],0 ; ΒªΒ pΓΆΒ  Β­Β¥ 1 - Β§Β­Β Γ§Β¨ΓΆ ΒΆΓ΅Β¥ ΒªΒ pΓΆΓ« ΒΆΓ«Γ―ΒΆΒ¨Β«Β¨
           jnz     short AllCardFound
-          inc     [pnprdr]   ; ‘«¥¤γξι¨©  ¤p¥α READ_DATA port
+          inc     [pnprdr]   ; β€Β«Β¥Β¤Γ£Γ®Γ©Β¨Β© Β Β¤pΒ¥Γ΅ READ_DATA port
           mov     al,[pnprdr]
-          cmp     al,0C0h    ; ¥ α®Άα¥¬ ―® α―¥ζ¨δ¨ª ζ¨¨ !!! (¤® 0FFh ­ ¤®)
-          jz      short ISAPnPCardNotFound   ; ‚α¥  ¤p¥α  ®―p®΅®Ά ­λ
+          cmp     al,0C0h    ; ΒΒ¥ Γ΅Β®ΒΆΓ΅Β¥Β¬ Β―Β® Γ΅Β―Β¥Γ¦Β¨Γ¤Β¨ΒªΒ Γ¦Β¨Β¨ !!! (Β¤Β® 0FFh Β­Β Β¤Β®)
+          jz      short ISAPnPCardNotFound   ; β€Γ΅Β¥ Β Β¤pΒ¥Γ΅Β  Β®Β―pΒ®Β΅Β®ΒΆΒ Β­Γ«
           call    WaitingAndGetCh
           cmp     al,' '
           jz      short ISAPnPCardNotFound
@@ -18911,7 +18938,7 @@ WaitResponseISAPnPcard:
 ResponseISAPnPcardOK:
           stc
           jcxz    short NotResponseISAPnPcard
-          mov     ah,4   ; ―/― ηβ¥­¨ο 1 ΅ ©β  RDB
+          mov     ah,4   ; Β―/Β― Γ§ΓΆΒ¥Β­Β¨Γ― 1 Β΅Β Β©ΓΆΒ  RDB
           call    InPnPReg
           clc
 NotResponseISAPnPcard:
@@ -18920,7 +18947,7 @@ NotResponseISAPnPcard:
 ENDP ReadByteOfResourceData
 
 PROC GetSerIDAdr
-; p αη¥β β¥ªγι¥£®  ¤p¥α  Serial ID Ά SerialIDbuff
+; pΒ Γ΅Γ§Β¥ΓΆ ΓΆΒ¥ΒªΓ£Γ©Β¥Β£Β® Β Β¤pΒ¥Γ΅Β  Serial ID ΒΆ SerialIDbuff
           mov     al,[CurrCSN]
 PROC GetSerIDAdrForVendor
           mov     bl,9
@@ -18985,8 +19012,8 @@ ExitUnpackVendorIDISAPnP:
 ENDP UnpackVendorIDISAPnP
 
 PROC IsolatingISAPnPCard
-; ‚ε®¤:  DS:BX= ¤p¥α ―®«ο 72 bit serial identifier, +  ¤p¥α  p¥£¨αβp®Ά
-; ‚λε®¤: CF=0  -> Ok! + § ―®«­¥­­®¥ ―®«¥
+; β€Γ¥Β®Β¤:  DS:BX=Β Β¤pΒ¥Γ΅ Β―Β®Β«Γ― 72 bit serial identifier, + Β Β¤pΒ¥Γ΅Β  pΒ¥Β£Β¨Γ΅ΓΆpΒ®ΒΆ
+; β€Γ«Γ¥Β®Β¤: CF=0  -> Ok! + Β§Β Β―Β®Β«Β­Β¥Β­Β­Β®Β¥ Β―Β®Β«Β¥
 ;        CF=1  -> Error
           push    dx
           push    cx
@@ -19015,7 +19042,7 @@ isolat04:
           mov     si,cx
           mov     cx,72
           sub     cx,si
-          call    InBitMap ; § ­®α¨¬ Ά ª pβγ ΅¨β[CX]=al(!=0->'1')
+          call    InBitMap ; Β§Β Β­Β®Γ΅Β¨Β¬ ΒΆ ΒªΒ pΓΆΓ£ Β΅Β¨ΓΆ[CX]=al(!=0->'1')
           pop     cx
           loop    short isolat00
           test    dl,01
@@ -19040,7 +19067,7 @@ IsolatingOK:
 ENDP IsolatingISAPnPCard
 
 PROC OutPnPReg
-; ‚λΆ®¤ ΅ ©β =AL Ά p¥£¨αβp PnP=AH
+; β€Γ«ΒΆΒ®Β¤ Β΅Β Β©ΓΆΒ =AL ΒΆ pΒ¥Β£Β¨Γ΅ΓΆp PnP=AH
           push    dx
           mov     dx,0279h
           xchg    ah,al
@@ -19055,7 +19082,7 @@ PROC OutPnPReg
 ENDP OutPnPReg
 
 PROC InPnPReg
-; ‚Ά®¤ ΅ ©β =AL ¨§ p¥£¨αβp  PnP=AH
+; β€ΒΆΒ®Β¤ Β΅Β Β©ΓΆΒ =AL Β¨Β§ pΒ¥Β£Β¨Γ΅ΓΆpΒ  PnP=AH
           push    dx
           mov     dx,0279h
           mov     al,ah
