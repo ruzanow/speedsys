@@ -1,47 +1,10 @@
 # SPEEDSYS
 
-This repository contains the unmodified source code for 'System Speed Test' as I received it from Vladimir on August 12, 2006 upon my request.
-IIRC, it is a WIP version 4.79, while the latest binary release was v4.78. I do not remember if source code builds correctly.
+Some cosmetic changes in the latest beta version of SpeedSys for (relatively) modern processors.
 
-**I** never made any progress improving SPEEDSYS and have no plans for the future. So, here it is!
+If the processor supports SSE4, the cache test is performed for 16 MB (instead of 8), which gives more adequate results (it does not fit entirely into L3). Also, the main screen now shows the maximum supported SSE version. 
 
-* [ASUSCD/](ASUSCD/) folder: ASUSTek CD/DVD-ROM Device Driver V1.50 (binary & readme)
-* [src/](src/) folder: SPEEDSYS sources (GNU GPL any version)
-* [sstsources.zip](sstsources.zip) file: complete archive
 
----
+>This repository contains the unmodified source code for 'System Speed Test' as I received it from Vladimir on August 12, 2006 upon my request.
+>IIRC, it is a WIP version 4.79, while the latest binary release was v4.78. I do not remember if source code builds correctly.
 
-> From: "Vladimir Afanasiev" <dxover@...>  
-> To: "Robert Riebisch" <rr@...>  
-> Subject: Re: Future of System Speed Test  
-> Date: Sat, 12 Aug 2006 17:45:50 +0900  
->   
-> Hi Rober!  
->   
-> > Are there any new versions planned?  
->   
-> No  
->   
-> > If not, can I get the source code to  
-> > continue this nice utility? :-)  
->   
-> You may get the source code now, but only not send me questions about this.  
->   
-> Regars.  
->   
-> Vladimir Afanasiev  
-
----
-
->  From: "Vladimir Afanasiev" <dxover@...>  
->  To: "Robert Riebisch" <rr@...>  
->  Subject: Re: Future of System Speed Test  
->  Date: Sun, 13 Aug 2006 12:15:24 +0900  
->    
->  > What license is the program now? I would assume "GNU GPL".   
->    
->  Yes, this acceptable.  
->    
->  Regards.  
->    
->  Vladimir Afanasiev  
