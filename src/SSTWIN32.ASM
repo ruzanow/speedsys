@@ -1,5 +1,5 @@
 
-       %TITLE    " Win32 ����� Ver 1.48 24-Jun-2003"
+       %TITLE    " Win32 модуль Ver 1.48 24-Jun-2003"
 
 .586
 .model flat, stdcall
@@ -70,9 +70,9 @@ PhysDrive       DB '\\.\PHYSICALDRIVE'
 NumPhysDrive    DB '0',0
 
 StepCPU         DB 0
-CPUmodel        DB 0   ;* ��
-CPUfamily       DB 0   ;* ������
-CPUtype         DB 0   ;* ���冷�
+CPUmodel        DB 0   ;* не
+CPUfamily       DB 0   ;* менять
+CPUtype         DB 0   ;* порядок
 IntelExtendedFamily DB 0   ; 27-20 8 bit
 IntelExtendedModel  DB 0   ; 19-16 4 bit
 BrandID         DB 0
@@ -603,7 +603,7 @@ DetectIDEDriveName PROC
           ret
 DetectIDEDriveName ENDP
 
-DetectAtaDevice PROC     ;����砥� ATA ��ࠬ����
+DetectAtaDevice PROC     ;получаем ATA параметры
 
           push    ax
           push    dx
@@ -663,15 +663,15 @@ ATAdriveIsReady:
           jne     ATAdriveNotFound
 
           push    dx
-          movzx   eax,word ptr [edi+2]        ;��।��塞
-          movzx   ebx,word ptr [edi+6]        ;ࠧ���
-          mul     ebx                       ;���⪮��
-          movzx   ebx,word ptr [edi+12]       ;��᪠
-          mul     ebx                       ;� MB.
+          movzx   eax,word ptr [edi+2]        ;Определяем
+          movzx   ebx,word ptr [edi+6]        ;размер
+          mul     ebx                       ;жесткого
+          movzx   ebx,word ptr [edi+12]       ;диска
+          mul     ebx                       ;в MB.
           pop     dx
           shr     eax,11
           cmp     eax,819200
-          ja      ATAdriveNotFound    ;Error �᫨ ����� 800 GB
+          ja      ATAdriveNotFound    ;Error если больше 800 GB
 
           call    GetATAScecInfo
 
@@ -682,7 +682,7 @@ ATAdriveIsReady:
           call    GetRPM
 
           inc     [AtaDrive]
-          mov     word ptr [esi+32+8],8000h ; �ਧ��� ATA ���ன�⢠
+          mov     word ptr [esi+32+8],8000h ; признак ATA устройства
           clc
           jmp     ATAdriveIsFound
 
@@ -720,7 +720,7 @@ FaindATAPIDevices:
           mov     edi,[WorkBuffer]
           mov     al,byte ptr [edi+1]
           and     al,11111b ; Bit 12-8=5-CDROM
-          mov     word ptr [esi+40],ax; �ਧ��� ATAPI ���ன�⢠
+          mov     word ptr [esi+40],ax; признак ATAPI устройства
 
           call    GetATAPIDevParam
           jc      short ATAPIDevParamErrorInGet
@@ -816,7 +816,7 @@ CanNotGetATAPIPageAccess:
           call    WaitBusyAndDataRequest
           jc      short DriveNotReadyForGetATAPIPacket
 
-          mov     [ATAPIPage],2Ah ;��ࠬ���� ���ன�⢠, ⥪�騥 ���祭��
+          mov     [ATAPIPage],2Ah ;параметры устройства, текущие значения
           mov     [ATAPIPageLength],16h
 
           mov     cx,6
@@ -1385,7 +1385,7 @@ DetectMemBand endp
 
         ALIGN 16
 
-MemSpeedBlockPeakLodsd32 proc ;�室 AX 0-250 ��室 eax-MB/sec
+MemSpeedBlockPeakLodsd32 proc ;Вход AX 0-250 Выход eax-MB/sec
 
         push    ebx
         push    ecx
@@ -1438,7 +1438,7 @@ MemSpeedBlockPeakLodsd32 endp
 
         ALIGN 16
 
-MemSpeedBlockPeakLodsd64 proc ;�室 AX 0-250 ��室 eax-MB/sec
+MemSpeedBlockPeakLodsd64 proc ;Вход AX 0-250 Выход eax-MB/sec
 
         push    ebx
         push    ecx
@@ -1489,7 +1489,7 @@ MemSpeedBlockPeakLodsd64 endp
 
         ALIGN 16
 
-MemSpeedBlockPeakLodsd128 proc ;�室 AX 0-250 ��室 eax-MB/sec
+MemSpeedBlockPeakLodsd128 proc ;Вход AX 0-250 Выход eax-MB/sec
 
         push    ebx
         push    ecx

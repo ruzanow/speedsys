@@ -1,4 +1,4 @@
-%TITLE    "Ç·‚†¢™† Win32 ¨Æ§„´Ô ¢ ‚•´Æ SPEEDSYS.EXE Ver 1.24 Sep-05-2001"
+%TITLE    "–í—Å—Ç–∞–≤–∫–∞ Win32 –º–æ–¥—É–ª—è –≤ —Ç–µ–ª–æ SPEEDSYS.EXE Ver 1.24 Sep-05-2001"
           IDEAL
           MODEL   small
           STACK   256
@@ -34,8 +34,8 @@ StrMonths       DB 'JanFebMarAprMayJunJulAugSepOctNovDec'
           CODESEG
 
 Start:
-          mov      ax, @data       ;ì·‚†≠Æ¢™† ¢ DS †§‡•·†
-          mov      ds, ax          ;·•£¨•≠‚† §†≠≠ÎÂ
+          mov      ax, @data       ;–£—Å—Ç–∞–Ω–æ–≤–∫–∞ –≤ DS –∞–¥—Ä–µ—Å–∞
+          mov      ds, ax          ;—Å–µ–≥–º–µ–Ω—Ç–∞ –¥–∞–Ω–Ω—ã—Ö
           mov      es, ax          ;ES=DS
 
           mov     ah,4
@@ -132,12 +132,12 @@ GetNextByteInSpeedsys:
           jmp      Error
 GetPosInSpeedsysOK:
           mov      bx,[HandleSPEEDSYS]
-          xor      cx,cx             ;  èÆ´„Á®‚Ï
-          xor      dx,dx             ;  ØÆß®Ê®Ó
-          mov      ax,04201h         ;  „™†ß†‚•´Ô
-          int      21h               ;  ®
-          mov      [hiword],dx       ;  ß†ØÆ¨≠®‚Ï
-          mov      [loword],ax       ;  ••
+          xor      cx,cx             ;  –ü–æ–ª—É—á–∏—Ç—å
+          xor      dx,dx             ;  –ø–æ–∑–∏—Ü–∏—é
+          mov      ax,04201h         ;  —É–∫–∞–∑–∞—Ç–µ–ª—è
+          int      21h               ;  –∏
+          mov      [hiword],dx       ;  –∑–∞–ø–æ–º–Ω–∏—Ç—å
+          mov      [loword],ax       ;  –µ–µ
 
           mov      [SSTWIN32FileSize],0
 
@@ -188,8 +188,8 @@ Error:
           int      21h
 
 
-Exit:     mov      ah, 04Ch         ;ÇÎÂÆ§ ®ß Ø‡Æ£‡†¨¨Î
-          mov      al, [exCode]     ;ÇÆß¢‡†‚ ß≠†Á•≠®Ô ™Æ§† ¢ÎÂÆ§†
+Exit:     mov      ah, 04Ch         ;–í—ã—Ö–æ–¥ –∏–∑ –ø—Ä–æ–≥—Ä–∞–º–º—ã
+          mov      al, [exCode]     ;–í–æ–∑–≤—Ä–∞—Ç –∑–Ω–∞—á–µ–Ω–∏—è –∫–æ–¥–∞ –≤—ã—Ö–æ–¥–∞
           int      21h
 
 PROC TimePrn
@@ -247,7 +247,7 @@ PROC NumToASCII
           ret
 ENDP NumToASCII
 
-PROC BinToAscHex ; ¢ Ë•·≠†§Ê†‚®‡®Á≠Î• ASCII ·‚‡Æ™®
+PROC BinToAscHex ; –≤ —à–µ—Å–Ω–∞–¥—Ü–∞—Ç–∏—Ä–∏—á–Ω—ã–µ ASCII —Å—Ç—Ä–æ–∫–∏
           push   bx
           mov    bx,16
           call   NumToASCII

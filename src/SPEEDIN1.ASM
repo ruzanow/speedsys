@@ -32,7 +32,7 @@ Start:
           mov      ax,4200h
           int      21h
           mov      dx,offset MesError
-          jc       short Error         ; ���室 �᫨ ��� �訡��
+          jc       short Error         ; Переход если нет ошибок
           mov     ah,3Fh
           mov     cx,3
           mov     dx,offset UPXstring
@@ -46,14 +46,14 @@ Start:
           mov      ax,4200h
           int      21h
           mov      dx,offset MesError
-          jc       short Error         ; ���室 �᫨ ��� �訡��
+          jc       short Error         ; Переход если нет ошибок
 
           mov      ax,4000h
           mov      cx,3
           mov      dx,offset sst
           int      21h
           mov      dx,offset MesError
-          jc       short Error         ; ���室 �᫨ ��� �訡��
+          jc       short Error         ; Переход если нет ошибок
 
 
           sub      cx,cx
@@ -61,20 +61,20 @@ Start:
           mov      ax,4200h
           int      21h
           mov      dx,offset MesError
-          jc       short Error         ; ���室 �᫨ ��� �訡��
+          jc       short Error         ; Переход если нет ошибок
 
           mov      ax,4000h
           mov      cx,4
           mov      dx,offset ver
           int      21h
           mov      dx,offset MesError
-          jc       short Error         ; ���室 �᫨ ��� �訡��
+          jc       short Error         ; Переход если нет ошибок
 
 
           mov      dx,offset MesOk
 Error:
           mov      ah,9
           int      21h
-          mov      ax, 04C00h         ;��室 �� �ணࠬ��
+          mov      ax, 04C00h         ;Выход из программы
           int      21h
           END      Start

@@ -1,4 +1,4 @@
-%TITLE    "é°Æ´ÆÁ™† §´Ô EXE-‰†©´Æ¢"
+%TITLE    "–û–±–æ–ª–æ—á–∫–∞ –¥–ª—è EXE-—Ñ–∞–π–ª–æ–≤"
           IDEAL
           MODEL   small
           STACK   256
@@ -171,28 +171,28 @@ CompressedList      DB '_0'
                     DB '_x'
                     DB '_y'
                     DB '_z'
-                    DB '_Ä'
-                    DB '_Å'
-                    DB '_Ç'
-                    DB '_É'
-                    DB '_Ñ'
-                    DB '_Ö'
-                    DB '_Ü'
-                    DB '_á'
-                    DB '_à'
-                    DB '_â'
-                    DB '_ä'
-                    DB '_ã'
-                    DB '_å'
-                    DB '_ç'
-                    DB '_é'
-                    DB '_è'
-                    DB '_ê'
-                    DB '_ë'
-                    DB '_ì'
-                    DB '_î'
-                    DB '_ï'
-                    DB '_ñ'
+                    DB '_–ê'
+                    DB '_–ë'
+                    DB '_–í'
+                    DB '_–ì'
+                    DB '_–î'
+                    DB '_–ï'
+                    DB '_–ñ'
+                    DB '_–ó'
+                    DB '_–ò'
+                    DB '_–ô'
+                    DB '_–ö'
+                    DB '_–õ'
+                    DB '_–ú'
+                    DB '_–ù'
+                    DB '_–û'
+                    DB '_–ü'
+                    DB '_–†'
+                    DB '_–°'
+                    DB '_–£'
+                    DB '_–§'
+                    DB '_–•'
+                    DB '_–¶'
                     DB 0,0
 
 DeCompressedMes00   DB ' GUI+3D Accelerator',0
@@ -285,10 +285,10 @@ MesErr         DB 13,10,'Error in RND',13,10,'$'
 Number         DB 6 DUP(0),13,'$'
           ENDS Dseg
 
-; 0-Á•‡≠Î©   4-™‡†·≠Î©
-; 1-·®≠®©    5-‰®Æ´•‚Æ¢Î©
-; 2-ß•´•≠Î©  6-™Æ‡®Á≠•¢Î©
-; 3-£Æ´„°Æ©  7-°•´Î©
+; 0-—á–µ—Ä–Ω—ã–π   4-–∫—Ä–∞—Å–Ω—ã–π
+; 1-—Å–∏–Ω–∏–π    5-—Ñ–∏–æ–ª–µ—Ç–æ–≤—ã–π
+; 2-–∑–µ–ª–µ–Ω—ã–π  6-–∫–æ—Ä–∏—á–Ω–µ–≤—ã–π
+; 3-–≥–æ–ª—É–±–æ–π  7-–±–µ–ª—ã–π
 
           SEGMENT Cseg Page Public 'CODE'
 
@@ -314,8 +314,8 @@ ALIGN 2
 ;SegMyProg DW ?
 
 Start:
-          mov      ax, @data       ;ì·‚†≠Æ¢™† ¢ DS †§‡•·†
-          mov      ds, ax          ;·•£¨•≠‚† §†≠≠ÎÂ
+          mov      ax, @data       ;–£—Å—Ç–∞–Ω–æ–≤–∫–∞ –≤ DS –∞–¥—Ä–µ—Å–∞
+          mov      ds, ax          ;—Å–µ–≥–º–µ–Ω—Ç–∞ –¥–∞–Ω–Ω—ã—Ö
           mov      es, ax          ;ES=DS
 
           mov dx, offset TestMes01
@@ -338,8 +338,8 @@ int 3
 
 
 
-Exit:     mov      ah, 04Ch         ;ÇÎÂÆ§ ®ß Ø‡Æ£‡†¨¨Î
-          mov      al, 0;[exCode]     ;ÇÆß¢‡†‚ ß≠†Á•≠®Ô ™Æ§† ¢ÎÂÆ§†
+Exit:     mov      ah, 04Ch         ;–í—ã—Ö–æ–¥ –∏–∑ –ø—Ä–æ–≥—Ä–∞–º–º—ã
+          mov      al, 0;[exCode]     ;–í–æ–∑–≤—Ä–∞—Ç –∑–Ω–∞—á–µ–Ω–∏—è –∫–æ–¥–∞ –≤—ã—Ö–æ–¥–∞
           int      21h
 
 PROC PackingPCIString; si - stroka
@@ -566,7 +566,7 @@ PROC GetSTRSize
           repnz scasb
           pop  ax
           sub  ax,cx
-          mov  cx,ax     ;Ñ´®≠≠† ·‚‡Æ™®
+          mov  cx,ax     ;–î–ª–∏–Ω–Ω–∞ —Å—Ç—Ä–æ–∫–∏
           pop  ax
           pop  di
           ret

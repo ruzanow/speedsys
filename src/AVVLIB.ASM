@@ -18,7 +18,7 @@ mkm                EQU   250,'m'
 
          PUBLIC MesHelp,BIOSVendors
 
-          DB 13,10,'Needed sources? Email me! ‚Æ´Ï™Æ · ™Æ≠™‡•‚≠Î¨® ¢ÆØ‡Æ·†¨®!',13,10,13,10
+          DB 13,10,'Needed sources? Email me! —Ç–æ–ª—å–∫–æ —Å –∫–æ–Ω–∫—Ä–µ—Ç–Ω—ã–º–∏ –≤–æ–ø—Ä–æ—Å–∞–º–∏!',13,10,13,10
 MesHelp   DB 13,10,10,'Usage: SPEEDSYS {[<HD[drive#] [WT]> or <CD[drive#]>] [T#] [SM] [SP] [L]'
           DB 13,10,   '                 [SP] [L] [PCX:filename] [<REP:filename> or <R>]'
           DB 13,10,   '                 [DI13E] [DIDEC] [DSPDR]}'
@@ -1082,7 +1082,7 @@ ENDP AscToBin
           PUBLIC  StrUpper
 
           ALIGN 16
-PROC StrUpper ; è‡•Æ°‡†ßÆ¢†‚Ï ·®¨¢Æ´Î ·‚‡Æ™® ¢ Ø‡ÆØ®·≠Î•
+PROC StrUpper ; –ü—Ä–µ–æ–±—Ä–∞–∑–æ–≤–∞—Ç—å —Å–∏–º–≤–æ–ª—ã —Å—Ç—Ä–æ–∫–∏ –≤ –ø—Ä–æ–ø–∏—Å–Ω—ã–µ
           push  ax
           push  cx
           push  di
@@ -1109,7 +1109,7 @@ ENDP StrUpper
           PUBLIC  StrLength
 
           ALIGN 16
-PROC StrLength ; èÆ§·Á®‚†‚Ï ¢ ·‚‡Æ™• ™Æ´-¢Æ ≠•≠„´•¢ÎÂ ·®¨¢Æ´Æ¢ (§´®≠≠† ·‚‡Æ™®)
+PROC StrLength ; –ü–æ–¥—Å—á–∏—Ç–∞—Ç—å –≤ —Å—Ç—Ä–æ–∫–µ –∫–æ–ª-–≤–æ –Ω–µ–Ω—É–ª–µ–≤—ã—Ö —Å–∏–º–≤–æ–ª–æ–≤ (–¥–ª–∏–Ω–Ω–∞ —Å—Ç—Ä–æ–∫–∏)
           push   ax
           push   di
 
@@ -1237,7 +1237,7 @@ ENDP ChToBase
           PUBLIC BinToAscHex,BinToAscDecH,BinToAscDec,BinToAscDec2
 
           ALIGN 16
-PROC BinToAscHex ; ¢ Ë•·≠†§Ê†‚®‡®Á≠Î• ASCII ·‚‡Æ™®
+PROC BinToAscHex ; –≤ —à–µ—Å–Ω–∞–¥—Ü–∞—Ç–∏—Ä–∏—á–Ω—ã–µ ASCII —Å—Ç—Ä–æ–∫–∏
           push   ax
           push   bx
           mov    bx,16
@@ -1248,7 +1248,7 @@ PROC BinToAscHex ; ¢ Ë•·≠†§Ê†‚®‡®Á≠Î• ASCII ·‚‡Æ™®
 ENDP BinToAscHex
 
           ALIGN 16
-PROC BinToAscDec ; ¢ §•·Ô‚®Á≠Î• ASCII ·‚‡Æ™®
+PROC BinToAscDec ; –≤ –¥–µ—Å—è—Ç–∏—á–Ω—ã–µ ASCII —Å—Ç—Ä–æ–∫–∏
           push   ax
           push   bx
           mov    bx,10
@@ -1625,7 +1625,7 @@ ideal
           PUBLIC Rnd, SetRnd
 
           ALIGN 16
-PROC Rnd  ; ÇÂÆ§ EAX - Ñ®†ØÆßÆ≠ £•≠•‡†Ê®®. ÇÎÂÆ§ EAX - ·´„Á†©≠Æ• Á®·´Æ
+PROC Rnd  ; –í—Ö–æ–¥ EAX - –î–∏–∞–ø–æ–∑–æ–Ω –≥–µ–Ω–µ—Ä–∞—Ü–∏–∏. –í—ã—Ö–æ–¥ EAX - —Å–ª—É—á–∞–π–Ω–æ–µ —á–∏—Å–ª–æ
           or       eax,eax
           jz       short NotGeneratedRandomNum
           push     esi
@@ -1709,8 +1709,8 @@ NextPaleteColor:
           push     bx
           mov      ax,1007h
           int      10h
-          mov      bl,bh        ;Reg.BL := Reg.BH; { ìß≠†•¨ p•†´Ï≠Î© ≠Æ¨•p p•£®·‚p† Ø†´®‚pÎ }
-          mov      ax,1015h     ;Reg.AH := $10;                { ìß≠†•¨ 3 ·Æ·‚†¢´ÔÓÈ®• Ê¢•‚† }
+          mov      bl,bh        ;Reg.BL := Reg.BH; { –£–∑–Ω–∞–µ–º p–µ–∞–ª—å–Ω—ã–π –Ω–æ–º–µp p–µ–≥–∏—Å—Çp–∞ –ø–∞–ª–∏—Çp—ã }
+          mov      ax,1015h     ;Reg.AH := $10;                { –£–∑–Ω–∞–µ–º 3 —Å–æ—Å—Ç–∞–≤–ª—è—é—â–∏–µ —Ü–≤–µ—Ç–∞ }
           int      10h          ;intr($10, Reg);
           pop      bx
           shl      dh,2
@@ -1778,7 +1778,7 @@ NormalIsxod:
           call     SaveBuffer
           jc       short BufferWriteError1
           sub      dl,dl
-          or       ch,ch ;ëÁ•‚Á®™ ·‚‡Æ™®
+          or       ch,ch ;–°—á–µ—Ç—á–∏–∫ —Å—Ç—Ä–æ–∫–∏
           jz       short EndOffLine
           jmp      short NextRepitSimvol
 NotRepitSimvol:
@@ -1837,10 +1837,10 @@ ENDP SaveBuffer
 
                    PUBLIC WriteFile
 
-PROC WriteFile               ; èÆ§Ø‡Æ£‡†¨¨† §´Ô Á‚•≠®Ô ®´® ß†Ø®·® ‰†©´†
+PROC WriteFile               ; –ü–æ–¥–ø—Ä–æ–≥—Ä–∞–º–º–∞ –¥–ª—è —á—Ç–µ–Ω–∏—è –∏–ª–∏ –∑–∞–ø–∏—Å–∏ —Ñ–∞–π–ª–∞
           push   es
           pop    ds
-          mov    ah,40h      ; á†Ø®·Ï
+          mov    ah,40h      ; –ó–∞–ø–∏—Å—å
           mov    bx,bp
           mov    cx,di
           push   cx
@@ -2219,8 +2219,8 @@ NotUprSimv25:
           mov      si,offset font6x8
           add      si,ax
           xor      ah,ah
-          mov      al,[Ypos6x8]      ;Ç DI †§‡•· ¢Î¢Æ§† ≠† Ì™‡†≠
-          mov      bx,640            ;Ç DX Æ·‚†‚Æ™ ¢ °®‚†Â
+          mov      al,[Ypos6x8]      ;–í DI –∞–¥—Ä–µ—Å –≤—ã–≤–æ–¥–∞ –Ω–∞ —ç–∫—Ä–∞–Ω
+          mov      bx,640            ;–í DX –æ—Å—Ç–∞—Ç–æ–∫ –≤ –±–∏—Ç–∞—Ö
           mul      bx
           push     ax
 
@@ -2259,7 +2259,7 @@ NoNullByte:
           mov      bh,al
           mov      al,bl
           out      dx,ax
-          sub      ax,ax       ; Ø‡Æ£‡†¨®‡„•¨ Ê¢•‚
+          sub      ax,ax       ; –ø—Ä–æ–≥—Ä–∞–º–∏—Ä—É–µ–º —Ü–≤–µ—Ç
           out      dx,ax       ;
           or       [gs:di],al
           mov      ax,bx
@@ -2275,7 +2275,7 @@ NullByte:
           mov      al,bl
           out      dx,ax
           sub      al,al
-          mov      ah,ch     ; Ø‡Æ£‡†¨®‡„•¨ Ê¢•‚
+          mov      ah,ch     ; –ø—Ä–æ–≥—Ä–∞–º–∏—Ä—É–µ–º —Ü–≤–µ—Ç
           out      dx,ax     ;
           or       [gs:di],al
           mov      ax,bx
@@ -2293,8 +2293,8 @@ ENDP ColorStr6x8
 PUBLIC StopMotor
 
 PROC StopMotor
-          mov     bx,40h         ; é·‚†≠Æ¢™† ¨Æ‚Æ‡† §®·™Æ¢Æ§†
-          mov     gs,bx          ; ≠† ·´„Á†© ß†Ø„·™† · §®·™•‚Î
+          mov     bx,40h         ; –û—Å—Ç–∞–Ω–æ–≤–∫–∞ –º–æ—Ç–æ—Ä–∞ –¥–∏—Å–∫–æ–≤–æ–¥–∞
+          mov     gs,bx          ; –Ω–∞ —Å–ª—É—á–∞–π –∑–∞–ø—É—Å–∫–∞ —Å –¥–∏—Å–∫–µ—Ç—ã
           mov     si,bx
           mov     bl,[byte gs:si]
           or      bl,bl
@@ -2692,7 +2692,7 @@ ENDP DownUgol
 
 PUBLIC Skale,PrintSravnenieCPU,PrintSravnenieHDD,PrintSravnenieCD
 
-PROC Skale      ;ÇÎ°Æ‡ ¨†·Ë‚†°† 1:1, 1:4 ®´® 1:16 ØÆ ¨†™·. ß≠†Á•≠®Ó
+PROC Skale      ;–í—ã–±–æ—Ä –º–∞—Å—à—Ç–∞–±–∞ 1:1, 1:4 –∏–ª–∏ 1:16 –ø–æ –º–∞–∫—Å. –∑–Ω–∞—á–µ–Ω–∏—é
           mov     cx,2
           mov     [SkaleProc],1
 NextLoopSkaleProc:
@@ -3779,7 +3779,7 @@ PUBLIC ClearHMSblock
 EXTRN AdrHMS:dword,MemSizePriznak:byte
 
 ALIGN 2
-PROC MemSpeedBlockRepl        ; 1182  ;ÇÂÆ§ AX 0-250 ÇÎÂÆ§ AX Mb/s *10
+PROC MemSpeedBlockRepl        ; 1182  ;–í—Ö–æ–¥ AX 0-250 –í—ã—Ö–æ–¥ AX Mb/s *10
           call    DetectMemSize
 PROC MemSpeedBlockForZamerRepl
 
@@ -3997,7 +3997,7 @@ ENDP GetMemPeakBandwidth128
 
 ALIGN 2
 
-PROC MemSpeedBlockLodsd        ; 1182  ;ÇÂÆ§ AX 0-200 ÇÎÂÆ§ AX Mb/s *10
+PROC MemSpeedBlockLodsd        ; 1182  ;–í—Ö–æ–¥ AX 0-200 –í—ã—Ö–æ–¥ AX Mb/s *10
           call    DetectMemSize
 PROC MemSpeedBlockForZamerLodsd
 
@@ -4097,7 +4097,7 @@ ENDP MemSpeedBlockLodsd
 
 
 ALIGN 2
-PROC MemSpeedBlockStosd        ; 1182  ;ÇÂÆ§ AX 0-200 ÇÎÂÆ§ AX Mb/s *10
+PROC MemSpeedBlockStosd        ; 1182  ;–í—Ö–æ–¥ AX 0-200 –í—ã—Ö–æ–¥ AX Mb/s *10
           call    DetectMemSize
 PROC MemSpeedBlockForZamerStosd
 
@@ -4149,7 +4149,7 @@ ENDP MemSpeedBlockStosd
 
 
 ALIGN 2
-PROC MemSpeedBlockLodsq        ; 1182  ;ÇÂÆ§ AX 0-200 ÇÎÂÆ§ AX Mb/s *10
+PROC MemSpeedBlockLodsq        ; 1182  ;–í—Ö–æ–¥ AX 0-200 –í—ã—Ö–æ–¥ AX Mb/s *10
           call    DetectMemSize
 PROC MemSpeedBlockForZamerLodsq
           push    ds
@@ -4262,7 +4262,7 @@ ENDP MemSpeedBlockLodsqPrg
 
 
 ALIGN 2
-PROC MemSpeedBlockStosq        ; 1182  ;ÇÂÆ§ AX 0-200 ÇÎÂÆ§ AX Mb/s *10
+PROC MemSpeedBlockStosq        ; 1182  ;–í—Ö–æ–¥ AX 0-200 –í—ã—Ö–æ–¥ AX Mb/s *10
           call    DetectMemSize
 PROC MemSpeedBlockForZamerStosq
 
@@ -4377,7 +4377,7 @@ Stosq64bytesBlock:
 ENDP MemSpeedBlockStosqPrg
 
 ALIGN 2
-PROC MemSpeedBlockMovsq        ; 1182  ;ÇÂÆ§ AX 0-200 ÇÎÂÆ§ AX Mb/s *10
+PROC MemSpeedBlockMovsq        ; 1182  ;–í—Ö–æ–¥ AX 0-200 –í—ã—Ö–æ–¥ AX Mb/s *10
           call    DetectMemSize
 PROC MemSpeedBlockForZamerMovsq
 
@@ -4673,7 +4673,7 @@ PUBLIC PutWordToReportBuf,PrnRepLine,PutByteToReportBuf,PutToReportBuf,PutDOSStr
 
 PROC PutWordToReportBuf
           push     es
-          push     [ReportDataSeg] ;ë•£¨•≠‚ §´Ô §´Ô ‰†©´† Æ‚Á•‚†
+          push     [ReportDataSeg] ;–°–µ–≥–º–µ–Ω—Ç –¥–ª—è –¥–ª—è —Ñ–∞–π–ª–∞ –æ—Ç—á–µ—Ç–∞
           pop      es
           mov      di,[CounterRepBuf]
           cld
@@ -4702,7 +4702,7 @@ ENDP PrnRepLine
 
 PROC PutByteToReportBuf
           push     es
-          push     [ReportDataSeg] ;ë•£¨•≠‚ §´Ô §´Ô ‰†©´† Æ‚Á•‚†
+          push     [ReportDataSeg] ;–°–µ–≥–º–µ–Ω—Ç –¥–ª—è –¥–ª—è —Ñ–∞–π–ª–∞ –æ—Ç—á–µ—Ç–∞
           pop      es
           mov      di,[CounterRepBuf]
           cld
@@ -4716,7 +4716,7 @@ PROC PutToReportBuf
           push     eax
           push     di
           push     es
-          mov      ax,[ReportDataSeg] ;ë•£¨•≠‚ §´Ô §´Ô ‰†©´† Æ‚Á•‚†
+          mov      ax,[ReportDataSeg] ;–°–µ–≥–º–µ–Ω—Ç –¥–ª—è –¥–ª—è —Ñ–∞–π–ª–∞ –æ—Ç—á–µ—Ç–∞
           mov      es,ax
           mov      di,[CounterRepBuf]
 NextByteForRepFile:
@@ -5582,7 +5582,7 @@ PROC GetSTRSize
           repnz scasb
           pop  ax
           sub  ax,cx
-          mov  cx,ax     ;Ñ´®≠≠† ·‚‡Æ™®
+          mov  cx,ax     ;–î–ª–∏–Ω–Ω–∞ —Å—Ç—Ä–æ–∫–∏
           pop  ax
           pop  di
           ret
@@ -6064,17 +6064,17 @@ PROC ISAPnPDelay
           and     al,0FCh
           out     61h,al
           cli
-          mov     al,10110000b ; í†©¨•p: p•¶®¨ ·Á•‚† 0, ™†≠†´ 2
+          mov     al,10110000b ; –¢–∞–π–º–µp: p–µ–∂–∏–º —Å—á–µ—Ç–∞ 0, –∫–∞–Ω–∞–ª 2
           out     43h,al
-          mov     al,24        ; 112. ‚†™‚Æ¢~0.1 msec
-          out     42h,al       ; á†£p„¶†•¨ ¨´. °†©‚ ·Á•‚Á®™†
+          mov     al,24        ; 112. —Ç–∞–∫—Ç–æ–≤~0.1 msec
+          out     42h,al       ; –ó–∞–≥p—É–∂–∞–µ–º –º–ª. –±–∞–π—Ç —Å—á–µ—Ç—á–∏–∫–∞
           mov     al,1         ; 24+1*256=280~0.25 msec
-          out     42h,al       ; á†£p„¶†•¨ ·‚. °†©‚ ·Á•‚Á®™†
+          out     42h,al       ; –ó–∞–≥p—É–∂–∞–µ–º —Å—Ç. –±–∞–π—Ç —Å—á–µ—Ç—á–∏–∫–∞
           in      al,61h
           or      al,1h
-          out     61h,al       ; ê†ßp•Ë†•¨ ·Á•‚
+          out     61h,al       ; –†–∞–∑p–µ—à–∞–µ–º —Å—á–µ—Ç
 CheckChanel2ForOverflow:
-          mov     al,10000000b ; á†È•´™≠•¨ ß≠†Á•≠®• ·Á•‚Á®™† 2
+          mov     al,10000000b ; –ó–∞—â–µ–ª–∫–Ω–µ–º –∑–Ω–∞—á–µ–Ω–∏–µ —Å—á–µ—Ç—á–∏–∫–∞ 2
           out     43h,al
           in      al,42h
           in      al,42h
@@ -6085,7 +6085,7 @@ CheckChanel2ForOverflow:
 ENDP ISAPnPDelay
 
 PROC ISAPnPCheckSum
-; ÇÂÆ§:  DS:SI=†§p•· ¨†··®¢† CX=p†ß¨•p ¨†··®¢†  ÇÎÂÆ§: DL=CheckSum
+; –í—Ö–æ–¥:  DS:SI=–∞–¥p–µ—Å –º–∞—Å—Å–∏–≤–∞ CX=p–∞–∑–º–µp –º–∞—Å—Å–∏–≤–∞  –í—ã—Ö–æ–¥: DL=CheckSum
           mov     dl,06Ah
           cld
 NextByteISAPnPCheckSum:
@@ -6106,7 +6106,7 @@ CalcISAPnPCheckSum:
 ENDP ISAPnPCheckSum
 
 PROC InBitMap
-; ß†≠Æ·®¨ ¢ °®‚Æ¢„Ó ™†p‚„ DS:BX °®‚(AL=0?) n=CX
+; –∑–∞–Ω–æ—Å–∏–º –≤ –±–∏—Ç–æ–≤—É—é –∫–∞p—Ç—É DS:BX –±–∏—Ç(AL=0?) n=CX
           push    dx
           push    cx
           push    bx
@@ -6114,7 +6114,7 @@ PROC InBitMap
           mov     dx,cx
           shr     dx,3
           add     bx,dx
-          and     cx,07h    ; èÆ´„Á†•¨: BX=†§p•· °†©‚†, CL=bit n
+          and     cx,07h    ; –ü–æ–ª—É—á–∞–µ–º: BX=–∞–¥p–µ—Å –±–∞–π—Ç–∞, CL=bit n
           or      al,al
           jz      short inbitmap01
           mov     dl,001h

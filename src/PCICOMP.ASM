@@ -3,7 +3,7 @@
           MODEL small
           P386
           STACK 256
-LenBuffer EQU 16384   ; ê†ß¨•‡ °„‰‰•‡† §´Ô ‡†°Æ‚Î
+LenBuffer EQU 16384   ; –†–∞–∑–º–µ—Ä –±—É—Ñ—Ñ–µ—Ä–∞ –¥–ª—è —Ä–∞–±–æ—Ç—ã
           DATASEG
 welcome     DB 'PCI .ASM List Compressor Ver 2.01 25-Oct-2001',13,10,10,'Working... $'
 filename    DB 'PCIDEV_.ASM',0,'$'
@@ -243,37 +243,37 @@ DeCompressedMes81   DB ' 128',0
 
 Start:
 
-          mov      ax, @data       ;ì·‚†≠Æ¢™† ¢ DS †§‡•·†
-          mov      ds, ax          ;·•£¨•≠‚† §†≠≠ÎÂ
+          mov      ax, @data       ;–£—Å—Ç–∞–Ω–æ–≤–∫–∞ –≤ DS –∞–¥—Ä–µ—Å–∞
+          mov      ds, ax          ;—Å–µ–≥–º–µ–Ω—Ç–∞ –¥–∞–Ω–Ω—ã—Ö
           mov      es, ax          ;ES=DS
           mov      dx,offset welcome
           call     PrnMes
-          mov      dx,offset filename  ; èÆØÎ‚™†
-          mov      ax,3D02h            ; Æ‚™‡Î‚Ï ‰†©´
-          int      21h                 ; §´Ô Á‚•≠®Ô / ß†Ø®·®
-          jnc      dalee           ; è•‡•ÂÆ§ •·´® ≠•‚ ÆË®°Æ™
+          mov      dx,offset filename  ; –ü–æ–ø—ã—Ç–∫–∞
+          mov      ax,3D02h            ; –æ—Ç–∫—Ä—ã—Ç—å —Ñ–∞–π–ª
+          int      21h                 ; –¥–ª—è —á—Ç–µ–Ω–∏—è / –∑–∞–ø–∏—Å–∏
+          jnc      dalee           ; –ü–µ—Ä–µ—Ö–æ–¥ –µ—Å–ª–∏ –Ω–µ—Ç –æ—à–∏–±–æ–∫
 
 ErrorReading:
 error:    cmp      al,2                   ;
-          jnz      @@20                   ;  é°‡†°Æ‚™†
-          mov      dx,offset nofile       ;  ¢Æß¨Æ¶≠ÎÂ
+          jnz      @@20                   ;  –û–±—Ä–∞–±–æ—Ç–∫–∞
+          mov      dx,offset nofile       ;  –≤–æ–∑–º–æ–∂–Ω—ã—Ö
           call     PrnMes
           mov      dx,offset filename
-          jmp      short mesexit          ;  ÆË®°Æ™
-@@20:     cmp      al,5                   ;  ® ¢ÎÂÆ§ ®ß Ø‡Æ£‡†¨¨Î
+          jmp      short mesexit          ;  –æ—à–∏–±–æ–∫
+@@20:     cmp      al,5                   ;  –∏ –≤—ã—Ö–æ–¥ –∏–∑ –ø—Ä–æ–≥—Ä–∞–º–º—ã
           jnz      @@50                   ;
           mov      dx,offset readonly     ;
           jmp      short mesexit          ;
 @@50:     mov      dx,offset meserror     ;
 mesexit:  call     PrnMes                 ;
-Exiterr:  mov      ax, 04C00h          ;á†™‡Î‚Ï ‰†©´ ® ¢Î©‚® ®ß Ø‡Æ£‡†¨¨Î
+Exiterr:  mov      ax, 04C00h          ;–ó–∞–∫—Ä—ã—Ç—å —Ñ–∞–π–ª –∏ –≤—ã–π—Ç–∏ –∏–∑ –ø—Ä–æ–≥—Ä–∞–º–º—ã
           int      21h
 dalee:
-          mov      [Deskriptor],ax     ;á†£‡„ß®‚Ï §•·™‡®Ø‚Æ‡ ‰†©´†
-longloop: call     NahFilePos          ; ì·‚†≠Æ¢®‚Ï „™†ß†‚•´Ï ‰†©´† ≠† ≠†Á†´Æ
+          mov      [Deskriptor],ax     ;–ó–∞–≥—Ä—É–∑–∏—Ç—å –¥–µ—Å–∫—Ä–∏–ø—Ç–æ—Ä —Ñ–∞–π–ª–∞
+longloop: call     NahFilePos          ; –£—Å—Ç–∞–Ω–æ–≤–∏—Ç—å —É–∫–∞–∑–∞—Ç–µ–ª—å —Ñ–∞–π–ª–∞ –Ω–∞ –Ω–∞—á–∞–ª–æ
 
 GetStartString:
-          call     ReadFile          ; ‰†©´† ‡†¢≠Î© ‡†ß¨•‡„ °„‰•‡†
+          call     ReadFile          ; —Ñ–∞–π–ª–∞ —Ä–∞–≤–Ω—ã–π —Ä–∞–∑–º–µ—Ä—É –±—É—Ñ–µ—Ä–∞
           jc       error
           mov      si,offset strpath
           mov      cx,LenBuffer
@@ -319,10 +319,10 @@ EndBufferDetected:
           sbb      [hiword],0
           call     NewFilePos
 
-          call     ReadFile            ; ‰†©´† ‡†¢≠Î© ‡†ß¨•‡„ °„‰•‡†
+          call     ReadFile            ; —Ñ–∞–π–ª–∞ —Ä–∞–≤–Ω—ã–π —Ä–∞–∑–º–µ—Ä—É –±—É—Ñ–µ—Ä–∞
           jc       ErrorReading
-          cmp      ax,LenBuffer        ; è•‡•ÂÆ§ •·´®
-          jz       short NotEndOfFile  ; ™Æ≠•Ê ‰†©´†
+          cmp      ax,LenBuffer        ; –ü–µ—Ä–µ—Ö–æ–¥ –µ—Å–ª–∏
+          jz       short NotEndOfFile  ; –∫–æ–Ω–µ—Ü —Ñ–∞–π–ª–∞
           mov      [EndWork],1
 
 NotEndOfFile:
@@ -331,14 +331,14 @@ NotEndOfFile:
 EndOfFile:
           mov      dx,offset MesOK
           call     PrnMes
-          mov      ax, 04C00h ;á†™‡Î‚Ï ‰†©´ ® ¢Î©‚® ®ß Ø‡Æ£‡†¨¨Î
+          mov      ax, 04C00h ;–ó–∞–∫—Ä—ã—Ç—å —Ñ–∞–π–ª –∏ –≤—ã–π—Ç–∏ –∏–∑ –ø—Ä–æ–≥—Ä–∞–º–º—ã
           int      21h
 
-PROC NahFilePos               ;èÆ§Ø‡Æ£‡†¨¨† §´Ô „·‚†≠Æ¢™® ¢ ≠†Á†´Æ ‰†©´†
+PROC NahFilePos               ;–ü–æ–¥–ø—Ä–æ–≥—Ä–∞–º–º–∞ –¥–ª—è —É—Å—Ç–∞–Ω–æ–≤–∫–∏ –≤ –Ω–∞—á–∞–ª–æ —Ñ–∞–π–ª–∞
           xor    ax,ax
           mov    [hiword],ax
           mov    [loword],ax
-PROC NewFilePos             ; èÆ§Ø‡Æ£‡†¨¨† §´Ô „·‚†≠Æ¢™® ØÆß®Ê®® ¢ ‰†©´•
+PROC NewFilePos             ; –ü–æ–¥–ø—Ä–æ–≥—Ä–∞–º–º–∞ –¥–ª—è —É—Å—Ç–∞–Ω–æ–≤–∫–∏ –ø–æ–∑–∏—Ü–∏–∏ –≤ —Ñ–∞–π–ª–µ
           push     bx
           push     cx
           push     dx
@@ -364,13 +364,13 @@ PROC GetFilePos
           push     dx
           push     si
           push     di
-          xor      cx,cx             ;  èÆ´„Á®‚Ï
-          xor      dx,dx             ;  ØÆß®Ê®Ó
-          mov      ax,04201h         ;  „™†ß†‚•´Ô
+          xor      cx,cx             ;  –ü–æ–ª—É—á–∏—Ç—å
+          xor      dx,dx             ;  –ø–æ–∑–∏—Ü–∏—é
+          mov      ax,04201h         ;  —É–∫–∞–∑–∞—Ç–µ–ª—è
           mov      bx,[Deskriptor]
-          int      21h               ;  ®
-          mov      [hiword],dx       ;  ß†ØÆ¨≠®‚Ï
-          mov      [loword],ax       ;  ••
+          int      21h               ;  –∏
+          mov      [hiword],dx       ;  –∑–∞–ø–æ–º–Ω–∏—Ç—å
+          mov      [loword],ax       ;  –µ–µ
           pop      di
           pop      si
           pop      dx
@@ -380,7 +380,7 @@ PROC GetFilePos
 ENDP GetFilePos
 
 
-PROC WriteFile               ; èÆ§Ø‡Æ£‡†¨¨† §´Ô Á‚•≠®Ô ®´® ß†Ø®·® ‰†©´†
+PROC WriteFile               ; –ü–æ–¥–ø—Ä–æ–≥—Ä–∞–º–º–∞ –¥–ª—è —á—Ç–µ–Ω–∏—è –∏–ª–∏ –∑–∞–ø–∏—Å–∏ —Ñ–∞–π–ª–∞
           push     bx
           push     cx
           push     dx
@@ -400,7 +400,7 @@ PROC ReadFile
           push     cx
           push     dx
           mov    bx,[Deskriptor]
-          mov    ah,3Fh              ; Ç  Çï ØÆ¨•È•≠ §•·™‡®Ø‚Æ‡ ‰†©´†
+          mov    ah,3Fh              ; –í  –í–• –ø–æ–º–µ—â–µ–Ω –¥–µ—Å–∫—Ä–∏–ø—Ç–æ—Ä —Ñ–∞–π–ª–∞
           mov    cx,LenBuffer
           mov    dx,offset strpath
           int    21h
@@ -611,7 +611,7 @@ PROC GetSTRSize
           repnz scasb
           pop  ax
           sub  ax,cx
-          mov  cx,ax     ;Ñ´®≠≠† ·‚‡Æ™®
+          mov  cx,ax     ;–î–ª–∏–Ω–Ω–∞ —Å—Ç—Ä–æ–∫–∏
           pop  ax
           pop  di
           ret

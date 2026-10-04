@@ -3,16 +3,16 @@
                    JUMPS
                    P386
 
-AllocatedMemory    EQU   384*1024/16; ‚ë¤¥«¨âì 384 KB ¯ ¬ïâ¨
-;AllocatedMemory    EQU   264*1024/16; ‚ë¤¥«¨âì 262 KB ’Ž‹œŠŽ „‹Ÿ Ž’‹€„Šˆ!!!
+AllocatedMemory    EQU   384*1024/16; Выделить 384 KB памяти
+;AllocatedMemory    EQU   264*1024/16; Выделить 262 KB ТОЛЬКО ДЛЯ ОТЛАДКИ!!!
 ForSkaleProc       EQU  1 ; 1 !!!
-Win32ModuleSize    EQU   7680 ;  §¬¥à Win32 ¬®¤ã«ï
+Win32ModuleSize    EQU   7680 ; Размер Win32 модуля
 SSTRESTMPSize      EQU   1122+4 ; Win32 data
 CacheMissCor       EQU   64/4
 SpeedsysVer        EQU   '4.79b05'
 r                  EQU   252,253
 tm                 EQU   254,255
-ForCpuTest         EQU   1 ; ­¥ ¬¥­ïâì
+ForCpuTest         EQU   1 ; не менять
 PCIDevLength       EQU   offset EndOfPCISruct-offset NumberPCIBus
 ClearedPCIDevLength EQU offset EndOfPCISruct-offset NumPCIVideoDev
 
@@ -194,9 +194,9 @@ ExtCPUIDCacheL1InfoEDX DD 0
 ExtCPUIDCacheL2InfoECX DD 0
 
 CPUstepping        DB 0
-CPUmodel           DB 0;* ­¥
-CPUfamily          DB 0;* ¬¥­ïâì
-CPUtype            DB 0;* ¯®àï¤®ª
+CPUmodel           DB 0;* не
+CPUfamily          DB 0;* менять
+CPUtype            DB 0;* порядок
 ExtCPUstepping     DB 0;*
 ExtCPUmodel        DB 0;*
 ExtCPUfamily       DB 0;*
@@ -464,7 +464,7 @@ MesDosLabel        DB '('
 NumDosLabel        DB 2 DUP(0),'h) ',0
 
 MesBios            DB 13,23,3,'BIOS: '
-NumBios            DB 42 DUP (0),0 ;42 ­¥ ¬¥­ïâì
+NumBios            DB 42 DUP (0),0 ;42 не менять
 NumBiosDate1       DB 17,2+8,' ('
 NumBiosDate        DB 8 DUP (0),')',17,7+8,0
 MesPerexod         DB 32,25,16,32,0
@@ -966,7 +966,7 @@ ResCacheSpeedMovsq DD 13 DUP(0)
 ResCacheSpeedLodsq DD 13 DUP(0)
 ResCacheSpeedStosq DD 13 DUP(0)
 
-ResultsNew         DB 13 DUP(0) ;¥§ã«ìâ âë ® ­ ©¤¥­­ëå ªíè
+ResultsNew         DB 13 DUP(0) ;Результаты о найденных кэш
 L1FastRes          DD ?
 MemSpeedSkala      DW 0
 LastCache          DW 0
@@ -1137,7 +1137,7 @@ NumberLastPCIBus   DB ?
 
 NumPCIStr          DB 0
 
-NumberPCIBus       DB 0 ;1 ¥à¢ë© ¡ ©â áâàãªâãàë
+NumberPCIBus       DB 0 ;1 Первый байт структуры
 NumRepPCIDev       DB 0 ;1
 NumRepPCIFun       DB 0 ;1
 PIClass            DB 0 ;1
@@ -1152,7 +1152,7 @@ PCISUBSYSDEV       DW ? ;2
 NumPCISeg          DW 0 ;2
 NumPCIDevVendor    DW 0 ;2
 NumPCIDevName      DW 0 ;2
-NumPCIVideoDev     DB 0 ;1 „ ­­ë¥ ª®â®àë¥ ®¡­ã«ïîâáï ¯¥à¥¤ ­®¢ë¬ ãáâà®©áâ¢®¬
+NumPCIVideoDev     DB 0 ;1 Данные которые обнуляются перед новым устройством
 VerAGP             DB 0 ;1
 SupAGPRate         DB 0 ;1
 AGPDataRate        DB 0 ;1
@@ -1172,7 +1172,7 @@ MemBaseRange2      DD 0 ;4
 MemBaseRange3      DD 0 ;4
 MemBaseRange4      DD 0 ;4
 MemBaseRange5      DD 0 ;4
-EndOfPCISruct      DB 0 ;1 ®á«¥¤­¨© ¡ ©â áâàãªâãàë
+EndOfPCISruct      DB 0 ;1 Последний байт структуры
 
 FoundAGPController DB 0
 
@@ -1272,7 +1272,7 @@ NumISAPnPCard      DB 48,23,11,0
 PosAdrNamePnPCard  DW AdrNameISAPnP+2
 AdrNameISAPnP      DW NameISAPnP,9 DUP (0)
 PosNameISAPnPBuf   DW NameISAPnP
-SerialIDbuff       DB 72 DUP (0);Vendor_ID+Ser.Num ¯® 9 ¡ ©â ­  ¯« âã, 8 ¯« â
+SerialIDbuff       DB 72 DUP (0);Vendor_ID+Ser.Num по 9 байт на плату, 8 плат
 VendorIDISAPnP     DB 7 DUP (0),'   '
 SerialNoIDISAPnP   DB 8 DUP (0),'  ',0
 NameISAPnP         DB 256 DUP (0)
@@ -1696,7 +1696,7 @@ MemSizePriznak      DB 0
 
 Start:
           mov     [word cs:SegMyProg],es
-          mov     ax,Dseg        ;“áâ ­®¢ª   ¤à¥á  á¥£¬¥­â  ¤ ­­ëå
+          mov     ax,Dseg        ;Установка адреса сегмента данных
           mov     es,ax
           push    ax
           mov     cx,40
@@ -1706,7 +1706,7 @@ Start:
           rep     movsw
           pop     ds
 
-          mov     ah,30h         ; ®«ãç¨âì ¢¥àá¨î DOS
+          mov     ah,30h         ; Получить версию DOS
           int     21h
           cmp     al,5
           jb      short VerExit
@@ -1740,13 +1740,13 @@ VGAPresent:
           jc      short PrintAndExit
 
           mov     ax,EndPrgSeg
-          mov     [SPDDataSeg],ax  ;‘¥£¬¥­â ¤«ï SPD ¤ ­­ëå
-          add     ax,128           ;128*16=2048 - ¤«ï SPD ¤ ­­ëå
+          mov     [SPDDataSeg],ax  ;Сегмент для SPD данных
+          add     ax,128           ;128*16=2048 - для SPD данных
           mov     [PCIDevRepSeg],ax
-          add     ax,128           ;2KB ¤«ï á PCI ãáâà®©áâ¢
-          mov     [ReportDataSeg],ax  ;‘¥£¬¥­â ¤«ï ¤«ï ä ©«  ®âç¥â 
-          add     ax,2048          ;2048*16=32KB - ¤«ï ä ©«  ®âç¥â 
-          mov     [EndProgram],ax  ;‘¥£¬¥­â ¤«ï à ¡®âë
+          add     ax,128           ;2KB для с PCI устройств
+          mov     [ReportDataSeg],ax  ;Сегмент для для файла отчета
+          add     ax,2048          ;2048*16=32KB - для файла отчета
+          mov     [EndProgram],ax  ;Сегмент для работы
           mov     [TransferBufferH],ax
 
           call    DetectCPUclass
@@ -1825,8 +1825,8 @@ RealModeDetected:
           jb      short CannotFoundFreeXMSMem
 GoToInitXMSAccess:
           cmp     [FeatureFlagSSE4],1
-		      jnz     short NotModernProcessor
-		      inc     bl
+		  jnz     short NotModernProcessor
+		  inc     bl
 NotModernProcessor:
           mov     [byte cs:MemSizePriznak],bl
 
@@ -1854,7 +1854,7 @@ MSCDEXnotFound:
           mov     ax,4A10h
           xor     bx,bx
           mov     cx,0EBABh
-          int     2Fh      ; à®¢¥à¨âì ­ «¨ç¨¥ SMARTDRV
+          int     2Fh      ; Проверить наличие SMARTDRV
           cmp     ax,0BABEh
           jnz     short SMARTDRVNotFound
           mov     [DetSMARTdrv],1
@@ -1899,7 +1899,7 @@ SkipCorrect:
           pop     cx
           mov     [BufNoErr],1
 
-;********* Ž¡à ¡®âª  ª®¬ ­¤­®© áâà®ª¨
+;********* Обработка командной строки
 NextDOSSimvol:
           lodsb
           cmp     al,13
@@ -2201,7 +2201,7 @@ NotClearCMOS:
           cmp     [CreateBIOS],1
           jnz     short NotCreateSysBIOSdump
           mov     dx,offset SysBiosFileName
-          mov     ax,3C00h    ; ®¯à®¡®¢ âì á®§¤ âì sysbios.rom
+          mov     ax,3C00h    ; Попробовать создать sysbios.rom
           xor     cx,cx
           int     21h
           jnc     short CreateFileForBIOSdumpOK
@@ -2319,7 +2319,7 @@ WriteDiskCConfirm:
 WriteNotDiskC:
 WriteNotEnableFromComLine:
 
-          cmp     [CreatePCX],1          ;  ¤® á®§¤ ¢ âì PCX ä ©« ?
+          cmp     [CreatePCX],1          ; Надо создавать PCX файл ?
           jnz     short DetectCreateRepFile
           mov     si,[FileName]
 NextSimvol:
@@ -2339,7 +2339,7 @@ EndNextSimvolFile:
           xor     al,al
           stosb
           mov     dx,[FileName]
-          mov     ax,3C00h          ; ®¯à®¡®¢ âì á®§¤ âì PCX ä ©«
+          mov     ax,3C00h          ; Попробовать создать PCX файл
           xor     cx,cx
           int     21h
           mov     [FileHandle],ax
@@ -2368,7 +2368,7 @@ EndNextSimvolFileForRep:
           xor     al,al
           stosb
           mov     dx,[FileNameREP]
-          mov     ax,3C00h          ; ®¯à®¡®¢ âì á®§¤ âì report ä ©«
+          mov     ax,3C00h          ; Попробовать создать report файл
           xor     cx,cx
           int     21h
           mov     [FileHandleREP],ax
@@ -2431,7 +2431,7 @@ WinNTnotDetectForMemSize:
 
           mov     ah,0Fh
           int     10h
-          mov     [video],al ;‡ ¯®¬­¨âì â¥ªãé¨© ¢¨¤¥® à¥¦¨¬
+          mov     [video],al ;Запомнить текущий видео режим
 
           call    VideoSpeedTest
 
@@ -2441,7 +2441,7 @@ WinNTnotDetectForMemSize:
           mov     ax,0012h   ;640*480*16
           int     10h
 
-          xor     ax,ax      ; ¬ª  ­  ¯®«­ë© íªà ­
+          xor     ax,ax      ;Рамка на полный экран
           mov     bx,ax
           mov     cx,639
           mov     dx,479
@@ -2863,7 +2863,7 @@ NotSPDDIMMmodulesPresentForCacheBench:
 CanNotDetMemTypeWinNT:
           cmp     [MultiTask],1
           jz      short CanNotDetectInMultitask
-          call    DetectIDEDriveName  ;Ž¯à¥¤¥«¥­¨¥ ¨¬¥­ ATA/ATAPI
+          call    DetectIDEDriveName  ;Определение имен ATA/ATAPI
 CanNotDetectInMultitask:
 
           mov     si,offset MesDetBIOSVendor
@@ -2900,7 +2900,7 @@ NotAwardModularBIOS:
           loop    short NextByteTestForAwardModularBIOS
           pop     ds
 
-          push    es      ;Ž¯à¥¤¥«¥­¨¥ ¯à®¨§¢®¤¨â¥«ï BIOS
+          push    es      ;Определение производителя BIOS
           mov     ax,0F000h
           mov     es,ax
           mov     ebp,20202020h
@@ -2966,7 +2966,7 @@ Bug2000testOK:
           call    DetectISAPnP
 CanNotGetISAPnPinWinNT:
 
-          mov     ax,8   ;“¤ «¥­¨¥ ­ ¤¯¨á¨ "Ž¯à¥¤¥«¥­¨¥ ¯ à ¬¥âà®¢ á¨áâ¥¬ë"
+          mov     ax,8   ;Удаление надписи "Определение параметров системы"
           mov     bx,ax
           mov     cx,399
           mov     dx,16
@@ -3422,7 +3422,7 @@ SkipVideoMemSpeedPrn:
           mov     si,offset PerevodStroki
           call    colorstr6x8
 
-;****** Ž¯à¥¤¥«¥­¨¥ ª®«¨ç¥áâ¢  ¨ à §¬¥à®¢ HDD
+;****** Определение количества и размеров HDD
           mov     [TotalAllDrive],0
           mov     ah,8
           mov     dl,80h
@@ -3508,7 +3508,7 @@ HDDFoundGoToPerevodStroki:
           call    colorstr6x8
           inc     [ForBaseFrame]
 HDDNotFoundSkipPerevodStroki:
-;********** à®¢¥àª  ­ «¨ç¨ï CDROM **************
+;********** Проверка наличия CDROM **************
           mov     si,offset NumDriveName0
           mov     [word ds:IDEATAPIdevices],'MP'
           call    PrintCDROM
@@ -3540,7 +3540,7 @@ HDDNotFoundSkipPerevodStroki:
           inc     [ForBaseFrame]
 CDROMNotFound:
 
-; Ž¯à¥¤¥«¥­¨¥ ç¨¯á¥â 
+; Определение чипсета
 
           cmp     [PCIBusIsPresent],0
           jz      short ChipsetNotDetect
@@ -3575,7 +3575,7 @@ FaindChipset:
 
 ChipsetNotDetect:
 
-; Ž¯à¥¤¥«¥­¨ï ¬®¤¥«¨ ¬ â¥à¨­ª¨
+; Определения модели материнки
           cmp     [PnPBiosSupport],1
           jnz     NotPnPBiosForMotherboardDetect
 
@@ -3716,7 +3716,7 @@ NotPnPBiosForMotherboardModel:
           inc     [ForBaseFrame]
 NotPnPBiosForMotherboardDetect:
 
-;******* Ž¯à¥¤¥«¥­¨¥ ¯à®¨§¢®¤¨â¥«ï ¨ ¤ âë BIOS
+;******* Определение производителя и даты BIOS
           cmp     [BIOSVendorDetectOK],1
           jnz     short BIOSVendorUnknown
           mov     si,offset MesBios
@@ -3826,7 +3826,7 @@ DetectDosVersion:
 Bug2000Test1NotFound:
 Bug2000TestNotFound:
 
-;********* Ž¯à¥¤¥«¥­¨¥ ¢¥àá¨¨ DOS ******************
+;********* Определение версии DOS ******************
           mov     si,offset vermesn
           call    colorstr6x8
           cmp     [WinNTpres],1
@@ -3926,11 +3926,11 @@ PrintTM:
           mov     [NumRepOSver3],si
           call    colorstr6x8
 OkPrnDOS:
-;********  ¬ª  ª®­ä¨£ãà æ¨¨ á¨áâ¥¬ë *****
+;******** Рамка конфигурации системы *****
           mov     dl,[ForBaseFrame]
           sub     dh,dh
           shl     dx,3
-          add     dx,82-8   ; „«¨­  à ¬ª¨
+          add     dx,82-8   ; Длина рамки
 
           mov     ax,8
           mov     bx,10
@@ -3942,7 +3942,7 @@ OkPrnDOS:
           add     bx,35
           call    ColorHorLine
 
-;********  ¬ª  á¨áâ¥¬­ëå á®®¡é¥­¨© *****
+;******** Рамка системных сообщений *****
           call    MesagesFrame
           call    ClearWindowMesages
           mov     si,offset MesESC
@@ -3953,7 +3953,7 @@ OkPrnDOS:
           cmp     [HDDTest],1
           jz      GoToTestHDD
 ;*************************************************************
-;**********               ’¥áâ ¯à®æ¥áá®à                  ****
+;**********               Тест процессора                 ****
 ;*************************************************************
 ;jmp mm1
           mov     ax,12
@@ -3980,7 +3980,7 @@ OkPrnDOS:
           mov     bp,sp
           mov     ax,[EndProgram]
           mov     [word cs:EndProgramCS],ax
-          mov     cx,33      ;¥ ¬¥­ïâì
+          mov     cx,33      ;Не менять
 
           ALIGN 2
 
@@ -4047,7 +4047,7 @@ NewCallCPUSpeedInTest:
           mov     cx,5
           call    BinToAscDec2
           xor     edx,edx
-          mov     ebx,100     ;„¢  §­ ª  ¯®á«¥ § ¯ïâ®©
+          mov     ebx,100     ;Два знака после запятой
           div     ebx
           shr     eax,1
           or      eax,eax
@@ -4101,7 +4101,7 @@ VideoTestStart:
           cmp     [CreateQuickREP],1
           jz      MakeQuickREP
 ;******************************************************
-;*******************      ’¥áâ ¯ ¬ïâ¨       ***********
+;*******************      Тест памяти       ***********
 ;******************************************************
 ;mm1:
           cmp     [ErrConfig],1
@@ -4355,7 +4355,7 @@ CDnotTested:
 
 SkipMenuInit:
 ;*******************************************
-;****** ‚ë¡®à â¥áâ¨àã¥¬®£® ¤à ©¢  **********
+;****** Выбор тестируемого драйва **********
 ;*******************************************
           cmp     [WinNTpres],1
           jz      HDDTestStart01
@@ -4372,7 +4372,7 @@ HDDIsFound:
           add     al,cl
           jz      HDDTestStart01
           mov     [AllDrives],al
-          mov     [YposForPrn],6  ;¯®§¨æ¨ï ¯® £®à¨§®­â «¨
+          mov     [YposForPrn],6  ;позиция по горизонтали
 
           call    ClearWindowMesages
           mov     si,offset MesPressDriveSl
@@ -4416,7 +4416,7 @@ NextPrnCDforWin:
           jmp     short NextPrnCDforWin
 EndPrnCDforWin:
 
-          mov     [YposForPrn],6   ;¯®§¨æ¨ï ¯® £®à¨§®­â «¨
+          mov     [YposForPrn],6   ;позиция по горизонтали
           mov     [DefaultDrive],0
           cmp     [Method],0
           jz      short FullTestMethodSelect
@@ -4441,7 +4441,7 @@ GetNewKeyForDriveSelection:
           jz      DetectedSpaceKey
           jmp     short GetNewKeyForDriveSelection
 DetectedUpKey:
-          cmp     [YposForPrn],6    ;¯®§¨æ¨ï ¯® £®à¨§®­â «¨
+          cmp     [YposForPrn],6    ;позиция по горизонтали
           jz      short GetNewKeyForDriveSelection
 
           mov     [LitingPriznak],3
@@ -4480,7 +4480,7 @@ GoToHDDdrive:
 
 DetectedDownKey:
           mov     al,[AllDrives]
-          add     al,6-1   ;¯®§¨æ¨ï ¯® £®à¨§®­â «¨ -1
+          add     al,6-1   ;позиция по горизонтали -1
           cmp     [YposForPrn],al
           jz      GetNewKeyForDriveSelection
           mov     [LitingPriznak],3
@@ -4489,7 +4489,7 @@ DetectedDownKey:
           cmp     [CDROMtest],1
           jz      short RealCDtest
           mov     al,[DefaultDrive]
-          add     al,6     ;¯®§¨æ¨ï ¯® £®à¨§®­â «¨
+          add     al,6     ;позиция по горизонтали
           mov     [YposForPrn],al
 
           mov     al,[DefaultDrive]
@@ -4536,7 +4536,7 @@ DetectedSpaceKey:
           mov     si,offset NumFastFullTest
           mov     al,[AllDrives]
           mov     [byte ds:si+2],al
-          add     [byte ds:si+2],6+1     ;¯®§¨æ¨ï ¯® £®à¨§®­â «¨ +1
+          add     [byte ds:si+2],6+1     ;позиция по горизонтали +1
           call    ColorStr6x8
           cmp     [Method],0
           jnz     short NotFullMethod
@@ -4555,7 +4555,7 @@ DetectedEnterKey:
           jz      GoToTestCDROM
 
 ;****************************************************
-;*************      ’¥áâ ¢¨­ç¥áâ¥à        ***********
+;*************      Тест винчестера       ***********
 ;****************************************************
 HDDTestStart01:
 
@@ -4581,11 +4581,11 @@ NoPcxCreated:
           mov     [TotalUnstab],ax
           mov     [TotalError],ax
 
-          mov     al,[TotalHDD]  ; € ¢®¡é¥ â® ¥áâì ¢¨­ç¥áâ¥à ?
+          mov     al,[TotalHDD]  ; А вобще то есть винчестер ?
           or      al,al
           jnz     short HardDrivePresent
           call    ClearWindowMesages
-          jmp     NormalExit          ; …á«¨ ¢¨­â  ­¥â - áª¨¯ ¥£® â¥áâ
+          jmp     NormalExit          ; Если винта нет - скип его тест
 HardDrivePresent:
           cmp     [DefaultDrive],al
           jb      short HardDrivePresentGoToTest
@@ -4616,7 +4616,7 @@ CompliteFullTestHDD:
 
           jmp     CDNormalExit
 ;************************************************
-;*********     ’¥áâ CD-ROM               ********
+;*********     Тест CD-ROM               ********
 ;************************************************
 GoToTestCDROM:
           mov     [SkipDriveSelect],0
@@ -4687,7 +4687,7 @@ CDTestedInFastMode:
           cmp     bx,2048
           jnz     VTOCError
 
-          mov     eax,234249436 ;„«ï ª «¨¡à®¢ª¨ CDROM Speed
+          mov     eax,234249436 ;Для калибровки CDROM Speed
           movzx   ebx,[SectorsRead]
           mul     ebx
           mov     [BasicDivadeL],eax
@@ -4708,7 +4708,7 @@ CDTestedInFastMode:
           mov     si,offset MesSmartMethod
 FullMethod:
           call    ColorStr6x8
-;******************   ‚ëç¨á«¥­¨¥ ¬ áèâ ¡    ****************
+;******************   Вычисление масштаба   ****************
 
           mov     si,offset MesCheckReadSpeed
           call    ColorStr6x8
@@ -4754,7 +4754,7 @@ NormalMaxSpinUpSecond:
           mul     ebx
           sub     edx,edx
           div     [MaxResultSpeedSecond]
-          cmp     al,98 ; …á«¨ à §­¨æ  ¡®«¥¥ 2% - ¯à®¤®«¦ ¥¬ à áªàãâªã.
+          cmp     al,98 ; Если разница более 2% - продолжаем раскрутку.
           jb      short RepeatSpinUp
 
           mov     eax,[MaxResultSpeedSecond]
@@ -4763,7 +4763,7 @@ NormalMaxSpinUpSecond:
           call    MastabSpeedCDROM
           mov     [DivMastabCDROM],ebx
 
-;***********  ˆ­¨æ¨ «¨§ æ¨ï ¯¥à¥¬¥­­ëå CDROM Test  ************
+;***********  Инициализация переменных CDROM Test  ************
 
           xor     eax,eax
           mov     [TekuhPointVert],ax
@@ -4850,7 +4850,7 @@ NoFastTest:
           mov     [word ds:si+1],3503h
           call    ColorStr6x8
 NoFullCDTest:
-;***********   ç «® â¥áâ¨à®¢ ­¨ï ¯®¢¥àå­®áâ¨ *********
+;***********  Начало тестирования поверхности *********
           cmp     [DetSMARTdrv],1
           jnz     short SMartDRVNot1
           mov     ax,4A10h
@@ -4996,7 +4996,7 @@ CDTestWasSkipped:
           call    PrnTekSector
           call    MastabSpeedCDROM
 
-;************* ’¥áâ CDROM RandomAccessTime **************
+;************* Тест CDROM RandomAccessTime **************
 
           cmp     [Method],0
           jz      DetectFastTestForRandomAccessTime
@@ -5012,7 +5012,7 @@ CDTestWasSkipped:
           call    SetRnd
 
           mov     [SectorsRead],1
-          mov     [BasicDivadeL],12    ;„«ï ª «¨¡à®¢ª¨ CDROM Seek
+          mov     [BasicDivadeL],12    ;Для калибровки CDROM Seek
           xor     eax,eax
           mov     [KolihProhodov],eax
           mov     [TotalResultSpeedL],eax
@@ -5089,7 +5089,7 @@ NotStopTestCDROMForRandomAccessTime:
           mov     [dword ds:si+25],eax
 CDTestRandomAccessWasSkipped:
 
-;********** ’¥áâ CDROM 1/3 Seek Time *****************
+;********** Тест CDROM 1/3 Seek Time *****************
 
 SkipTestCDROMForRandomAccessTime:
 
@@ -5163,7 +5163,7 @@ NotStopTestCDROMFor13SeekTime:
           mov     [dword ds:si+29],eax
 CDTest13SeekWasSkipped:
 
-;********* ’¥áâ CDROM Full Seek Time ****************
+;********* Тест CDROM Full Seek Time ****************
 
 SkipTestCDROMFor13SeekTime:
 
@@ -5242,7 +5242,7 @@ CDTestFullSeekWasSkipped:
 SkipTestCDROMForFullSeekTime:
 DetectFastTestForRandomAccessTime:
 
-;*********** ’¥áâ ¯®§¨æ¨®­¨à®¢ ­¨ï CDROM **********
+;*********** Тест позиционирования CDROM **********
 SeekTestCDROM:
 
           call    SeekToSector0
@@ -5285,7 +5285,7 @@ NoErrorCDROM:
           xor     eax,eax
           mov     [KolihProhodov],eax
           mov     [HorKoord],ax
-          mov     [BasicDivadeL],12    ;„«ï ª «¨¡à®¢ª¨ CDROM Seek
+          mov     [BasicDivadeL],12    ;Для калибровки CDROM Seek
           mov     ax,318
           mov     bx,287
           mov     cx,238
@@ -5294,7 +5294,7 @@ NoErrorCDROM:
           call    Rectangle
           mov     si,offset MesCheckAccessTime
           call    ColorStr6x8
-;******* ‚ëç¨á«¥­¨¥ ¬ áèâ ¡  CDROM Seek ***********
+;******* Вычисление масштаба CDROM Seek ***********
           xor     eax,eax
           mov     [TekSectorCDROML],eax
           mov     [TotalResultSpeedL],eax
@@ -5339,7 +5339,7 @@ GoToSeekTestCDROM:
           mov     [DivMastabCDROM],ebx
           call    GetSeekMashtab
 
-;**********   ç «® â¥áâ¨à®¢ ­¨ï CDROM Seek ***********
+;**********  Начало тестирования CDROM Seek ***********
           cmp     [DetSMARTdrv],1
           jnz     short SMartDRVNot6
           mov     ax,4A10h
@@ -5429,7 +5429,7 @@ NotStopTestCDROMSeek:
 
 SkipTestCDROMSeek:
 
-;******** Ž¡à ¡®âª  à¥§ã«ìâ â®¢ â¥áâ¨à®¢ ­¨ï CDROM *********
+;******** Обработка результатов тестирования CDROM *********
 
           call    MastabSpeedCDROM
           mov     si,[ResultSeekMashtab]
@@ -5458,7 +5458,7 @@ SkipGetCDIndex:
           mov     cx,4
           call    BinToAscDec2
           xor     edx,edx
-          mov     ebx,100     ;„¢  §­ ª  ¯®á«¥ § ¯ïâ®©
+          mov     ebx,100     ;Два знака после запятой
           div     ebx
           or      eax,eax
           jnz     short NotZeroInCDspeed
@@ -5476,7 +5476,7 @@ SkipCDcompareRes:
 
           jmp     CDNormalExit
 ;*********************************************************
-;******       ‡ ¢¥àè¥­¨¥ à ¡®âë ¯à®£à ¬¬ë        *********
+;******       Завершение работы программы        *********
 ;*********************************************************
 CDNormalExit:
           call    ClearWindowMesages
@@ -5714,8 +5714,8 @@ FaundReportFile:
           jmp     short NextOpenReportFileTest
 AllReportFileNotFound:
           mov     dx,offset AutoReportFileName
-          mov     ax,3C00h; ®¯à®¡®¢ âì á®§¤ âì ä ©« ®âç¥â 
-          xor     cx,cx   ; á ãª § ­­ë¬ ¨¬¥­¥¬ ( ¯à®¢®¤ª ¬¨)
+          mov     ax,3C00h; Попробовать создать файл отчета
+          xor     cx,cx   ; с указанным именем ( проводками)
           int     21h
           mov     [FileHandleREP],ax
           jc      short TXTReportFileErr
@@ -5729,7 +5729,7 @@ AllReportFileNotFound:
           jz      CreateREPDone
 
           mov     dx,offset AutoPCXFileName
-          mov     ax,3C00h          ; ®¯à®¡®¢ âì á®§¤ âì PCX ä ©«
+          mov     ax,3C00h          ; Попробовать создать PCX файл
           xor     cx,cx
           int     21h
           mov     [FileHandle],ax
@@ -5790,7 +5790,7 @@ Exit:
           int     21h
 
 ;*******************************************
-;**       ŠŽ…– Žƒ€ŒŒ›       ************
+;**       КОНЕЦ ПРОГРАММЫ       ************
 ;*******************************************
 PROC ErrorDiv
           call    MesagesFrame
@@ -6229,7 +6229,7 @@ FeatureFlagSSEForRepNotSupport:
           jnz     short FeatureFlagSSE2ForRepNotSupport
           mov     si,offset MesSSE2yes
 FeatureFlagSSE2ForRepNotSupport:
-          call     PutToReportBuf
+          call    PutToReportBuf
           mov     ax,' ,'
           call    PutWordToReportBuf
           mov     si,offset MesSSE4no
@@ -6237,7 +6237,7 @@ FeatureFlagSSE2ForRepNotSupport:
           jnz     short FeatureFlagSSE4ForRepNotSupport
           mov     si,offset MesSSE4yes
 FeatureFlagSSE4ForRepNotSupport:
-          call     PutToReportBuf
+          call    PutToReportBuf
 
           cmp     [IntelProcessor],1
           jnz     NotIntelCPUForGetCacheInfoRep
@@ -8293,7 +8293,7 @@ ResLabelDDRTrpTrcdOK:
 ENDP DetectLabelDDRTrpTrcd
 
 PROC PrnMesCLuptoForRep
-          push    ax             ; ¢ al- â¥ªãé¨© CL
+          push    ax             ; в al- текущий CL
           push    bx
 
           call    GetMHzFromCycleTime
@@ -8498,11 +8498,11 @@ ATAVersionNotPresentForRep:
           mov     si,offset NumRepSectors
           call    NonZeroPrn
           call    PutToReportBuf
-          movzx   eax,[word ds:bp+34+8] ;Ž¯à¥¤¥«ï¥¬
-          movzx   ebx,[word ds:bp+36+8] ;à §¬¥à
-          mul     ebx                   ;¦¥áâª®£®
-          movzx   ebx,[word ds:bp+38+8] ;¤¨áª 
-          mul     ebx                   ;¢ Œ.
+          movzx   eax,[word ds:bp+34+8] ;Определяем
+          movzx   ebx,[word ds:bp+36+8] ;размер
+          mul     ebx                   ;жесткого
+          movzx   ebx,[word ds:bp+38+8] ;диска
+          mul     ebx                   ;в МБ.
           shr     eax,11
           cmp     eax,1024
           jb      short PrnRepHDDSizeInMB
@@ -9452,7 +9452,7 @@ EndStrForPCIrep:
           mov      si,offset NumPCIVendor
           call     UnpackPCIString
           push     es
-          push     [ReportDataSeg] ;‘¥£¬¥­â ¤«ï ¤«ï ä ©«  ®âç¥â 
+          push     [ReportDataSeg] ;Сегмент для для файла отчета
           pop      es
           mov      di,[CounterRepBuf]
           mov      si,offset NumPCIVendor
@@ -9874,6 +9874,7 @@ NotSupportSSE2instr:
           jz      short NotSupportSSE4instr
           mov     [FeatureFlagSSE4],1
 NotSupportSSE4instr:
+
           cmp     [IntelProcessor],1
           jnz     short NotSupportSNinstr
           test    edx,40000h
@@ -10013,7 +10014,7 @@ NotAMDCPUForGetCacheInfo:
 
 NotSupportCPUID:
 
-;     mov   [IntelProcessor],0  ;„«ï ®â« ¤ª¨!!!
+;     mov   [IntelProcessor],0  ;Для отладки!!!
 ;     mov   [AMDProcessor],1
 ;     mov   [CPUstepping],3
 ;     mov   [word ds:CPUmodel],0Fh*256+3h
@@ -10673,12 +10674,12 @@ MMXNotSupportForYes:
           jmp     short PrintMesAMD3Dno
 IntelProcessorPresents:
           cmp     [FeatureFlagSSE4],1
-		      mov     si,offset MesSSE4yes
+		  mov     si,offset MesSSE4yes
           jz      short SSENotSupportForYes
 
           cmp     [FeatureFlagSSE2],1
-		      mov     si,offset MesSSE2yes
-		      jz      short SSENotSupportForYes
+		  mov     si,offset MesSSE2yes
+		  jz      short SSENotSupportForYes
 
           cmp     [FeatureFlagSSE],1
           mov     si,offset MesSSEyes
@@ -11170,7 +11171,7 @@ NextByteStr:
           pop     ebx
           sub     edx,edx
           div     ebx
-          cmp     eax,127; Šíè ­ ©¤¥­ ¥á«¨ ¬¥¤«¥­­¥¥ ¯à¥¤ë¤ãé¥£® ­  27%
+          cmp     eax,127; Кэш найден если медленнее предыдущего на 27%
           jb      short NextByte
           add     di,cx
           mov     al,1
@@ -12139,7 +12140,7 @@ WinNTNotPresentsForDetectHdd:
           mov      edx,[dword ds:si+10h+4] ;Total Number of Sect High Dword
           or       eax,eax
           jz       short Int13extError
-          or       edx,edx               ; ¯®¤¤¥à¦ª  â®«ìª® 2000 GB
+          or       edx,edx               ; поддержка только 2000 GB
           jnz      short Int13extError
 ;          mov      ecx,[dword ds:si+18h];byte per sect
           push     es
@@ -12377,7 +12378,7 @@ PROC HardDriveTest
           mov     dl,[DefaultDrive]
           mov     [TestingHDDnumber],dl
 
-          call    DetectHdd              ;Ž¯à¥¤¥«¥­¨¥ ¯ à ¬¥âà®¢ ¢¨­â 
+          call    DetectHdd              ;Определение параметров винта
           mov     cl,[TotalHDD]
           sub     cl,[TestingHDDnumber]
 
@@ -12403,8 +12404,8 @@ Int13ExtNotSupportForThisDrive:
           inc     al
           mov     [byte ds:si+28],al
 
-          mov     eax,1                   ;‡ ¬¥à áª®à®áâ¨ ¯®§¨æ¨®­¨à®¢ ­¨ï
-          call    SeekTrack               ;¤«ï ®¯à¥¤¥«¥­¨ï ¬ áèâ ¡ 
+          mov     eax,1                   ;Замер скорости позиционирования
+          call    SeekTrack               ;для определения масштаба
           call    StartNewTimer
           mov     eax,[Tracks]
           dec     eax
@@ -12454,9 +12455,9 @@ NoHardSeekProblem:
           call    colorstr6x8
 
           xor     eax,eax                    ;  ***************************
-          mov     [TotallSeekSpeed],eax      ;  * ‚›—ˆ‘…ˆ… Œ€Š‘ˆŒ€‹œŽƒŽ *
-          mov     [SumSeekSpeed],eax         ;  *   ˆ ‘…„…ƒŽ ‚…Œ…ˆ    *
-          mov     [OldTotallSeekSpeed],eax   ;  *  Ž‡ˆ–ˆŽˆŽ‚€ˆŸ HDD   *
+          mov     [TotallSeekSpeed],eax      ;  * ВЫЧИСЕНИЕ МАКСИМАЛЬНОГО *
+          mov     [SumSeekSpeed],eax         ;  *   И СРЕДНЕГО ВРЕМЕНИ    *
+          mov     [OldTotallSeekSpeed],eax   ;  *  ПОЗИЦИОНИРОВАНИЯ HDD   *
           mov     [ForUscoren],al            ;  ***************************
           mov     [RealTrack],eax
           mov     [HDDKolichProxodov],eax
@@ -12490,8 +12491,8 @@ NextTestingTrackInHDDSeekTest:
 
           mov     [NewTekushSpeed],eax
           xor     edx,edx
-          mov     ebx,24  ;à¨ ¨§¬¥­¥­¨¨ ­¥®¡å®¤¨¬  ª «¨¡à®¢ª 
-          div     ebx     ;ª®­áâ. MashtabHddSeek
+          mov     ebx,24  ;При изменении необходима калибровка
+          div     ebx     ;конст. MashtabHddSeek
 
           push    eax
           add     [SumSeekSpeed],eax
@@ -12564,9 +12565,9 @@ HDDAverageMaxSeekTestNotSkipped:
           mov     [dword ds:si+49],eax
 
 SkipSaveResultsMaxSeek:                       ;****************************
-          mov     si,offset MesRandomSeekTime ;* Ž…„…‹…ˆ… ‘‹“—€‰ŽƒŽ   *
-          call    colorstr6x8                 ;* ‚…Œ…ˆ Ž‡ˆ–ˆŽˆŽ‚€ˆŸ *
-          sub     eax,eax                     ;* †…‘’ŠŽƒŽ „ˆ‘Š€           *
+          mov     si,offset MesRandomSeekTime ;* ОПРЕДЕЛЕНИЕ СЛУЧАЙНОГО   *
+          call    colorstr6x8                 ;* ВРЕМЕНИ ПОЗИЦИОНИРОВАНИЯ *
+          sub     eax,eax                     ;* ЖЕСТКОГО ДИСКА           *
           mov     [TotallSeekSpeed],eax       ;****************************
           mov     [RealTrack],eax
           mov     [ForUscoren],32
@@ -12682,8 +12683,8 @@ NextSeekForTrackToTrackSeek:
 
           mov     [NewTekushSpeed],eax
           xor     edx,edx
-          mov     ebx,38          ;à¨ ¨§¬¥­¥­¨¨ ­¥®¡å®¤¨¬  ª «¨¡à®¢ª 
-          div     ebx             ;ª®­áâ. MashtabHddSeekTT
+          mov     ebx,38          ;При изменении необходима калибровка
+          div     ebx             ;конст. MashtabHddSeekTT
 
           add     [TotallTTSpeed],eax
 
@@ -12757,7 +12758,7 @@ SkipSeekTest:
 
           call    MashtabSeek
 
-;‡ ¬¥à áª®à®áâ¨ çâ¥­¨ï ¤«ï ®¯à¥¤¥«¥­¨ï ¬ áèâ ¡ 
+;Замер скорости чтения для определения масштаба
           mov     [ForUscoren],32
           mov     eax,[Tracks]
           shr     eax,4
@@ -12817,8 +12818,8 @@ ReadHDDResultFast:
           mov     cx,100
 LoopTestingRandomAccessHDD:
           push    cx
-          call    StartNewTimer     ;Ž…„…‹…ˆ… ‘‹“—€‰ŽƒŽ
-          call    RandomAccessTrack ;‚…Œ…ˆ „Ž‘’“€
+          call    StartNewTimer     ;ОПРЕДЕЛЕНИЕ СЛУЧАЙНОГО
+          call    RandomAccessTrack ;ВРЕМЕНИ ДОСТУПА
           call    RandomAccessTrack
           call    RandomAccessTrack
           call    RandomAccessTrack
@@ -12877,7 +12878,7 @@ TestingReadSpeedHDD:
           mov     si,offset ResultBufferedHDD
           call    ColorStr6x8
 
-;‡ ¬¥à áª®à®áâ¨ ¯à®¢¥àª¨ ¤«ï ®¯à¥¤¥«¥­¨ï ¬ áèâ ¡ 
+;Замер скорости проверки для определения масштаба
 
           mov     eax,[Tracks]
           shr     eax,4
@@ -12996,8 +12997,8 @@ HDDCacheSpeedIsSmall:
           mov     [dword ds:si+29],eax
 
           call    MashtabSpeed          ; ***************************
-          xor     eax,eax               ; *   ‚›—ˆ‘‹…ˆ… ‘ŠŽŽ‘’ˆ   *
-                                        ; *   Ž‚…Šˆ „ŽŽ†Šˆ      *
+          xor     eax,eax               ; *   ВЫЧИСЛЕНИЕ СКОРОСТИ   *
+                                        ; *   ПРОВЕРКИ ДОРОЖКИ      *
           mov     [TotallReadSpeed],eax ; ***************************
           mov     [MaxHDDtransfer],eax
           mov     [MinHDDtransfer],eax
@@ -13047,7 +13048,7 @@ NextTrackFrom4InVerify:
           shr     eax,2
 EndFullMethodInVerifyTrack:
 
-          push    eax     ;‚ëç¨á«¥­¨¥ áª®à®áâ¨ çâ¥­¨ï ®¤­®£® ª« áâ¥à 
+          push    eax     ;Вычисление скорости чтения одного кластера
           mov     eax,[Heads]
           mul     [Sectors]
           mov     ebx,586161
@@ -13131,8 +13132,8 @@ SkipVerifySpeed:
 
           call    MashtabSeek
           call    MashtabSpeed               ; ***************************
-          xor     eax,eax                    ; *   ‚›—ˆ‘‹…ˆ… ‘ŠŽŽ‘’ˆ   *
-                                             ; *     —’…ˆŸ  „ŽŽ†Šˆ     *
+          xor     eax,eax                    ; *   ВЫЧИСЛЕНИЕ СКОРОСТИ   *
+                                             ; *     ЧТЕНИЯ  ДОРОЖКИ     *
           mov     [TotallReadSpeed],eax      ; ***************************
           mov     [MaxHDDtransfer],eax
           mov     [MinHDDtransfer],eax
@@ -13182,7 +13183,7 @@ NextTrackFrom4InRead:
           shr     eax,2
 EndFullMethodInReadTrack:
 
-          push    eax     ;‚ëç¨á«¥­¨¥ áª®à®áâ¨ çâ¥­¨ï ®¤­®£® ª« áâ¥à 
+          push    eax     ;Вычисление скорости чтения одного кластера
           mov     eax,[Heads]
           mul     [Sectors]
           mov     ebx,586161
@@ -13264,8 +13265,8 @@ SkipLinearReadHDDSpeedTest:
 
           call    MashtabSeek
           call    MashtabSpeed               ; ***************************
-          xor     eax,eax                    ; *   ‚›—ˆ‘‹…ˆ… ‘ŠŽŽ‘’ˆ   *
-                                             ; *     ‡€ˆ‘ˆ  „ŽŽ†Šˆ     *
+          xor     eax,eax                    ; *   ВЫЧИСЛЕНИЕ СКОРОСТИ   *
+                                             ; *     ЗАПИСИ  ДОРОЖКИ     *
           mov     [TotallReadSpeed],eax      ; ***************************
           mov     [MaxHDDtransfer],eax
           mov     [MinHDDtransfer],eax
@@ -13326,7 +13327,7 @@ NextTrackFrom4InWrite:
           shr     eax,2
 EndFullMethodInWriteTrack:
 
-          push    eax     ;‚ëç¨á«¥­¨¥ áª®à®áâ¨ çâ¥­¨ï ®¤­®£® ª« áâ¥à 
+          push    eax     ;Вычисление скорости чтения одного кластера
           mov     eax,[Heads]
           mul     [Sectors]
           mov     ebx,586161
@@ -14074,7 +14075,7 @@ NotFoundIDE3BaseIO:
           ret
 ENDP DetectIDEDriveName
 
-PROC DetectAtaDevice      ;¯®«ãç ¥¬ ATA ¯ à ¬¥âàë
+PROC DetectAtaDevice      ;получаем ATA параметры
 
           push    ax
           push    dx
@@ -14137,15 +14138,15 @@ ATAdriveIsReady:
           jne     ATAdriveNotFound
 
           push    dx
-          movzx   eax,[word es:di+2]        ;Ž¯à¥¤¥«ï¥¬
-          movzx   ebx,[word es:di+6]        ;à §¬¥à
-          mul     ebx                       ;¦¥áâª®£®
-          movzx   ebx,[word es:di+12]       ;¤¨áª 
-          mul     ebx                       ;¢ MB.
+          movzx   eax,[word es:di+2]        ;Определяем
+          movzx   ebx,[word es:di+6]        ;размер
+          mul     ebx                       ;жесткого
+          movzx   ebx,[word es:di+12]       ;диска
+          mul     ebx                       ;в MB.
           pop     dx
           shr     eax,11
           cmp     eax,819200
-          ja      ATAdriveNotFound    ;Error ¥á«¨ ¡®«ìè¥ 800 GB
+          ja      ATAdriveNotFound    ;Error если больше 800 GB
 
           call    GetATAScecInfo
 
@@ -14155,7 +14156,7 @@ ATAdriveIsReady:
           call    GetRPM
 
           inc     [AtaDrive]
-          mov     [word ds:si+32+8],8000h ; ¯à¨§­ ª ATA ãáâà®©áâ¢ 
+          mov     [word ds:si+32+8],8000h ; признак ATA устройства
           clc
           jmp     ATAdriveIsFound
 
@@ -14189,7 +14190,7 @@ FaindATAPIDevices:
           sub     di,di
           mov     al,[byte es:di+1]
           and     al,11111b ; Bit 12-8=5-CDROM
-          mov     [word ds:si+40],ax; ¯à¨§­ ª ATAPI ãáâà®©áâ¢ 
+          mov     [word ds:si+40],ax; признак ATAPI устройства
 
           call    GetATAPIDevParam
           jc      short ATAPIDevParamErrorInGet
@@ -14260,7 +14261,7 @@ CanNotGetATAPIPageAccess:
           call    WaitBusyAndDataRequest
           jc      short DriveNotReadyForGetATAPIPacket
 
-          mov     [ATAPIPage],2Ah ;¯ à ¬¥âàë ãáâà®©áâ¢ , â¥ªãé¨¥ §­ ç¥­¨ï
+          mov     [ATAPIPage],2Ah ;параметры устройства, текущие значения
           mov     [ATAPIPageLength],16h
 
           mov     cx,6
@@ -16739,7 +16740,7 @@ PROC GetISAPnPInfoFromPnPBIOS
           add     sp,8
           or      ax,ax
           jnz     short GetISAConfigStrucNotSupport
-          mov     ax,[EndProgram]  ; ‘¥£¬¥­â ª®­æ  ¯à®£à ¬¬ë ¢ ¯ ¬ïâ¨
+          mov     ax,[EndProgram]  ; Сегмент конца программы в памяти
           mov     es,ax
           sub     di,di
           cmp     [byte es:di],1
@@ -16994,7 +16995,7 @@ NextMemSocket:
           mov     al,[byte es:di+37]
           mov     [RDRAMFmax],ax
 
-          ;Ž¯à¥¤¥«¥­¨¥ ¯ à ¬¥âà®¢ RIMM ¬®¤ã«ï
+          ;Определение параметров RIMM модуля
           jmp     short GetNumManufPartNum
 GoToGetDIMMMemModulesParam:
 
@@ -17031,7 +17032,7 @@ MemTypeBitNotSetForMemInfo:
 
           cmp     [NumberRIMMModules],0
           jz      short GoToGetSDRAMCycleTime
-           ;Žà¥¤¥«¥­¨ áª®à®áâ¨ à ¡®âë RIMM ¬®¤ã«ï
+           ;Оределени скорости работы RIMM модуля
 
           jmp     short SkippDetectSDRAMCycleTime
 
@@ -17090,7 +17091,7 @@ SPDCheckSumErrSkipManufInfo:
           cmp     [NumberRIMMModules],0
           jz      short GetSDRAMCASlat
 
-;Žà¥¤¥«¥­¨ ¤®¯®«­¨â¥«ì­ëå ¯ à ¬¥âà®¢ RIMM ¬®¤ã«ï
+;Оределени дополнительных параметров RIMM модуля
           sub     ah,ah
           mov     al,[MinPrToRASTime]
           mov     cx,2
@@ -17772,7 +17773,7 @@ NextPCIDeviceFunction:
           mov     ds,ax
           mov     [byte cs:PCIDeviceListChenged],0
 
-; ­ ç «® ¯®¨áª  ¯à®¨§¢®¤¨â¥«ï ¢ ds:si
+; начало поиска производителя в ds:si
           ALIGN 2
 PCIVendorNotFound:
           lodsb
@@ -17817,7 +17818,7 @@ NotSubSysRev:
           jz      PCIDeviceExists
           mov     [OldPCIDevice],cx
 
-; ­ ç «® ¯®¨áª  ãáâà®©áâ¢  ¢ ds:si
+; начало поиска устройства в ds:si
           mov     ax,[word cs:PCIData]
           mov     ds,ax
 
@@ -18776,13 +18777,13 @@ SetBug2000Test1TimeError:
 ENDP SetDateAndTimeBug2000Test1
 
 PROC DetectISAPnP
-          cmp     [ISAConfigStrucSupport],1 ;‘ª ­¨àã¥¬ ¢á¥ ¢®§¬®¦­ë¥ RD ¯®àâë
-          jnz     short BIOSNotSupportISAConfigStruc ;¥á«¨ BIOS ­¥ ¯®¤¤¥à¦¨¢ ¥â ISA PnP
+          cmp     [ISAConfigStrucSupport],1 ;Сканируем все возможные RD порты
+          jnz     short BIOSNotSupportISAConfigStruc ;если BIOS не поддерживает ISA PnP
           cmp     [CSNFromISAConfigStruc],0
-          jz      ISAPnPCardNotFound ; BIOS ­¥ ­ è¥« ISA PnP ª àâë
+          jz      ISAPnPCardNotFound ; BIOS не нашел ISA PnP карты
 
 BIOSNotSupportISAConfigStruc:
-          call    ISAPnPKey     ; ˆ­¨æ¨ «¨§ æ¨ï ª«îç¥¬ PnP
+          call    ISAPnPKey     ; Инициализация ключем PnP
           mov     ax,206h       ; Fallout to 'Wait_key' state
           call    OutPnPReg
 NextAdrForScan:
@@ -18797,7 +18798,7 @@ NextAdrForScan:
           mov     si,offset MesDetISAPnPPort
           call    ColorStr6x8
 
-          call    ISAPnPKey    ; ˆ­¨æ¨ «¨§ æ¨ï ª«îç¥¬ PnP
+          call    ISAPnPKey    ; Инициализация ключем PnP
           mov     ax,300h      ; Wake[0]
           call    OutPnPReg
           pop     ax
@@ -18809,11 +18810,11 @@ NextCardIsolate:
           inc     [CurrCSN]
           mov     al,[CurrCSN]
           mov     ah,6       ; Write CSN
-          call    OutPnPReg  ; ¯p¨á¢®¨¬ ¥© ­®¬¥p Card Serial Number
-; €­ «¨§ Resource Block ¨ ¢ë¢®¤ ­¥ª®â®pëå á¢¥¤¥­¨© ® PnP ¯« â¥
-          sub     bp,bp         ; ­  ¢áïª¨© á«ãç © Length RB<=65536
+          call    OutPnPReg  ; пpисвоим ей номеp Card Serial Number
+; Анализ Resource Block и вывод некотоpых сведений о PnP плате
+          sub     bp,bp         ; на всякий случай Length RB<=65536
           call    ISAPnPKey
-          mov     al,[CurrCSN]  ; 'p §¡ã¤¨âì' ¯« âã
+          mov     al,[CurrCSN]  ; 'pазбудить' плату
           mov     ah,3          ; Wake [CSN]
           call    OutPnPReg
           call    GetSerIDAdr   ; For strange card f.e.: "Turtle Beach Tropez Plus"
@@ -18840,18 +18841,18 @@ rd_rdb01:
           dec     bp
           jnz     short rdres0
 rdres1:
-          call    ISAPnPKey        ; ˆ­¨æ¨ «¨§ æ¨ï ª«îç¥¬ PnP
+          call    ISAPnPKey        ; Инициализация ключем PnP
           mov     ax,300h          ; Wake [0]
           call    OutPnPReg
           mov     [ANSIIDstring],0
           jmp     short NextCardIsolate
 ErrInIsolate:
-          cmp     [CurrCSN],0 ; ª pâ  ­¥ 1 - §­ ç¨â ¢á¥ ª pâë ¢ëï¢¨«¨
+          cmp     [CurrCSN],0 ; каpта не 1 - значит все каpты выявили
           jnz     short AllCardFound
-          inc     [pnprdr]   ; ‘«¥¤ãîé¨©  ¤p¥á READ_DATA port
+          inc     [pnprdr]   ; Следующий адpес READ_DATA port
           mov     al,[pnprdr]
-          cmp     al,0C0h    ; ¥ á®¢á¥¬ ¯® á¯¥æ¨ä¨ª æ¨¨ !!! (¤® 0FFh ­ ¤®)
-          jz      short ISAPnPCardNotFound   ; ‚á¥  ¤p¥á  ®¯p®¡®¢ ­ë
+          cmp     al,0C0h    ; Не совсем по спецификации !!! (до 0FFh надо)
+          jz      short ISAPnPCardNotFound   ; Все адpеса опpобованы
           call    WaitingAndGetCh
           cmp     al,' '
           jz      short ISAPnPCardNotFound
@@ -18938,7 +18939,7 @@ WaitResponseISAPnPcard:
 ResponseISAPnPcardOK:
           stc
           jcxz    short NotResponseISAPnPcard
-          mov     ah,4   ; ¯/¯ çâ¥­¨ï 1 ¡ ©â  RDB
+          mov     ah,4   ; п/п чтения 1 байта RDB
           call    InPnPReg
           clc
 NotResponseISAPnPcard:
@@ -18947,7 +18948,7 @@ NotResponseISAPnPcard:
 ENDP ReadByteOfResourceData
 
 PROC GetSerIDAdr
-; p áç¥â â¥ªãé¥£®  ¤p¥á  Serial ID ¢ SerialIDbuff
+; pасчет текущего адpеса Serial ID в SerialIDbuff
           mov     al,[CurrCSN]
 PROC GetSerIDAdrForVendor
           mov     bl,9
@@ -19012,8 +19013,8 @@ ExitUnpackVendorIDISAPnP:
 ENDP UnpackVendorIDISAPnP
 
 PROC IsolatingISAPnPCard
-; ‚å®¤:  DS:BX= ¤p¥á ¯®«ï 72 bit serial identifier, +  ¤p¥á  p¥£¨áâp®¢
-; ‚ëå®¤: CF=0  -> Ok! + § ¯®«­¥­­®¥ ¯®«¥
+; Вход:  DS:BX=адpес поля 72 bit serial identifier, + адpеса pегистpов
+; Выход: CF=0  -> Ok! + заполненное поле
 ;        CF=1  -> Error
           push    dx
           push    cx
@@ -19042,7 +19043,7 @@ isolat04:
           mov     si,cx
           mov     cx,72
           sub     cx,si
-          call    InBitMap ; § ­®á¨¬ ¢ ª pâã ¡¨â[CX]=al(!=0->'1')
+          call    InBitMap ; заносим в каpту бит[CX]=al(!=0->'1')
           pop     cx
           loop    short isolat00
           test    dl,01
@@ -19067,7 +19068,7 @@ IsolatingOK:
 ENDP IsolatingISAPnPCard
 
 PROC OutPnPReg
-; ‚ë¢®¤ ¡ ©â =AL ¢ p¥£¨áâp PnP=AH
+; Вывод байта=AL в pегистp PnP=AH
           push    dx
           mov     dx,0279h
           xchg    ah,al
@@ -19082,7 +19083,7 @@ PROC OutPnPReg
 ENDP OutPnPReg
 
 PROC InPnPReg
-; ‚¢®¤ ¡ ©â =AL ¨§ p¥£¨áâp  PnP=AH
+; Ввод байта=AL из pегистpа PnP=AH
           push    dx
           mov     dx,0279h
           mov     al,ah
