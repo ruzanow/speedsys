@@ -211,6 +211,7 @@ FeatureFlagTSC     DB 0
 FeatureFlagMSR     DB 0
 FeatureFlagSSE     DB 0
 FeatureFlagSSE2    DB 0
+FeatureFlagSSSE3    DB 0
 FeatureFlagSSE4    DB 0
 FeatureFlagSN      DB 0
 FeatureFlagAMD3D   DB 0
@@ -347,8 +348,8 @@ MesSSEyes          DB 23,39,'IA ',31,'SSE:Yes',0
 MesSSEno           DB 23,39,'IA ',31,'SSE:No',0
 MesSSE2yes         DB 23,39,'IA ',31,'SSE2:Yes',0
 MesSSE2no          DB 23,39,'IA ',31,'SSE2:No',0
-MesSSE4yes         DB 23,39,'IA ',31,'SSE4:Yes',0
-MesSSE4no          DB 23,39,'IA ',31,'SSE4:No',0
+MesSSSE3yes        DB 23,39,'SSSE3:Yes',0
+MesSSE4yes         DB 23,39,'SSE4.2:Yes',0
 MesAMD3Dyes        DB 23,39,'3DNow!',tm,23,46,':Yes',0
 MesAMD3Dno         DB 23,39,'3DNow!',tm,23,46,':No',0
 MesAMD3DExtyes     DB 23,39,'3DNow! Extensions:Yes',0
@@ -6230,14 +6231,23 @@ FeatureFlagSSEForRepNotSupport:
           mov     si,offset MesSSE2yes
 FeatureFlagSSE2ForRepNotSupport:
           call    PutToReportBuf
-          mov     ax,' ,'
-          call    PutWordToReportBuf
-          mov     si,offset MesSSE4no
+
           cmp     [FeatureFlagSSE4],1
-          jnz     short FeatureFlagSSE4ForRepNotSupport
+		  jnz     short FeatureFlagSSE4ForRepNotSupport
+		  mov     ax,' ,'
+          call    PutWordToReportBuf
           mov     si,offset MesSSE4yes
+		  call    PutToReportBuf
+		  jmp     short FeatureFlagSSSE3ForRepNotSupport
 FeatureFlagSSE4ForRepNotSupport:
-          call    PutToReportBuf
+
+          cmp     [FeatureFlagSSSE3],1
+		  jnz     short FeatureFlagSSSE3ForRepNotSupport
+		  mov     ax,' ,'
+          call    PutWordToReportBuf
+          mov     si,offset MesSSSE3yes
+		  call    PutToReportBuf
+FeatureFlagSSSE3ForRepNotSupport:
 
           cmp     [IntelProcessor],1
           jnz     NotIntelCPUForGetCacheInfoRep
@@ -9870,7 +9880,12 @@ NotSupportSSEinstr:
           jz      short NotSupportSSE2instr
           mov     [FeatureFlagSSE2],1
 NotSupportSSE2instr:
-          test    ecx,80000h
+          test    ecx,200h
+          jz      short NotSupportSSSE3instr
+          mov     [FeatureFlagSSSE3],1
+NotSupportSSSE3instr:
+;          test    ecx,80000h ; sse4.1
+          test    ecx,100000h
           jz      short NotSupportSSE4instr
           mov     [FeatureFlagSSE4],1
 NotSupportSSE4instr:
@@ -10676,7 +10691,11 @@ IntelProcessorPresents:
           cmp     [FeatureFlagSSE4],1
 		  mov     si,offset MesSSE4yes
           jz      short SSENotSupportForYes
-
+          
+		  cmp     [FeatureFlagSSSE3],1
+		  mov     si,offset MesSSSE3yes
+          jz      short SSENotSupportForYes
+		  
           cmp     [FeatureFlagSSE2],1
 		  mov     si,offset MesSSE2yes
 		  jz      short SSENotSupportForYes
