@@ -1302,7 +1302,7 @@ ExitFromBinToAscDec:
 ENDP BinToAscDecH
 
 ALIGN 16
-PROC BinToAscDec2
+PROC BinToAscDec2 ; Преобразует число (в EAX) в ASCII-строку с десятичной точкой (.), вставляемой перед двумя последними цифрами. Потом NZInMes убирает ведущие нули, заменяя их пробелами.
           push    eax
           push    si
           push    di
@@ -6038,10 +6038,10 @@ ENDP GetHDDSizeInGB
 
 PUBLIC CalcResMem,WaitingAndGetCh
 
-PROC CalcResMem
-          mov     ebx,100
+PROC CalcResMem ; результат = (MemBand * 100) / 1024 
+          mov     ebx,25
           mul     ebx
-          shr     eax,10
+          shrd    eax, edx, 8 ; Исправлено переполнение при eax > 40 миллионов = скорости кэша > 40Гб/с
           mov     cx,5
           ret
 ENDP CalcResMem
