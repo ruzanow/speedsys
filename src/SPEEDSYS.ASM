@@ -11188,7 +11188,7 @@ NextByteStr:
           mov     ebx,100
           mul     ebx
           pop     ebx
-          sub     edx,edx
+          ;sub     edx,edx ; Видимо добавлено по инерции, mul и так очищает EDX. Исправлено переполнение при eax > 40 миллионов = скорости кэша > 40Гб/с
           div     ebx
           cmp     eax,127; Кэш найден если медленнее предыдущего на 27%
           jb      short NextByte
