@@ -1302,7 +1302,7 @@ ExitFromBinToAscDec:
 ENDP BinToAscDecH
 
 ALIGN 16
-PROC BinToAscDec2 ; Преобразует число (в EAX) в ASCII-строку с десятичной точкой (.), вставляемой перед двумя последними цифрами. Потом NZInMes убирает ведущие нули, заменяя их пробелами.
+PROC BinToAscDec2 ; Преобразует число (в EAX) в ASCII-строку с десятичной точкой. Потом NZInMes убирает ведущие нули, заменяя их пробелами.
           push    eax
           push    si
           push    di
@@ -1312,6 +1312,14 @@ PROC BinToAscDec2 ; Преобразует число (в EAX) в ASCII-стро
           call    BinToAscDecH
           dec     cx
           dec     cx
+
+		  cmp     cx, 5 ; Дефолтное значение в CalcResMem
+          jne     short SkipIncrement
+          cmp     eax, 10000000
+          jb      short SkipIncrement
+		  inc     cx ; Для больших значений правильно ставим точку
+SkipIncrement:
+
           mov     si,di
           dec     di
           push    di
