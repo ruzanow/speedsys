@@ -1307,11 +1307,9 @@ PROC BinToAscDec2 ; Преобразует число (в EAX) в ASCII-стро
           push    si
           push    di
           inc     di
-          inc     cx
-          inc     cx
+          add     cx,2
           call    BinToAscDecH
-          dec     cx
-          dec     cx
+          sub     cx,2
 
 		  cmp     cx, 5 ; Дефолтное значение в CalcResMem
           jne     short SkipIncrement
@@ -3840,7 +3838,7 @@ ALIGN 16
 PROC GetMemPeakBandwidth32
 
           push    ebx
-          push    cx
+          push    ecx
           mov     ax,cx
 
           call    DetectMemSize
@@ -3886,7 +3884,7 @@ LodsDBytesPeakBlock32:
           pop     es
           pop     ds
 
-          pop     cx
+          pop     ecx
           pop     ebx
 
           jmp     CalcSpeed
@@ -3897,7 +3895,7 @@ ALIGN 16
 PROC GetMemPeakBandwidth64
 
           push    ebx
-          push    cx
+          push    ecx
           mov     ax,cx
 
           call    DetectMemSize
@@ -3941,7 +3939,7 @@ LodsDBytesPeakBlock64:
           pop     es
           pop     ds
 
-          pop     cx
+          pop     ecx
           pop     ebx
 
           jmp     CalcSpeed
@@ -3952,7 +3950,7 @@ ALIGN 16
 PROC GetMemPeakBandwidth128
 
           push    ebx
-          push    cx
+          push    ecx
           mov     ax,cx
 
           call    DetectMemSize
@@ -3997,7 +3995,7 @@ LodsDBytesPeakBlock128:
           pop     es
           pop     ds
 
-          pop     cx
+          pop     ecx
           pop     ebx
 
           jmp     short CalcSpeed

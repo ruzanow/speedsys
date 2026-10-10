@@ -1826,8 +1826,10 @@ RealModeDetected:
           jb      short CannotFoundFreeXMSMem
 GoToInitXMSAccess:
           cmp     [FeatureFlagSSE4],1
-		  jnz     short NotModernProcessor
-		  inc     bl
+          jnz     short NotModernProcessor
+          cmp     [MemorySize],32
+          jb      short NotModernProcessor
+          inc     bl
 NotModernProcessor:
           mov     [byte cs:MemSizePriznak],bl
 
@@ -9621,7 +9623,7 @@ PROC CpuSpeed
           pop     ds
           cld
           mov     si,offset CPU_SS
-          mov     cx,25+12
+          mov     cx,offset CPU_SE - offset CPU_SS ;25+12 Ошибка в подсчёте длины инструкций, что приводило к вылетам в эмуляторах
           rep movsb
           mov     cx,10240
 NextDivEax:
@@ -9631,7 +9633,7 @@ NextDivEax:
           stosb
           loop    short NextDivEax
           mov     si,offset CPU_SE
-          mov     cx,25
+          mov     cx,offset CPU_END - offset CPU_SE ;25
           rep movsb
           pop     ds
           pop     es
@@ -9674,6 +9676,7 @@ CPU_SE:
           sti
           movzx   eax,ax
           retf
+CPU_END:
 ENDP CPUSpeedEnd
 
 PROC DetectMHZ
@@ -10911,7 +10914,8 @@ CpuSpeed266AndFast:
 
         mov     cx,200
 
-        call    GetMemPeakBandwidth32
+        call    GetMemPeakBandwidth32 ; прогрев, результат игнорируем
+        call    GetMemPeakBandwidth32 ; Переходим к следующему варианту, если он быстрее не более чем в 1.5 раза. Возможно защита от выбросов
         mov     ebx,eax
         shr     eax,1
         add     ebx,eax
