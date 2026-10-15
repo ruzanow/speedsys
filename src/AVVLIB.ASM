@@ -13,7 +13,7 @@ mkm                EQU   250,'m'
                    EXTRN BrandID:byte,CPUstepping:byte,CPUmodel:byte,CPUfamily:byte
                    EXTRN CPUtype:byte,RegEDXCPUIDlevel2:dword,ClockRatio:word
                    EXTRN DataCacheL1:word,CacheL1:word,CacheL2:word,CacheL3:word
-                   EXTRN SPDSocket:byte,BaseAdrSMBus:word,NumByteSPD:byte,IntelExtendedFamily:byte
+                   EXTRN SPDSocket:byte,BaseAdrSMBus:word,NumByteSPD:byte,IntelExtendedFamily:byte,IntelExtendedModel:byte
                    EXTRN IntelProcessor:byte,CorrectFrec:word,NumberPCIBus:byte
 
          PUBLIC MesHelp,BIOSVendors
@@ -1311,7 +1311,7 @@ PROC BinToAscDec2 ; Преобразует число (в EAX) в ASCII-стро
           call    BinToAscDecH
           sub     cx,2
 
-		  cmp     cx, 5 ; Дефолтное значение в CalcResMem
+          cmp     cx, 5 ; Дефолтное значение в CalcResMem
           jne     short SkipIncrement
           cmp     eax, 10000000
           jb      short SkipIncrement
@@ -3215,6 +3215,13 @@ PROC DetectIntelCodeName
           mov     si,offset MesIntelTilamook
           cmp     ax,5*256+8
           jz      DetectedIntelCodeName
+
+          cmp     ah,6 ; Family 6 с ненулевой Extended Model - не P6-ядро
+          jnz     short NotFam6ExtModelCheck
+          cmp     [IntelExtendedModel],0
+          jnz     NoIntelExtendFamily
+NotFam6ExtModelCheck:
+
           mov     si,offset MesIntelP6
           cmp     ax,6*256+0
           jz      DetectedIntelCodeName
@@ -3448,6 +3455,8 @@ IntelP4NortwoodProcesorForGetClockMult:
 
 NotIntelP4ProcesorForGetClockMult:
           cmp     [CPUfamily],06h
+          jnz     NotIntelP6Core
+          cmp     [IntelExtendedModel],0 ; Core 2+ - другая раскладка MSR
           jnz     NotIntelP6Core
           shr     eax,22
           cmp     [CPUmodel],8
@@ -6028,9 +6037,9 @@ ENDP GetIDString
 PUBLIC GetHDDSizeInGB
 
 PROC GetHDDSizeInGB
-          mov     ebx,10000
+          mov     ebx,10000/16
           mul     ebx
-          mov     ebx,1024
+          mov     ebx,1024/16
           div     ebx
           xor     edx,edx
           mov     ebx,100

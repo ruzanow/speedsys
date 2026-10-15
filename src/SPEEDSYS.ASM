@@ -9,7 +9,7 @@ ForSkaleProc       EQU  1 ; 1 !!!
 Win32ModuleSize    EQU   7680 ; Размер Win32 модуля
 SSTRESTMPSize      EQU   1122+4 ; Win32 data
 CacheMissCor       EQU   64/4
-SpeedsysVer        EQU   '4.79b05'
+SpeedsysVer        EQU   '4.79'
 r                  EQU   252,253
 tm                 EQU   254,255
 ForCpuTest         EQU   1 ; не менять
@@ -81,8 +81,8 @@ Parm4              DD  0
 StackOfs           DW ?
 StackSeg           DW ?
 
-MesVer             DB 17,3+8,22,95,0,18,'Ver ',SpeedsysVer,0
-;MesVer             DB 17,3+8,22,98,0,18,'Ver ',SpeedsysVer,0
+;MesVer             DB 17,3+8,22,95,0,18,'Ver ',SpeedsysVer,0
+MesVer             DB 17,3+8,22,98,0,18,'Ver ',SpeedsysVer,0
 Win32PrgBuff       DB Win32ModuleSize+8 DUP ('-')
 NumNameResTmp      DB 'C:\SSTRES'
 Extension          DD 0
@@ -1827,7 +1827,7 @@ RealModeDetected:
 GoToInitXMSAccess:
           cmp     [FeatureFlagSSE4],1
           jnz     short NotModernProcessor
-          cmp     [MemorySize],32
+          cmp     [MemorySize],20
           jb      short NotModernProcessor
           inc     bl
 NotModernProcessor:
@@ -6125,9 +6125,21 @@ BrandIDNotSupported:
           jnz     short GoToDetectPlatformID
           mov     eax,[Win32MSR00000017edx]
           or      eax,eax
-          jz      short PlatformIDNotSupport
+          jz      PlatformIDNotSupport
 
 GoToDetectPlatformID:
+          cmp     [CPUfamily],06h
+          jnz     short PlatfIDNotFam6
+          cmp     [IntelExtendedModel],0 ; Core 2+ другая раскладка MSR
+          jnz     PlatformIDNotSupport
+          jmp     short PlatfIDSupported
+PlatfIDNotFam6:
+          cmp     [CPUfamily],0Fh
+          jnz     PlatformIDNotSupport
+          cmp     [IntelExtendedFamily],0
+          jnz     PlatformIDNotSupport
+PlatfIDSupported:
+
           mov     si,offset MesRepPlatformID
           call    PutToReportBuf
           shr     eax,12h
@@ -10912,6 +10924,11 @@ PROC MemTimingTest
           mov     [byte cs:MemSizePriznak],0
 CpuSpeed266AndFast:
 
+          cmp     [FeatureFlagSSSE3],1 ; Для Core+ увеличиваем размер тестируемой памяти до 8-16Мб, иначе всё уйдёт в кэш
+          jnz     short CpuBeforeCore
+		  add     [byte cs:MemSizePriznak],2
+CpuBeforeCore:
+
         mov     cx,200
 
         call    GetMemPeakBandwidth32 ; прогрев, результат игнорируем
@@ -10928,6 +10945,8 @@ CpuSpeed266AndFast:
         call    GetMemPeakBandwidth128
         cmp     ebx,eax
         jb      short Get64LineSizePeakBand
+        cmp     [FeatureFlagSSSE3],1 ; GetMemPeakBandwidth128 но процессорах после P4 выдаёт завышенные значения. Не вызываем.
+        jz      short Get64LineSizePeakBand
 
 Get128LineSizePeakBand:
         call    GetMemPeakBandwidth128
@@ -10969,6 +10988,11 @@ Get32LineSizePeakBand:
 DetectAveragingPeakBand:
         call    GetMaxAveraging5
         mov     [MSpeedIdx],eax
+
+          cmp     [FeatureFlagSSSE3],1 ; Возвращаем значение
+          jnz     short CpuBeforeCoreSub
+		  sub     [byte cs:MemSizePriznak],2
+CpuBeforeCoreSub:
 
           call    ClearHMSblock
 
@@ -11895,7 +11919,7 @@ PROC GetOriginalIntelClock
           mov    bx,100
 
           cmp    [CPUModel],2
-          jb     short OrigExternalClockDetected
+          jb     OrigExternalClockDetected
           jz     short IntelP4ProcesorForOriginalClock
 
           jmp    NotIntelCPUForOriginalClock
@@ -11924,6 +11948,8 @@ P4OriginalClockDetected:
 
 
 P6FamilyForOriginalClock:
+          cmp    [IntelExtendedModel],0 ;Family 6 с ненулевой Extended Model - не P6-ядро
+          jnz    NotIntelCPUForOriginalClock
           mov    eax,[MSR0000002A]
           test   eax,80000000h
           jnz    short P6OriginalClockDetected
@@ -12453,7 +12479,7 @@ Int13ExtNotSupportForThisDrive:
           mov     [LineCorrect4],8
           mov     [LineCorrect5],11
           mov     [LineCorrect1],7
-          cmp     ax,60
+          cmp     ax,2 ; 60 ; Уменьшаем порог для SSD
           jb      short HardSeekProblem
           cmp     [Int13ExtSup],1
           jnz     short NoHardSeekProblem

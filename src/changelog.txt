@@ -1,0 +1,36 @@
+4.79b04
+~~~~~~~~~~~~~
+
+4.79bFIXED
+~~~~~~~~~~~~~
+If the processor supports SSE4.2 (which we consider an indicator of a modern CPU, 2008+), the cache test is performed for 16 MB (instead of 8), which gives more adequate results (it does not fit entirely into L3). // For 32 MB: MemSizePriznak = 3 and ResultsNew DB 13 DUP(0) -> 14
+
+The main screen also now displays the maximum SSE version supported by the processor.
+
+Fixed overflow and logic failure when cache speed > 40 GB/s.
+
+Fixed crashes in VMware. The instruction length was calculated incorrectly (tnx Claude). Now the length is calculated by the compiler.
+
+Reduced the constant affecting the display of the 'Average/Max seek time' section in the HDD test. For its proper display on SSDs.
+
+Fixed the display of some data for Core2 processors (which overlapped with PIII in cpuid).
+
+Improved the Memory Bandwidth test on Core2+, by increasing the size of the tested memory to 8-16 MB (otherwise everything goes into the cache). And by disabling GetMemPeakBandwidth128, which produces inflated results there.
+
+
+Rus
+
+┼ёыш яЁюЎхёёюЁ яюффхЁцштрхЄ SSE4.2 (2008+ уюф. сєфхь ёўшЄрхЄ№ шї юЄэюёшЄхы№эю ёютЁхьхээ√ьш), ЄхёЄ ъ¤°р т√яюыэ хЄё  фы  юс·хьр 16 ╠┴ (р эх 8 ╠┴), ўЄю юсхёяхўштрхЄ сюыхх рфхътрЄэ√х Ёхчєы№ЄрЄ√ (юэ эх яюярфрхЄ Ўхышъюь т L3). 
+// ─ы  32 ╠┴: MemSizePriznak = 3; ResultsNew DB 13 DUP(0) -> 14.
+
+╩Ёюьх Єюую, эр уыртэюь ¤ъЁрэх ЄхяхЁ№ юЄюсЁрцрхЄё  ьръёшьры№эр  тхЁёш  SSE, яюффхЁцштрхьр  яЁюЎхёёюЁюь (Ёрч єц ь√ х╕ юяЁхфхышыш).
+
+╚ёяЁртыхэю яхЁхяюыэхэшх яЁш єьэюцхэшш, яЁш ёъюЁюёЄш ъ¤°р > 40├с/ё. ╦юьрырё№ ыюушър юяЁхфхы ■∙р  ъ¤°ш.
+
+╚ёяЁртыхэ√ т√ыхЄ√ т vmware. ┴√ыр эхтхЁэю яюфёўшЄрэр фышэр шэёЄЁєъЎшщ. ╥хяхЁ№ фышэє ёўшЄрхЄ ъюьяшы ЄюЁ.
+
+╙ьхэ№°хэр ъюэёЄрэЄр тыш ■∙р  эр яюърч Ёрчфхыр ё 'Average/Max seek time' т ЄхёЄх HDD. ─ы  хую эюЁьры№эюую юЄюсЁрцхэш  эр SSD.
+
+╚ёяЁртыхэю юЄюсЁрцхэшх эхъюЄюЁ√ї фрээ√ї яЁюЎхёёюЁют Core2 (ъюЄюЁ√х т cpuid яхЁхёхърышё№ ё PIII).
+
+╙ыєў°хэ ЄхёЄ Memory Bandwidth эр Core2+, єтхышўхэшхь ЁрчьхЁр ЄхёЄшЁєхьющ ярь Єш фю 8-16╠с (шэрўх тё╕ єїюфшЄ т ъ¤°). ╚ юЄъы■ўхэшхь GetMemPeakBandwidth128, ъюЄюЁр  Єрь фр╕Є чрт√°хээ√х Ёхчєы№ЄрЄ√.
