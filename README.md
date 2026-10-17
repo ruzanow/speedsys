@@ -7,7 +7,7 @@ If the processor supports SSE4.2 (which we consider an indicator of a modern CPU
 Fixed two overflows in the code that were breaking cache detection. Cache speed is stored in kilobytes and multiplied by 100 in a couple of places; if the speed exceeds ~40 GB/s, the result exceeds 2^32, causing the detection logic to fail.
 
 Fixed crashes in VMware. 'Average/Max seek time' shown for SSDs. Fixed the display of some data for Core2 processors (which overlapped with PIII in cpuid).
-Improved the Memory Bandwidth test on Core+, by increasing the size of the tested memory to 8-16 MB
+Improved the Memory Bandwidth test on Core2+, by increasing the size of the tested memory to 8-16 MB
 
 
 Build - tasm5 + upx under dosbox or vmware. Just run SPEEDSYS.BAT.
