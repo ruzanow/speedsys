@@ -2627,7 +2627,7 @@ NotAMDProcesorForRDMSR:
           cmp     [CPUfamily],6
           jnz     short NotCyrixProcesorForRDMSR
           cmp     [CPUmodel],5
-          ja      short NotCyrixProcesorForRDMSR
+          jnz     short NotCyrixProcesorForRDMSR ; Был возможен вылет при выполнении rdmsr 2Ah на 6x86MX
           mov     ecx,2Ah
           DB      0Fh,32h ;rdmsr
           or      eax,80000000h
@@ -10409,15 +10409,13 @@ NoAmdCPU:
           cmp     [CyrixProcessor],1
           jnz     NoCyrixCPU
           mov     ax,[word ds:CPUmodel]
-          cmp     ah,6
+          cmp     ax,6*256+5 ; VIA Cyrix III (Joshua) = family 6, model >= 5
           jb      short NotVIACyrixIII
           mov     si,offset VIA
           mov     [NumRepCPUVendor],si
           call    colorstr6x8
           mov     [DevMHZ],1597501
-          cmp     ax,6*256+5
           mov     si, offset CyrixIII
-          jz      short CyrixCPUdetect
 
           jmp     short CyrixCPUdetect
 NotVIACyrixIII:

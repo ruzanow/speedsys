@@ -6,7 +6,7 @@
 ~~~~~~~~~~~~~
 Rus
 
-Если процессор поддерживает SSE4.2 (2008+ год. будем считаеть их относительно современными), тест кэша выполняется для объема 16 МБ (а не 8 МБ), что обеспечивает более адекватные результаты (тест не попадает целиком в L3, ну до актуальных процев). 
+Если процессор поддерживает SSE4.2 (2008+ год. будем считать их относительно современными), тест кэша выполняется для объема 16 МБ (а не 8 МБ), что обеспечивает более адекватные результаты (тест не попадает целиком в L3, ну до актуальных процев). 
 // Для 32 МБ: MemSizePriznak = 3; ResultsNew DB 13 DUP(0) -> 14. Будет показываться от 32 кб до 32 Мб.
 
 Кроме того, на главном экране теперь отображается максимальная версия SSE, поддерживаемая процессором (раз уж мы её определили).
@@ -21,7 +21,9 @@ Rus
 
 Улучшен тест Memory Bandwidth на Core2+, увеличением размера тестируемой памяти до 8-16Мб (иначе всё уходит в кэш). И отключением GetMemPeakBandwidth128, которая там даёт завышенные результаты.
 
-* Не баг. Показываемая частота (Speed via TSC) соответствует базовой частоте процессора с турбо-бустом, а не фактической. Таков дизайн (Intel предлагает пересчитывать через APERF / MPERF)
+Исправлено определение Cyrix MII / Cyrix 6x86MX, сломанное в 4.73 (?)
+
+*Не баг*. Показываемая частота (Speed via TSC) соответствует базовой частоте процессора с турбо-бустом, а не фактической. Таков дизайн (Intel предлагает пересчитывать через APERF / MPERF)
 
 
 Eng
@@ -40,5 +42,7 @@ Eng
 - Fixed incorrect display of certain Core 2 CPU information due to CPUID values overlapping with those of the Pentium III.
 
 - Improved the Memory Bandwidth test on Core 2 and newer CPUs by increasing the test memory size to 8-16 MB (to prevent the test from running entirely out of cache) and disabling `GetMemPeakBandwidth128`, which produces inflated results on these CPUs.
+
+- Fixed the detection of Cyrix MII / Cyrix 6x86MX, which was broken in 4.73 (?)
 
 - *Not a bug:* The displayed (Speed via TSC) reflects the CPU's base frequency with Turbo Boost factored in, rather than its instantaneous operating frequency. This is by design. Intel recommends calculating the actual frequency using APERF/MPERF.
