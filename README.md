@@ -11,7 +11,9 @@ Improved the Memory Bandwidth test on Core2+, by increasing the size of the test
 
 Fixed the detection of Cyrix MII / Cyrix 6x86MX, which was broken in 4.73 (?)
 
+
 Build - tasm5 + upx under dosbox or vmware. Just run SPEEDSYS.BAT.
+
 
 Forked from https://github.com/bttrx/speedsys
 >This repository contains the unmodified source code for 'System Speed Test' as I received it from Vladimir on August 12, 2006 upon my request.
