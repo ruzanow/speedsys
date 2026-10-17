@@ -1,0 +1,44 @@
+4.79b04
+~~~~~~~~~~~~~
+???
+
+4.79bFIXED
+~~~~~~~~~~~~~
+Rus
+
+Если процессор поддерживает SSE4.2 (2008+ год. будем считаеть их относительно современными), тест кэша выполняется для объема 16 МБ (а не 8 МБ), что обеспечивает более адекватные результаты (тест не попадает целиком в L3, ну до актуальных процев). 
+// Для 32 МБ: MemSizePriznak = 3; ResultsNew DB 13 DUP(0) -> 14. Будет показываться от 32 кб до 32 Мб.
+
+Кроме того, на главном экране теперь отображается максимальная версия SSE, поддерживаемая процессором (раз уж мы её определили).
+
+Исправлено переполнение при умножении, при скорости кэша > 40Гб/с. Ломалась логика определяющая кэши.
+
+Исправлены вылеты в vmware (и в Bochs/Qemu, но там ещё нужен полноценный биос). Была неверно подсчитана длина инструкций (tnx Claude). Теперь длину считает компилятор.
+
+Уменьшена константа влияющая на показ раздела с 'Average/Max seek time' в тесте HDD. Для его нормального отображения на SSD.
+
+Исправлено отображение некоторых данных процессоров Core2 (которые в cpuid пересекались с PIII).
+
+Улучшен тест Memory Bandwidth на Core2+, увеличением размера тестируемой памяти до 8-16Мб (иначе всё уходит в кэш). И отключением GetMemPeakBandwidth128, которая там даёт завышенные результаты.
+
+* Не баг. Показываемая частота (Speed via TSC) соответствует базовой частоте процессора с турбо-бустом, а не фактической. Таков дизайн (Intel предлагает пересчитывать через APERF / MPERF)
+
+
+Eng
+
+- The cache test now uses a 16 MB test size (instead of 8 MB) on CPUs supporting SSE4.2 (2008 and later, considered relatively modern). This provides more realistic results by preventing the test from fitting entirely in the L3 cache on modern CPUs.
+  // For 32 MB: MemSizePriznak = 3; ResultsNew DB 13 DUP(0) -> 14. The displayed range will be from 32 KB to 32 MB.
+
+- The main screen now displays the highest SSE version supported by the CPU, since this information is already detected.
+
+- Fixed an integer overflow during multiplication at cache speeds above 40 GB/s, which could break cache detection logic.
+
+- Fixed crashes in VMware (also in Bochs/QEMU, although a full BIOS implementation is still needed there). Instruction lengths were being calculated incorrectly (tnx Claude). The assembler now handles instruction length calculation automatically.
+
+- Reduced the constant affecting the display of the *Average/Max Seek Time* section in the HDD test, allowing it to display correctly on SSDs.
+
+- Fixed incorrect display of certain Core 2 CPU information due to CPUID values overlapping with those of the Pentium III.
+
+- Improved the Memory Bandwidth test on Core 2 and newer CPUs by increasing the test memory size to 8-16 MB (to prevent the test from running entirely out of cache) and disabling `GetMemPeakBandwidth128`, which produces inflated results on these CPUs.
+
+- *Not a bug:* The displayed (Speed via TSC) reflects the CPU's base frequency with Turbo Boost factored in, rather than its instantaneous operating frequency. This is by design. Intel recommends calculating the actual frequency using APERF/MPERF.

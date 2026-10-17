@@ -1315,7 +1315,7 @@ PROC BinToAscDec2 ; Преобразует число (в EAX) в ASCII-стро
           jne     short SkipIncrement
           cmp     eax, 10000000
           jb      short SkipIncrement
-		  inc     cx ; Для больших значений правильно ставим точку
+          inc     cx ; Для больших значений правильно ставим точку
 SkipIncrement:
 
           mov     si,di

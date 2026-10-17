@@ -211,7 +211,7 @@ FeatureFlagTSC     DB 0
 FeatureFlagMSR     DB 0
 FeatureFlagSSE     DB 0
 FeatureFlagSSE2    DB 0
-FeatureFlagSSSE3    DB 0
+FeatureFlagSSSE3   DB 0
 FeatureFlagSSE4    DB 0
 FeatureFlagSN      DB 0
 FeatureFlagAMD3D   DB 0
@@ -6125,20 +6125,14 @@ BrandIDNotSupported:
           jnz     short GoToDetectPlatformID
           mov     eax,[Win32MSR00000017edx]
           or      eax,eax
-          jz      PlatformIDNotSupport
+          jz      short PlatformIDNotSupport
 
 GoToDetectPlatformID:
           cmp     [CPUfamily],06h
           jnz     short PlatfIDNotFam6
           cmp     [IntelExtendedModel],0 ; Core 2+ другая раскладка MSR
-          jnz     PlatformIDNotSupport
-          jmp     short PlatfIDSupported
+          jnz     short PlatformIDNotSupport
 PlatfIDNotFam6:
-          cmp     [CPUfamily],0Fh
-          jnz     PlatformIDNotSupport
-          cmp     [IntelExtendedFamily],0
-          jnz     PlatformIDNotSupport
-PlatfIDSupported:
 
           mov     si,offset MesRepPlatformID
           call    PutToReportBuf
@@ -6247,20 +6241,20 @@ FeatureFlagSSE2ForRepNotSupport:
           call    PutToReportBuf
 
           cmp     [FeatureFlagSSE4],1
-		  jnz     short FeatureFlagSSE4ForRepNotSupport
-		  mov     ax,' ,'
+          jnz     short FeatureFlagSSE4ForRepNotSupport
+          mov     ax,' ,'
           call    PutWordToReportBuf
           mov     si,offset MesSSE4yes
-		  call    PutToReportBuf
-		  jmp     short FeatureFlagSSSE3ForRepNotSupport
+          call    PutToReportBuf
+          jmp     short FeatureFlagSSSE3ForRepNotSupport
 FeatureFlagSSE4ForRepNotSupport:
 
           cmp     [FeatureFlagSSSE3],1
-		  jnz     short FeatureFlagSSSE3ForRepNotSupport
-		  mov     ax,' ,'
+          jnz     short FeatureFlagSSSE3ForRepNotSupport
+          mov     ax,' ,'
           call    PutWordToReportBuf
           mov     si,offset MesSSSE3yes
-		  call    PutToReportBuf
+          call    PutToReportBuf
 FeatureFlagSSSE3ForRepNotSupport:
 
           cmp     [IntelProcessor],1
@@ -10704,16 +10698,16 @@ MMXNotSupportForYes:
           jmp     short PrintMesAMD3Dno
 IntelProcessorPresents:
           cmp     [FeatureFlagSSE4],1
-		  mov     si,offset MesSSE4yes
+          mov     si,offset MesSSE4yes
           jz      short SSENotSupportForYes
-          
-		  cmp     [FeatureFlagSSSE3],1
-		  mov     si,offset MesSSSE3yes
+
+          cmp     [FeatureFlagSSSE3],1
+          mov     si,offset MesSSSE3yes
           jz      short SSENotSupportForYes
-		  
+
           cmp     [FeatureFlagSSE2],1
-		  mov     si,offset MesSSE2yes
-		  jz      short SSENotSupportForYes
+          mov     si,offset MesSSE2yes
+          jz      short SSENotSupportForYes
 
           cmp     [FeatureFlagSSE],1
           mov     si,offset MesSSEyes
@@ -10926,7 +10920,7 @@ CpuSpeed266AndFast:
 
           cmp     [FeatureFlagSSSE3],1 ; Для Core+ увеличиваем размер тестируемой памяти до 8-16Мб, иначе всё уйдёт в кэш
           jnz     short CpuBeforeCore
-		  add     [byte cs:MemSizePriznak],2
+          add     [byte cs:MemSizePriznak],2
 CpuBeforeCore:
 
         mov     cx,200
@@ -10991,7 +10985,7 @@ DetectAveragingPeakBand:
 
           cmp     [FeatureFlagSSSE3],1 ; Возвращаем значение
           jnz     short CpuBeforeCoreSub
-		  sub     [byte cs:MemSizePriznak],2
+          sub     [byte cs:MemSizePriznak],2
 CpuBeforeCoreSub:
 
           call    ClearHMSblock
